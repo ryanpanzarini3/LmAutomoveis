@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LM Automóveis Seminovos - Tecnologia e Confiança em Cada Veículo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#06b6d4',
+                        accent: '#3b82f6',
+                        surface: '#f8fafc',
+                        glass: 'rgba(255, 255, 255, 0.1)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.3);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .logo-l-e {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+        }
+        .logo-m {
+            color: #ffd700;
+            animation: glowYellow 3s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+        .logo-auto {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+        @keyframes glowWhite {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+        @keyframes glowYellow {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 text-white transition-all duration-300" id="navbar" style="background-color: #1e3a5f;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="car" class="w-8 h-8 text-white-400"></i>
+                    <span class="font-display text-2xl text-white font-bold tracking-tight">
+                        <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Sobre</a>
+                    <a href="financiamento.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Financiamento</a>
+                    <a href="contato.html" class="px-6 py-3 bg-cyan-400 text-primary font-semibold rounded-full hover:bg-cyan-300 transition-all btn-glow">
+                        Contato
+                    </a>
+                </div>
+
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #1e3a5f;">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Sobre</a>
+                <a href="financiamento.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Financiamento</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium text-cyan-400">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" style="background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.4)), url('imagens/WhatsApp Image 2026-03-02 at 15.50.33.jpeg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-cyan-400 text-sm font-medium mb-6">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 mr-2 animate-pulse"></span>
+                    Tecnologia em cada detalhe
+                </div>
+                <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+                    Seminovos do <span class="text-gradient">futuro</span> hoje
+                </h1>
+                <p class="text-xl text-slate-300 mb-8 max-w-lg">
+                    Veículos selecionados com tecnologia de ponta em avaliação. 
+                    Transparência digital e garantia real em cada negócio.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="estoque.html" class="px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-cyan-400 transition-all btn-glow text-center">
+                        Ver Estoque
+                    </a>
+                    <a href="contato.html" class="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all text-center">
+                        Fale Conosco
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex items-center gap-8 text-slate-400 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400"></i>
+                        <span>Garantia 1 ano</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400"></i>
+                        <span>Inspeção 150pts</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="refresh-cw" class="w-5 h-5 text-cyan-400"></i>
+                        <span>7 dias de troca</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative animate-float hidden lg:block">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-cyan-400/30 hover:border-cyan-400/50 transition-all duration-300">
+                    <img src="imagens/33514246-05ca-4c51-b58e-8e6d7eab5acd.jpg" class="w-full h-[500px] object-cover transform hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="glass rounded-2xl p-6 backdrop-blur-xl bg-white/10 border border-white/30 shadow-2xl">
+                            <div class="flex justify-between items-center text-white">
+                                <div>
+                                    <p class="text-xs font-semibold text-cyan-400 mb-1 uppercase tracking-wider">Destaque da semana</p>
+                                    <p class="font-display text-2xl font-bold mb-1">POLO TSI 2025</p>
+                                    <p class="text-sm text-slate-300">Premium • 48.000 km</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xs text-slate-300 mb-1">A partir de</p>
+                                    <p class="text-3xl font-bold text-cyan-400">R$ 77.900</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Stats -->
+                <div class="absolute -top-6 -right-6 glass rounded-2xl p-5 shadow-2xl border-2 border-cyan-400/30 bg-gradient-to-br from-primary to-slate-800">
+                    <div class="flex items-center gap-3">
+                        <div class="w-14 h-14 rounded-full bg-cyan-400/20 flex items-center justify-center border-2 border-cyan-400/40">
+                            <i data-lucide="trending-up" class="w-7 h-7 text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-white">500+</p>
+                            <p class="text-xs text-slate-300 font-medium">Carros vendidos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="relative -mt-10 z-20 px-4">
+        <div class="max-w-5xl mx-auto glass rounded-2xl p-6 shadow-2xl border border-white/30">
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-slate-600">Marca</label>
+                    <select class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/80 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20">
+                        <option>Todas as marcas</option>
+                        <option>BMW</option>
+                        <option>Mercedes-Benz</option>
+                        <option>Audi</option>
+                        <option>Toyota</option>
+                        <option>Honda</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-slate-600">Modelo</label>
+                    <select class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/80 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20">
+                        <option>Todos os modelos</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-slate-600">Ano</label>
+                    <select class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/80 focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20">
+                        <option>Todos os anos</option>
+                        <option>2023-2024</option>
+                        <option>2021-2022</option>
+                        <option>2019-2020</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button class="w-full px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                        Buscar Veículos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Vehicles -->
+    <section class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-primary mb-4">Destaques do Estoque</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Veículos selecionados e aprovados em nosso rigoroso processo de inspeção tecnológica de 150 pontos.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Car Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="http://static.photos/automotive/640x360/101" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-full">NOVO</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <button class="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-secondary transition-colors">
+                                <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-display text-xl font-bold text-primary">BMW 320i Sport</h3>
+                                <p class="text-slate-500 text-sm">2022 • 45.000 km</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="fuel" class="w-4 h-4"></i>
+                                <span>Gasolina</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="settings-2" class="w-4 h-4"></i>
+                                <span>Automático</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                            <div>
+                                <p class="text-xs text-slate-500">A partir de</p>
+                                <p class="text-2xl font-bold text-primary">R$ 189.900</p>
+                            </div>
+                            <a href="detalhes.html" class="px-4 py-2 bg-primary/5 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="http://static.photos/automotive/640x360/102" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">DESTAQUE</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <button class="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-secondary transition-colors">
+                                <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-display text-xl font-bold text-primary">Mercedes C200</h3>
+                                <p class="text-slate-500 text-sm">2021 • 32.000 km</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="fuel" class="w-4 h-4"></i>
+                                <span>Gasolina</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="settings-2" class="w-4 h-4"></i>
+                                <span>Automático</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                            <div>
+                                <p class="text-xs text-slate-500">A partir de</p>
+                                <p class="text-2xl font-bold text-primary">R$ 225.000</p>
+                            </div>
+                            <a href="detalhes.html" class="px-4 py-2 bg-primary/5 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="http://static.photos/automotive/640x360/103" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4">
+                            <button class="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-secondary transition-colors">
+                                <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-display text-xl font-bold text-primary">Audi Q3 Prestige</h3>
+                                <p class="text-slate-500 text-sm">2023 • 12.000 km</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="fuel" class="w-4 h-4"></i>
+                                <span>Flex</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="settings-2" class="w-4 h-4"></i>
+                                <span>Automático</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                            <div>
+                                <p class="text-xs text-slate-500">A partir de</p>
+                                <p class="text-2xl font-bold text-primary">R$ 198.500</p>
+                            </div>
+                            <a href="detalhes.html" class="px-4 py-2 bg-primary/5 text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="estoque.html" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all">
+                    Ver Todos os Veículos
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Differentials -->
+    <section class="py-24 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-secondary rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="font-display text-4xl font-bold mb-6">Tecnologia que <span class="text-secondary">garante</span> sua segurança</h2>
+                    <p class="text-slate-300 text-lg mb-8">
+                        Utilizamos scanners digitais e inteligência artificial na avaliação de cada veículo. 
+                        Processo transparente e resultados reais.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="scan-line" class="w-6 h-6 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">Scanner Digital 360°</h3>
+                                <p class="text-slate-400 text-sm">Mapeamento completo da pintura e estrutura do veículo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="cpu" class="w-6 h-6 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">Diagnóstico Computadorizado</h3>
+                                <p class="text-slate-400 text-sm">Leitura completa dos módulos e sistemas eletrônicos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="file-check" class="w-6 h-6 text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">Laudo Digital Completo</h3>
+                                <p class="text-slate-400 text-sm">Histórico e condições do veículo disponível online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="glass-dark rounded-3xl p-8 border border-white/10">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                                    <i data-lucide="shield-check" class="w-5 h-5 text-green-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Status do Veículo</p>
+                                    <p class="text-xs text-slate-400">Aprovado em todos os quesitos</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded-full">100% OK</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-white/5">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                    <span class="text-sm">Estrutura e Alinhamento</span>
+                                </div>
+                                <span class="text-sm font-medium text-green-400">Aprovado</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-white/5">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                    <span class="text-sm">Sistema Elétrico</span>
+                                </div>
+                                <span class="text-sm font-medium text-green-400">Aprovado</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-white/5">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                    <span class="text-sm">Transmissão</span>
+                                </div>
+                                <span class="text-sm font-medium text-green-400">Aprovado</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 rounded-lg bg-white/5">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                    <span class="text-sm">Histórico de Manutenção</span>
+                                </div>
+                                <span class="text-sm font-medium text-green-400">Verificado</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-white/10 flex justify-between items-center">
+                            <span class="text-sm text-slate-400">Inspeção realizada em:</span>
+                            <span class="text-sm font-medium">15/01/2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-surface border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <p class="font-display text-4xl font-bold text-primary mb-2">500+</p>
+                    <p class="text-slate-600 text-sm">Veículos vendidos</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display text-4xl font-bold text-primary mb-2">98%</p>
+                    <p class="text-slate-600 text-sm">Clientes satisfeitos</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display text-4xl font-bold text-primary mb-2">150</p>
+                    <p class="text-slate-600 text-sm">Pontos de inspeção</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display text-4xl font-bold text-primary mb-2">5 anos</p>
+                    <p class="text-slate-600 text-sm">No mercado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-surface">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative rounded-3xl overflow-hidden bg-primary p-12 md:p-16 text-center">
+                <div class="absolute inset-0 opacity-20">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full bg-gradient-to-b from-secondary/30 to-transparent"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Pronto para encontrar seu próximo carro?</h2>
+                    <p class="text-slate-300 mb-8 max-w-2xl mx-auto">
+                        Entre em contato com nossos consultores e agende um test drive ou solicite uma simulação de financiamento.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://wa.me/5511999999999" target="_blank" class="px-8 py-4 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            Falar no WhatsApp
+                        </a>
+                        <a href="contato.html" class="px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-slate-100 transition-all">
+                            Agendar Visita
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-lucide="car" class="w-8 h-8 text-secondary"></i>
+                        <span class="font-display text-2xl font-bold">AutoTech</span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm">
+                        Tecnologia e transparência no mercado de seminovos. 
+                        Cada veículo é uma história de qualidade aprovada digitalmente.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Links Rápidos</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li><a href="estoque.html" class="hover:text-secondary transition-colors">Estoque</a></li>
+                        <li><a href="sobre.html" class="hover:text-secondary transition-colors">Sobre Nós</a></li>
+                        <li><a href="financiamento.html" class="hover:text-secondary transition-colors">Financiamento</a></li>
+                        <li><a href="contato.html" class="hover:text-secondary transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contato</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i>
+                            Av. Tecnologia, 1000 - São Paulo
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-secondary"></i>
+                            (11) 9999-9999
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-secondary"></i>
+                            contato@autotech.com
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-secondary"></i>
+                            Seg-Sex: 9h às 18h
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm">© 2024 AutoTech Seminovos. Todos os direitos reservados.</p>
+                <div class="flex gap-6 text-sm text-slate-500">
+                    <a href="#" class="hover:text-white transition-colors">Política de Privacidade</a>
+                    <a href="#" class="hover:text-white transition-colors">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
