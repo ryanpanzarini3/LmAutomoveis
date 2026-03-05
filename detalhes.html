@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW 320i Sport 2022 - L&M Automóveis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=
+
+Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#06b6d4',
+                        accent: '#3b82f6',
+                        surface: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .logo-l-e {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+        }
+        .logo-m {
+            color: #ffd700;
+            animation: glowYellow 3s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+        .logo-auto {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+        @keyframes glowWhite {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+        @keyframes glowYellow {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            }
+        }
+        .thumbnail-active {
+            border-color: #06b6d4 !important;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 text-white transition-all duration-300" id="navbar" style="background-color: #1e3a5f;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="car" class="w-8 h-8 text-white-400"></i>
+                    <span class="font-display text-2xl text-white font-bold tracking-tight">
+                        <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Sobre</a>
+                    <a href="financiamento.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Financiamento</a>
+                    <a href="contato.html" class="px-6 py-3 bg-cyan-400 text-primary font-semibold rounded-full hover:bg-cyan-300 transition-all">
+                        Contato
+                    </a>
+                </div>
+
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #1e3a5f;">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Sobre</a>
+                <a href="financiamento.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Financiamento</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium text-cyan-400">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="pt-28 pb-4 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-2 text-sm text-slate-500">
+                <a href="index.html" class="hover:text-cyan-400">Home</a>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <a href="estoque.html" class="hover:text-cyan-400">Estoque</a>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <span id="breadcrumb-vehicle" class="text-primary font-medium">BMW 320i Sport</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column - Images & Details -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Main Image Gallery -->
+                <div class="space-y-4">
+                    <div class="relative rounded-2xl overflow-hidden bg-slate-100 aspect-video shadow-xl">
+                        <img id="main-image" src="Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.54.jpeg" alt="BMW 320i" class="w-full h-full object-cover">
+                        <button class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-400 transition-colors" onclick="prevImage()">
+                            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                        </button>
+                        <button class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-400 transition-colors" onclick="nextImage()">
+                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                        </button>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-4 py-2 bg-cyan-400 text-primary text-sm font-bold rounded-full shadow-lg">DESTAQUE</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Thumbnails -->
+                    <div id="thumbnails-container" class="grid grid-cols-5 gap-3"></div>
+                </div>
+
+                <!-- Vehicle Info -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h1 id="vehicle-title" class="font-display text-4xl font-bold text-primary mb-2">Honda Civic LXS</h1>
+                    <p id="vehicle-subtitle" class="text-slate-500 text-lg mb-6">2014 • 171.000 km • Flex</p>
+                    
+                    <div class="flex items-baseline gap-2 mb-8">
+                        <span id="vehicle-price" class="text-4xl font-bold text-cyan-400">R$ 68.900</span>
+                        <span class="text-slate-500">à vista</span>
+                    </div>
+
+                    <!-- Key Features -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 pb-8 border-b border-slate-200">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                                <i data-lucide="calendar" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Ano</p>
+                                <p id="feature-year" class="font-semibold text-primary">2014</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                                <i data-lucide="gauge" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Quilometragem</p>
+                                <p id="feature-km" class="font-semibold text-primary">171.000 km</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                                <i data-lucide="fuel" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Combustível</p>
+                                <p id="feature-fuel" class="font-semibold text-primary">Flex</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                                <i data-lucide="settings-2" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Câmbio</p>
+                                <p id="feature-transmission" class="font-semibold text-primary">Automático</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Specifications -->
+                    <h3 class="font-display text-2xl font-bold text-primary mb-4">Especificações</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-8">
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Marca</span>
+                            <span id="spec-brand" class="font-semibold text-primary">Honda</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Modelo</span>
+                            <span id="spec-model" class="font-semibold text-primary">Civic LXS</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Cor</span>
+                            <span id="spec-color" class="font-semibold text-primary">Preto</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Portas</span>
+                            <span id="spec-doors" class="font-semibold text-primary">4 portas</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Motor</span>
+                            <span id="spec-engine" class="font-semibold text-primary">2.0 16V Turbo</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Potência</span>
+                            <span id="spec-power" class="font-semibold text-primary">184 cv</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Final de Placa</span>
+                            <span id="spec-plate" class="font-semibold text-primary">5</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">IPVA</span>
+                            <span id="spec-ipva" class="font-semibold text-green-500">✓ Pago 2024</span>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <h3 class="font-display text-2xl font-bold text-primary mb-4">Equipamentos</h3>
+                    <div id="features-list" class="grid md:grid-cols-2 gap-3">
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Ar Condicionado Digital</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Vidros Elétricos</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Travas Elétricas</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Direção Elétrica</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Airbags Frontais e Laterais</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>ABS e Controle de Estabilidade</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Sensor de Estacionamento</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Câmera de Ré</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Central Multimídia</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Bancos em Couro</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Rodas de Liga Leve 18"</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Faróis em LED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inspection Report -->
+                <div class="bg-gradient-to-br from-primary to-slate-800 rounded-2xl p-8 text-white shadow-xl">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-cyan-400/20 flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-2xl font-bold">Laudo de Inspeção</h3>
+                            <p class="text-sm text-slate-300">Aprovado em 150 pontos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-4 rounded-lg bg-white/5">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                <span>Estrutura e Chassi</span>
+                            </div>
+                            <span class="text-sm font-medium text-green-400">100% Aprovado</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 rounded-lg bg-white/5">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                <span>Sistema Elétrico</span>
+                            </div>
+                            <span class="text-sm font-medium text-green-400">100% Aprovado</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 rounded-lg bg-white/5">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                <span>Motor e Transmissão</span>
+                            </div>
+                            <span class="text-sm font-medium text-green-400">100% Aprovado</span>
+                        </div>
+                        <div class="flex justify-between items-center p-4 rounded-lg bg-white/5">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                                <span>Pintura e Funilaria</span>
+                            </div>
+                            <span class="text-sm font-medium text-green-400">Original</span>
+                        </div>
+                    </div>
+
+                    <button class="mt-6 w-full py-3 bg-cyan-400 text-primary font-semibold rounded-lg hover:bg-cyan-300 transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        Baixar Laudo Completo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column - Contact & Actions -->
+            <div class="space-y-6">
+                <!-- Contact Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg sticky top-24">
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Interessado?</h3>
+                    
+                    <div class="space-y-3 mb-6">
+                        <a id="whatsapp-interest-link" href="https://wa.me/5542999999999?text=Olá!%20Tenho%20interesse%20no%20BMW%20320i%20Sport%202022" target="_blank" class="w-full py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            Falar no WhatsApp
+                        </a>
+                        
+                        <a href="tel:+5542999999999" class="w-full py-3 bg-cyan-400 text-primary font-semibold rounded-lg hover:bg-cyan-300 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            Ligar Agora
+                        </a>
+                        
+                        <button class="w-full py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                            Agendar Test Drive
+                        </button>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-200">
+                        <h4 class="font-semibold text-primary mb-3">Simular Financiamento</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-sm text-slate-600 mb-1 block">Entrada</label>
+                                <input type="text" value="R$ 50.000" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-400">
+                            </div>
+                            <div>
+                                <label class="text-sm text-slate-600 mb-1 block">Parcelas</label>
+                                <select class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-400">
+                                    <option>12x de R$ 11.658</option>
+                                    <option>24x de R$ 5.829</option>
+                                    <option>36x de R$ 3.886</option>
+                                    <option>48x de R$ 2.914</option>
+                                </select>
+                            </div>
+                            <button class="w-full py-2 bg-primary text-white font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                Simular
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badges -->
+                <div class="bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl p-6 text-white shadow-lg">
+                    <h4 class="font-display text-lg font-bold mb-4">Garantias</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Garantia 1 Ano</p>
+                                <p class="text-xs text-white/80">Motor e câmbio</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">7 Dias de Troca</p>
+                                <p class="text-xs text-white/80">Não gostou? Troca</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <i data-lucide="file-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Laudo Digital</p>
+                                <p class="text-xs text-white/80">150 pontos verificados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Share -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h4 class="font-semibold text-primary mb-3">Compartilhar</h4>
+                    <div class="flex gap-2">
+                        <button class="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5 mx-auto text-blue-600"></i>
+                        </button>
+                        <button class="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-all">
+                            <i data-lucide="twitter" class="w-5 h-5 mx-auto text-sky-500"></i>
+                        </button>
+                        <button class="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5 mx-auto text-pink-600"></i>
+                        </button>
+                        <button class="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-all">
+                            <i data-lucide="link" class="w-5 h-5 mx-auto text-slate-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Similar Vehicles -->
+    <section class="py-16 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-display text-3xl font-bold text-primary mb-8">Veículos Similares</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Car Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-slate-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="http://static.photos/automotive/640x360/306" alt="Carro" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-lg font-bold text-primary mb-1">Audi A4 2021</h3>
+                        <p class="text-slate-500 text-sm mb-3">2021 • 38.000 km</p>
+                        <div class="flex justify-between items-center pt-3 border-t border-slate-100">
+                            <p class="text-2xl font-bold text-cyan-400">R$ 175.000</p>
+                            <a href="#" class="text-sm text-primary font-semibold hover:text-cyan-400">Ver mais →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-slate-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="http://static.photos/automotive/640x360/307" alt="Carro" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                       <h3 class="font-display text-lg font-bold text-primary mb-1">Mercedes C180 2022</h3>
+                        <p class="text-slate-500 text-sm mb-3">2022 • 28.000 km</p>
+                        <div class="flex justify-between items-center pt-3 border-t border-slate-100">
+                            <p class="text-2xl font-bold text-cyan-400">R$ 198.000</p>
+                            <a href="#" class="text-sm text-primary font-semibold hover:text-cyan-400">Ver mais →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-slate-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="http://static.photos/automotive/640x360/308" alt="Carro" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-lg font-bold text-primary mb-1">Volvo S60 2021</h3>
+                        <p class="text-slate-500 text-sm mb-3">2021 • 42.000 km</p>
+                        <div class="flex justify-between items-center pt-3 border-t border-slate-100">
+                            <p class="text-2xl font-bold text-cyan-400">R$ 165.900</p>
+                            <a href="#" class="text-sm text-primary font-semibold hover:text-cyan-400">Ver mais →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-lucide="car" class="w-8 h-8 text-cyan-400"></i>
+                        <span class="font-display text-2xl font-bold">
+                            <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                        </span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm">
+                        Seminovos de qualidade com garantia e inspeção completa.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Links</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li><a href="estoque.html" class="hover:text-cyan-400 transition-colors">Estoque</a></li>
+                        <li><a href="sobre.html" class="hover:text-cyan-400 transition-colors">Sobre</a></li>
+                        <li><a href="financiamento.html" class="hover:text-cyan-400 transition-colors">Financiamento</a></li>
+                        <li><a href="contato.html" class="hover:text-cyan-400 transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contato</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-cyan-400"></i>
+                            (42) 3025-6505
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
+                            contato@lmautomoveis.com
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-cyan-400"></i>
+                            Seg-Sex: 9h às 18h
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-slate-500 text-sm">© 2024 L&M Automóveis. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5542999999999" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Vehicle Data from URL
+        const searchParams = new URLSearchParams(window.location.search);
+
+        const vehicleFromUrl = {
+            brand: searchParams.get('brand') || '',
+            model: searchParams.get('model') || '',
+            year: searchParams.get('year') || '',
+            km: searchParams.get('km') || '',
+            fuel: searchParams.get('fuel') || '',
+            transmission: searchParams.get('transmission') || '',
+            color: searchParams.get('color') || '',
+            price: searchParams.get('price') || '',
+            image: searchParams.get('img') || '',
+            images: searchParams.get('images') || '',
+            folder: searchParams.get('folder') || '',
+            doors: searchParams.get('doors') || '',
+            engine: searchParams.get('engine') || '',
+            power: searchParams.get('power') || '',
+            plate: searchParams.get('plate') || '',
+            ipva: searchParams.get('ipva') || '',
+            features: searchParams.get('features') || ''
+        };
+
+        const vehicleName = `${vehicleFromUrl.brand} ${vehicleFromUrl.model}`.trim();
+
+        if (vehicleName) {
+            const titleElement = document.getElementById('vehicle-title');
+            const subtitleElement = document.getElementById('vehicle-subtitle');
+            const breadcrumbElement = document.getElementById('breadcrumb-vehicle');
+            const priceElement = document.getElementById('vehicle-price');
+            const specBrandElement = document.getElementById('spec-brand');
+            const specModelElement = document.getElementById('spec-model');
+            const specColorElement = document.getElementById('spec-color');
+            const specDoorsElement = document.getElementById('spec-doors');
+            const specEngineElement = document.getElementById('spec-engine');
+            const specPowerElement = document.getElementById('spec-power');
+            const specPlateElement = document.getElementById('spec-plate');
+            const specIpvaElement = document.getElementById('spec-ipva');
+            const featureYearElement = document.getElementById('feature-year');
+            const featureKmElement = document.getElementById('feature-km');
+            const featureFuelElement = document.getElementById('feature-fuel');
+            const featureTransmissionElement = document.getElementById('feature-transmission');
+            const featuresListElement = document.getElementById('features-list');
+            const whatsappInterestLink = document.getElementById('whatsapp-interest-link');
+
+            if (titleElement) titleElement.textContent = vehicleName;
+            if (breadcrumbElement) breadcrumbElement.textContent = vehicleName;
+            if (specBrandElement && vehicleFromUrl.brand) specBrandElement.textContent = vehicleFromUrl.brand;
+            if (specModelElement && vehicleFromUrl.model) specModelElement.textContent = vehicleFromUrl.model;
+            if (specColorElement && vehicleFromUrl.color) specColorElement.textContent = vehicleFromUrl.color;
+            if (specDoorsElement && vehicleFromUrl.doors) specDoorsElement.textContent = vehicleFromUrl.doors;
+            if (specEngineElement && vehicleFromUrl.engine) specEngineElement.textContent = vehicleFromUrl.engine;
+            if (specPowerElement && vehicleFromUrl.power) specPowerElement.textContent = vehicleFromUrl.power;
+            if (specPlateElement && vehicleFromUrl.plate) specPlateElement.textContent = vehicleFromUrl.plate;
+            if (specIpvaElement && vehicleFromUrl.ipva) specIpvaElement.textContent = vehicleFromUrl.ipva;
+            if (featureYearElement && vehicleFromUrl.year) featureYearElement.textContent = vehicleFromUrl.year;
+            if (featureKmElement && vehicleFromUrl.km) featureKmElement.textContent = `${vehicleFromUrl.km} km`;
+            if (featureFuelElement && vehicleFromUrl.fuel) featureFuelElement.textContent = vehicleFromUrl.fuel;
+            if (featureTransmissionElement && vehicleFromUrl.transmission) featureTransmissionElement.textContent = vehicleFromUrl.transmission;
+            if (priceElement && vehicleFromUrl.price) priceElement.textContent = `R$ ${vehicleFromUrl.price}`;
+
+            if (featuresListElement && vehicleFromUrl.features) {
+                const features = vehicleFromUrl.features.split('|').map((item) => item.trim()).filter(Boolean);
+                if (features.length > 0) {
+                    featuresListElement.innerHTML = features.map((feature) => `
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>${feature}</span>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            if (whatsappInterestLink && vehicleName) {
+                const interestText = `Olá! Tenho interesse no ${vehicleName}${vehicleFromUrl.year ? ` ${vehicleFromUrl.year}` : ''}`;
+                whatsappInterestLink.href = `https://wa.me/5542999999999?text=${encodeURIComponent(interestText)}`;
+            }
+
+            const subtitleParts = [];
+            if (vehicleFromUrl.year) subtitleParts.push(vehicleFromUrl.year);
+            if (vehicleFromUrl.km) subtitleParts.push(`${vehicleFromUrl.km} km`);
+            if (vehicleFromUrl.fuel) subtitleParts.push(vehicleFromUrl.fuel);
+            if (subtitleElement && subtitleParts.length > 0) {
+                subtitleElement.textContent = subtitleParts.join(' • ');
+            }
+
+            const pageTitleParts = [vehicleName];
+            if (vehicleFromUrl.year) {
+                pageTitleParts.push(vehicleFromUrl.year);
+            }
+            document.title = `${pageTitleParts.join(' ')} - L&M Automóveis`;
+
+            lucide.createIcons();
+        }
+
+        // Image Gallery
+        const mainImage = document.getElementById('main-image');
+        const thumbnailsContainer = document.getElementById('thumbnails-container');
+        let images = [];
+        let currentImage = 0;
+
+        async function loadImagesFromFolder(folderPath) {
+            if (!folderPath) {
+                return [];
+            }
+
+            try {
+                const response = await fetch(`${folderPath}/imagens.json`);
+                if (!response.ok) {
+                    return [];
+                }
+
+                const manifest = await response.json();
+                const manifestImages = Array.isArray(manifest)
+                    ? manifest
+                    : Array.isArray(manifest.images) ? manifest.images : [];
+
+                return manifestImages
+                    .map((imagePath) => String(imagePath || '').trim())
+                    .filter(Boolean)
+                    .map((imagePath) => {
+                        if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
+                            return imagePath;
+                        }
+                        return `${folderPath}/${imagePath}`;
+                    });
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function renderThumbnails() {
+            if (!thumbnailsContainer) {
+                return;
+            }
+
+            thumbnailsContainer.innerHTML = images.map((imagePath, index) => `
+                <button class="thumbnail aspect-[4/3] rounded-lg overflow-hidden border-2 border-transparent hover:border-cyan-400 transition-all" onclick="changeImage(${index})">
+                    <img src="${imagePath}" class="w-full h-full object-cover" alt="Imagem ${index + 1}">
+                </button>
+            `).join('');
+        }
+
+        async function initializeGallery() {
+            const parsedImages = vehicleFromUrl.images
+                ? vehicleFromUrl.images
+                    .split('|')
+                    .map((imagePath) => imagePath.trim())
+                    .filter((imagePath) => imagePath && imagePath.includes('/'))
+                : [];
+
+            const folderImages = await loadImagesFromFolder(vehicleFromUrl.folder);
+
+            images = folderImages.length > 0
+                ? folderImages
+                : (parsedImages.length > 0
+                    ? parsedImages
+                    : (vehicleFromUrl.image ? [vehicleFromUrl.image] : [mainImage?.getAttribute('src')].filter(Boolean)));
+
+            images = images.filter(Boolean);
+
+            currentImage = 0;
+
+            if (mainImage && images.length > 0) {
+                mainImage.src = images[0];
+            }
+
+            renderThumbnails();
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            if (thumbnails.length > 0) {
+                thumbnails[0].classList.add('thumbnail-active');
+            }
+        }
+
+        function updateImage(index) {
+            if (!images.length || !mainImage) {
+                return;
+            }
+
+            currentImage = index;
+            mainImage.src = images[index];
+
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach((thumb, i) => {
+                if (i === index) {
+                    thumb.classList.add('thumbnail-active');
+                } else {
+                    thumb.classList.remove('thumbnail-active');
+                }
+            });
+        }
+
+        function changeImage(index) {
+            updateImage(index);
+        }
+
+        function nextImage() {
+            if (!images.length) {
+                return;
+            }
+
+            currentImage = (currentImage + 1) % images.length;
+            updateImage(currentImage);
+        }
+
+        function prevImage() {
+            if (!images.length) {
+                return;
+            }
+
+            currentImage = (currentImage - 1 + images.length) % images.length;
+            updateImage(currentImage);
+        }
+
+        initializeGallery();
+    </script>
+</body>
+</html>

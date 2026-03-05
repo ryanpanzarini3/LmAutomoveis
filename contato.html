@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - L&M Automóveis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#06b6d4',
+                        accent: '#3b82f6',
+                        surface: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .logo-l-e {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+        }
+        .logo-m {
+            color: #ffd700;
+            animation: glowYellow 3s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+        .logo-auto {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+        @keyframes glowWhite {
+            0%, 100% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+        @keyframes glowYellow {
+            0%, 100% {
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 text-white transition-all duration-300" id="navbar" style="background-color: #1e3a5f;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="car" class="w-8 h-8 text-white-400"></i>
+                    <span class="font-display text-2xl text-white font-bold tracking-tight">
+                        <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                    </span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Sobre</a>
+                    <a href="financiamento.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Financiamento</a>
+                    <a href="contato.html" class="text-sm font-medium text-cyan-400 transition-colors">Contato</a>
+                </div>
+
+                <button class="md:hidden" id="mobile-menu-btn" aria-label="Abrir menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #1e3a5f;">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Sobre</a>
+                <a href="financiamento.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Financiamento</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium text-cyan-400">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-primary to-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="font-display text-5xl md:text-6xl font-bold mb-6">Fale com a <span class="text-cyan-400">L&M Automóveis</span></h1>
+                <p class="text-xl text-slate-300">
+                    Tire dúvidas, agende uma visita ou solicite uma proposta. Nossa equipe está pronta para te atender.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                    <div class="w-12 h-12 bg-cyan-400/15 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="phone" class="w-6 h-6 text-cyan-500"></i>
+                    </div>
+                    <h3 class="font-bold text-primary mb-2">Telefone</h3>
+                    <p class="text-slate-600">(11) 99999-9999</p>
+                    <p class="text-sm text-slate-500 mt-1">Seg a Sáb, 9h às 18h</p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                    <div class="w-12 h-12 bg-cyan-400/15 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-cyan-500"></i>
+                    </div>
+                    <h3 class="font-bold text-primary mb-2">WhatsApp</h3>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="text-cyan-500 font-medium hover:underline">(11) 99999-9999</a>
+                    <p class="text-sm text-slate-500 mt-1">Atendimento rápido</p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                    <div class="w-12 h-12 bg-cyan-400/15 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="mail" class="w-6 h-6 text-cyan-500"></i>
+                    </div>
+                    <h3 class="font-bold text-primary mb-2">E-mail</h3>
+                    <p class="text-slate-600">contato@lmautomoveis.com.br</p>
+                    <p class="text-sm text-slate-500 mt-1">Retorno em até 1 dia útil</p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                    <div class="w-12 h-12 bg-cyan-400/15 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="map-pin" class="w-6 h-6 text-cyan-500"></i>
+                    </div>
+                    <h3 class="font-bold text-primary mb-2">Endereço</h3>
+                    <p class="text-slate-600">Av. Tecnologia, 1000</p>
+                    <p class="text-sm text-slate-500 mt-1">São Paulo - SP</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form + Location -->
+    <section class="pb-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-3xl p-8 shadow-lg">
+                    <h2 class="font-display text-3xl font-bold text-primary mb-2">Envie sua mensagem</h2>
+                    <p class="text-slate-600 mb-8">Preencha os dados e nossa equipe entrará em contato.</p>
+
+                    <form class="space-y-5">
+                        <div>
+                            <label for="nome" class="block text-sm font-semibold text-slate-700 mb-2">Nome completo</label>
+                            <input id="nome" type="text" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="Seu nome">
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="telefone" class="block text-sm font-semibold text-slate-700 mb-2">Telefone</label>
+                                <input id="telefone" type="tel" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="(00) 00000-0000">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">E-mail</label>
+                                <input id="email" type="email" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="voce@email.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="assunto" class="block text-sm font-semibold text-slate-700 mb-2">Assunto</label>
+                            <select id="assunto" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400">
+                                <option>Quero comprar um veículo</option>
+                                <option>Quero vender meu veículo</option>
+                                <option>Simulação de financiamento</option>
+                                <option>Outros assuntos</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="mensagem" class="block text-sm font-semibold text-slate-700 mb-2">Mensagem</label>
+                            <textarea id="mensagem" rows="5" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="Como podemos te ajudar?"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                            Enviar mensagem
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-primary rounded-3xl p-8 text-white shadow-lg">
+                    <h2 class="font-display text-3xl font-bold mb-6">Visite nossa loja</h2>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-cyan-400 mt-1"></i>
+                            <div>
+                                <p class="font-semibold">Av. Tecnologia, 1000 - São Paulo/SP</p>
+                                <p class="text-slate-300 text-sm">Próximo ao Shopping Central</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="clock-3" class="w-5 h-5 text-cyan-400 mt-1"></i>
+                            <div>
+                                <p class="font-semibold">Horário de atendimento</p>
+                                <p class="text-slate-300 text-sm">Segunda a Sexta: 9h às 18h</p>
+                                <p class="text-slate-300 text-sm">Sábado: 9h às 14h</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="car-front" class="w-5 h-5 text-cyan-400 mt-1"></i>
+                            <div>
+                                <p class="font-semibold">Test drive disponível</p>
+                                <p class="text-slate-300 text-sm">Agende pelo WhatsApp ou formulário</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 rounded-2xl overflow-hidden border border-white/10">
+                        <iframe
+                            title="Localização L&M Automóveis"
+                            src="https://www.google.com/maps?q=Av.%20Paulista,%201000,%20S%C3%A3o%20Paulo&output=embed"
+                            width="100%"
+                            height="280"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-400 text-sm">© 2026 L&M Automóveis. Todos os direitos reservados.</p>
+                <div class="flex gap-6 text-sm text-slate-400">
+                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                    <a href="estoque.html" class="hover:text-white transition-colors">Estoque</a>
+                    <a href="financiamento.html" class="hover:text-white transition-colors">Financiamento</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>

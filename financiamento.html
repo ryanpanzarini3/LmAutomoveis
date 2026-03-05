@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financiamento - L&M Automóveis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#06b6d4',
+                        accent: '#3b82f6',
+                        surface: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .logo-l-e {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+        }
+        .logo-m {
+            color: #ffd700;
+            animation: glowYellow 3s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+        .logo-auto {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+        @keyframes glowWhite {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+        @keyframes glowYellow {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 text-white transition-all duration-300" id="navbar" style="background-color: #1e3a5f;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="car" class="w-8 h-8 text-white-400"></i>
+                    <span class="font-display text-2xl text-white font-bold tracking-tight">
+                        <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Sobre</a>
+                    <a href="financiamento.html" class="text-sm font-medium text-cyan-400 transition-colors">Financiamento</a>
+                    <a href="contato.html" class="px-6 py-3 bg-cyan-400 text-primary font-semibold rounded-full hover:bg-cyan-300 transition-all">
+                        Contato
+                    </a>
+                </div>
+
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #1e3a5f;">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Sobre</a>
+                <a href="financiamento.html" class="block py-3 text-sm font-medium text-cyan-400">Financiamento</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-primary to-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="font-display text-5xl md:text-6xl font-bold mb-6">Financiamento <span class="text-cyan-400">Facilitado</span></h1>
+                <p class="text-xl text-slate-300">
+                    Realize o sonho do seu carro com as melhores condições e taxas do mercado
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulator -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-cyan-400 to-blue-500 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
+                <h2 class="font-display text-3xl font-bold mb-8 text-center">Simulador de Financiamento</h2>
+                
+                <div class="bg-white rounded-2xl p-8 text-slate-800">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Valor do Veículo</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">R$</span>
+                                <input type="text" id="vehicle-value" value="189.900" class="w-full pl-12 pr-4 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-cyan-400 font-semibold text-lg" oninput="calculateFinancing()">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Valor da Entrada</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">R$</span>
+                                <input type="text" id="down-payment" value="50.000" class="w-full pl-12 pr-4 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-cyan-400 font-semibold text-lg" oninput="calculateFinancing()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Número de Parcelas</label>
+                        <input type="range" id="installments" min="12" max="60" value="36" step="12" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer" oninput="calculateFinancing()">
+                        <div class="flex justify-between text-sm text-slate-600 mt-2">
+                            <span>12x</span>
+                            <span id="installments-label" class="font-bold text-cyan-400">36x</span>
+                            <span>60x</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-primary to-slate-800 rounded-2xl p-6 text-white">
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <p class="text-xs text-slate-300 mb-1">Valor Financiado</p>
+                                <p class="text-2xl font-bold" id="financed-amount">R$ 139.900</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-300 mb-1">Parcela Mensal</p>
+                                <p class="text-2xl font-bold text-cyan-400" id="monthly-payment">R$ 4.247</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-300 mb-1">Total a Pagar</p>
+                                <p class="text-2xl font-bold" id="total-payment">R$ 202.892</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-4">*Simulação com taxa de 1,89% a.m. (CET 25,17% a.a.). Sujeito à aprovação de crédito.</p>
+                    </div>
+
+                    <button class="w-full mt-6 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                        Solicitar Financiamento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-primary mb-4">Vantagens do Nosso Financiamento</h2>
+                <p class="text-slate-600 text-lg">
+                    Trabalhamos com os melhores bancos para oferecer as melhores condições
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="percent" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-bold text-primary text-lg mb-2">Taxas Competitivas</h3>
+                    <p class="text-slate-600 text-sm">
+                        A partir de 1,89% a.m. com as melhores instituições
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="clock" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-bold text-primary text-lg mb-2">Aprovação Rápida</h3>
+                    <p class="text-slate-600 text-sm">
+                        Análise e aprovação em até 24 horas úteis
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="calendar" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-bold text-primary text-lg mb-2">Até 60 Meses</h3>
+                    <p class="text-slate-600 text-sm">
+                        Parcele em até 60x para caber no seu bolso
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-bold text-primary text-lg mb-2">Sem Burocracia</h3>
+                    <p class="text-slate-600 text-sm">
+                        Processo simples e transparente do início ao fim
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Banks -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl font-bold text-primary mb-4">Bancos Parceiros</h2>
+                <p class="text-slate-600 text-lg">
+                    Trabalhamos com as principais instituições financeiras do Brasil
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <div class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+                    <p class="font-bold text-2xl text-primary">Banco do Brasil</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+                    <p class="font-bold text-2xl text-primary">Itaú</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+                    <p class="font-bold text-2xl text-primary">Bradesco</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+                    <p class="font-bold text-2xl text-primary">Santander</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+                    <p class="font-bold text-2xl text-primary">Caixa</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+                    <p class="font-bold text-2xl text-primary">BV Financeira</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+                    <p class="font-bold text-2xl text-primary">Safra</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+                    <p class="font-bold text-2xl text-primary">Omni</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-primary mb-4">Como Funciona</h2>
+                <p class="text-slate-600 text-lg">
+                    Processo simples em 4 etapas
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="relative">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="w-12 h-12 bg-cyan-400 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4">1</div>
+                        <h3 class="font-bold text-primary text-lg mb-2">Escolha o Veículo</h3>
+                        <p class="text-slate-600 text-sm">
+                            Navegue pelo nosso estoque e encontre o carro ideal
+                        </p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-cyan-400"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="w-12 h-12 bg-cyan-400 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4">2</div>
+                        <h3 class="font-bold text-primary text-lg mb-2">Faça a Simulação</h3>
+                        <p class="text-slate-600 text-sm">
+                            Use nosso simulador ou fale com um consultor
+                        </p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-cyan-400"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="w-12 h-12 bg-cyan-400 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4">3</div>
+                        <h3 class="font-bold text-primary text-lg mb-2">Envie os Documentos</h3>
+                        <p class="text-slate-600 text-sm">
+                            Documentação simples enviada online ou presencial
+                        </p>
+                    </div>
+                    <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-cyan-400"></div>
+                </div>
+
+                <div>
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <div class="w-12 h-12 bg-cyan-400 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4">4</div>
+                        <h3 class="font-bold text-primary text-lg mb-2">Retire seu Carro</h3>
+                        <p class="text-slate-600 text-sm">
+                            Aprovação rápida e retirada do veículo
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Required Documents -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl font-bold text-primary mb-4">Documentos Necessários</h2>
+                <p class="text-slate-600 text-lg">
+                    Documentação básica para solicitar seu financiamento
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 border-2 border-slate-100">
+                    <h3 class="font-bold text-primary text-lg mb-4 flex items-center gap-2">
+                        <i data-lucide="user" class="w-6 h-6 text-cyan-400"></i>
+                        Pessoa Física
+                    </h3>
+                    <ul class="space-y-2 text-slate-600">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <span>RG e CPF</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <span>Comprovante de residência</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <span>Comprovante de renda</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <span>CNH válida</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 border-2 border-slate-100">
+                    <h3 class="font-bold text-primary text-lg mb-4 flex items-center gap-2">
+                        <i data-lucide="building-2" class="w-6 h-6 text-cyan-400"></i>
+                        Pessoa Jurídica
+                    </h3>
+                    <ul class="space-y-2 text-slate-600">
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <span>Contrato Social</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <span>Cartão CNPJ</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <span>Faturamento (últimos 3 meses)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                            <span>Documentos pessoais do sócio</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-gradient-to-br from-primary to-slate-800 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-4xl font-bold mb-6">Pronto para financiar seu carro?</h2>
+            <p class="text-xl text-slate-300 mb-8">
+                Fale com nossos especialistas e encontre a melhor condição para você
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/5542999999999?text=Olá!%20Gostaria%20de%20simular%20um%20financiamento" target="_blank" class="px-8 py-4 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Falar no WhatsApp
+                </a>
+                <a href="contato.html" class="px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-slate-100 transition-all">
+                    Entre em Contato
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-lucide="car" class="w-8 h-8 text-cyan-400"></i>
+                        <span class="font-display text-2xl font-bold">
+                            <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                        </span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm">
+                        Seminovos de qualidade com garantia e inspeção completa.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Links</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li><a href="estoque.html" class="hover:text-cyan-400 transition-colors">Estoque</a></li>
+                        <li><a href="sobre.html" class="hover:text-cyan-400 transition-colors">Sobre</a></li>
+                        <li><a href="financiamento.html" class="hover:text-cyan-400 transition-colors">Financiamento</a></li>
+                        <li><a href="contato.html" class="hover:text-cyan-400 transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contato</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-cyan-400"></i>
+                            (42) 3025-6505
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
+                            contato@lmautomoveis.com
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-cyan-400"></i>
+                            Seg-Sex: 9h às 18h
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-slate-500 text-sm">© 2024 L&M Automóveis. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5542999999999" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Financing Calculator
+        function calculateFinancing() {
+            const vehicleValue = parseFloat(document.getElementById('vehicle-value').value.replace(/\D/g, ''));
+            const downPayment = parseFloat(document.getElementById('down-payment').value.replace(/\D/g, ''));
+            const installments = parseInt(document.getElementById('installments').value);
+            
+            // Update installments label
+            document.getElementById('installments-label').textContent = installments + 'x';
+            
+            // Calculate financing
+            const financedAmount = vehicleValue - downPayment;
+            const monthlyRate = 0.0189; // 1.89% a.m.
+            const monthlyPayment = financedAmount * (monthlyRate * Math.pow(1 + monthlyRate, installments)) / (Math.pow(1 + monthlyRate, installments) - 1);
+            const totalPayment = downPayment + (monthlyPayment * installments);
+            
+            // Update display
+            document.getElementById('financed-amount').textContent = 'R$ ' + financedAmount.toLocaleString('pt-BR');
+            document.getElementById('monthly-payment').textContent = 'R$ ' + Math.round(monthlyPayment).toLocaleString('pt-BR');
+            document.getElementById('total-payment').textContent = 'R$ ' + Math.round(totalPayment).toLocaleString('pt-BR');
+        }
+        
+        // Initialize calculator
+        calculateFinancing();
+    </script>
+</body>
+</html>
