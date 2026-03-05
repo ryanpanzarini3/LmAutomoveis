@@ -79,7 +79,7 @@
                 </div>
                 <div class="flex items-center gap-2 text-sm text-slate-400">
                     <span>Ordenar por:</span>
-                    <select class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-secondary">
+                    <select class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-black focus:outline-none focus:border-secondary">
                         <option>Mais recentes</option>
                         <option>Menor preço</option>
                         <option>Maior preço</option>
@@ -303,89 +303,25 @@
             <div class="flex-1">
                 <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                     
-                    <!-- Car 1 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-images="estoque">
-                        <div class="relative h-56 overflow-hidden">
-                            <img src="http://static.photos/automotive/640x360/201" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute top-4 left-4">
-                                <span class="px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-full">NOVO</span>
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="font-display text-lg font-bold text-primary mb-1">Audi A4 Ambiente</h3>
-                            <p class="text-slate-500 text-sm mb-3">2023 • 8.500 km • Gasolina</p>
-                            <div class="flex gap-3 mb-4">
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Prata</span>
-                            </div>
-                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                                <p class="text-xl font-bold text-primary">R$ 215.900</p>
-                                <a href="detalhes.html?brand=Audi&model=A4%20Ambiente&year=2023&km=8.500&fuel=Gasolina&transmission=Autom%C3%A1tico&color=Prata&price=215.900&img=http://static.photos/automotive/640x360/201" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
-                                    Ver Detalhes
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Car 2 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-images="http://static.photos/automotive/640x360/202">
-                        <div class="relative h-56 overflow-hidden">
-                            <img src="http://static.photos/automotive/640x360/202" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute top-4 left-4">
-                                <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">DESTAQUE</span>
-                            </div>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="font-display text-lg font-bold text-primary mb-1">BMW X1 xDrive25i</h3>
-                            <p class="text-slate-500 text-sm mb-3">2022 • 23.000 km • Gasolina</p>
-                            <div class="flex gap-3 mb-4">
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Branco</span>
-                            </div>
-                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                                <p class="text-xl font-bold text-primary">R$ 245.000</p>
-                                <a href="detalhes.html?brand=BMW&model=X1%20xDrive25i&year=2022&km=23.000&fuel=Gasolina&transmission=Autom%C3%A1tico&color=Branco&price=245.000&img=http://static.photos/automotive/640x360/202" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
-                                    Ver Detalhes
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Car 3 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-images="http://static.photos/automotive/640x360/203">
-                        <div class="relative h-56 overflow-hidden">
-                            <img src="http://static.photos/automotive/640x360/203" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <div class="p-5">
-                            <h3 class="font-display text-lg font-bold text-primary mb-1">Mercedes GLC 250</h3>
-                            <p class="text-slate-500 text-sm mb-3">2021 • 45.000 km • Gasolina</p>
-                            <div class="flex gap-3 mb-4">
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
-                            </div>
-                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                                <p class="text-xl font-bold text-primary">R$ 289.900</p>
-                                <a href="detalhes.html?brand=Mercedes-Benz&model=GLC%20250&year=2021&km=45.000&fuel=Gasolina&transmission=Autom%C3%A1tico&color=Cinza&price=289.900&img=http://static.photos/automotive/640x360/203" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
-                                    Ver Detalhes
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <!-- Car 4 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/hyundai/HB20 Confort 2015" data-doors="4 portas" data-engine="1.6 Flex" data-power="128 cv" data-plate="8" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Central Multimídia|Câmera de Ré">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/honda/Civic LXS 2014" data-doors="4 portas" data-engine="1.8" data-power="140 cv" data-plate="7" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Central Multimídia|Câmera de Ré">
                         <div class="relative h-56 overflow-hidden">
-                            <img src="Estoque/hyundai/HB20 Confort 2015/WhatsApp Image 2026-03-04 at 11.26.11.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <img src="Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.54.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-cyan-400 text-primary text-xs font-bold rounded-full">DESTAQUE</span>
+                            </div>
                         </div>
                         <div class="p-5">
-                            <h3 class="font-display text-lg font-bold text-primary mb-1">Hyundai HB20 Confort</h3>
-                            <p class="text-slate-500 text-sm mb-3">2015 • 98.000 km • Flex</p>
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Honda Civic LXS</h3>
+                            <p class="text-slate-500 text-sm mb-3">2014 • 171.000 km • Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                                <p class="text-xl font-bold text-primary">R$ 58.900</p>
+                                <p class="text-xl font-bold text-primary">R$ 68.900</p>
                                 <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
                                     Ver Detalhes
                                 </a>
@@ -394,23 +330,20 @@
                     </div>
 
                     <!-- Car 5 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-images="http://static.photos/automotive/640x360/205">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/hyundai/HB20 Confort 2015" data-doors="4 portas" data-engine="1.0" data-power="80 cv" data-plate="8" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Central Multimídia|Câmera de Ré">
                         <div class="relative h-56 overflow-hidden">
-                            <img src="http://static.photos/automotive/640x360/205" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute top-4 left-4">
-                                <span class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">ECONÔMICO</span>
-                            </div>
+                            <img src="Estoque/hyundai/HB20 Confort 2015/WhatsApp Image 2026-03-04 at 11.26.11.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="p-5">
-                            <h3 class="font-display text-lg font-bold text-primary mb-1">Honda Civic Touring</h3>
-                            <p class="text-slate-500 text-sm mb-3">2022 • 28.000 km • Gasolina</p>
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Hyundai HB20 Comfort</h3>
+                            <p class="text-slate-500 text-sm mb-3">2015 • 144.000 km • Flex</p>
                             <div class="flex gap-3 mb-4">
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">CVT</span>
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Vermelho</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                                <p class="text-xl font-bold text-primary">R$ 142.500</p>
-                                <a href="detalhes.html?brand=Honda&model=Civic%20Touring&year=2022&km=28.000&fuel=Gasolina&transmission=CVT&color=Vermelho&price=142.500&img=http://static.photos/automotive/640x360/205" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                <p class="text-xl font-bold text-primary">R$ 44.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
                                     Ver Detalhes
                                 </a>
                             </div>
@@ -418,20 +351,92 @@
                     </div>
 
                     <!-- Car 6 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-images="http://static.photos/automotive/640x360/206">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/citroen/Citroen C3 Origine 2013" data-doors="4 portas" data-engine="1.5" data-power="93 cv" data-plate="2" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Som Bluetooth|Computador de Bordo">
                         <div class="relative h-56 overflow-hidden">
-                            <img src="http://static.photos/automotive/640x360/206" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <img src="Estoque/citroen/Citroen C3 Origine 2013/WhatsApp Image 2026-03-04 at 11.22.05.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="p-5">
-                            <h3 class="font-display text-lg font-bold text-primary mb-1">BMW 330i M Sport</h3>
-                            <p class="text-slate-500 text-sm mb-3">2023 • 5.000 km • Gasolina</p>
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Citroën C3 Origine</h3>
+                            <p class="text-slate-500 text-sm mb-3">2013 • 137.000 km • Flex</p>
                             <div class="flex gap-3 mb-4">
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Azul</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Prata</span>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                                <p class="text-xl font-bold text-primary">R$ 315.000</p>
-                                <a href="detalhes.html?brand=BMW&model=330i%20M%20Sport&year=2023&km=5.000&fuel=Gasolina&transmission=Autom%C3%A1tico&color=Azul&price=315.000&img=http://static.photos/automotive/640x360/206" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                <p class="text-xl font-bold text-primary">R$ 31.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 7 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/volkswagen/Polo 200 TSI 2020" data-doors="4 portas" data-engine="1.0 Turbo" data-power="128 cv" data-plate="3" data-ipva="✓ Pago 2026" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/volkswagen/Polo 200 TSI 2020/WhatsApp Image 2026-03-04 at 11.18.15 (2).jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">TSI</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Volkswagen Polo 200 TSI Highline</h3>
+                            <p class="text-slate-500 text-sm mb-3">2020 • 99.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Prata</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 83.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 8 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/volkswagen/Polo Track 2025" data-doors="4 portas" data-engine="1.0" data-power="84 cv" data-plate="1" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Sensor de Estacionamento">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/volkswagen/Polo Track 2025/WhatsApp Image 2026-03-04 at 11.18.38 (2).jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-full">NOVO</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Volkswagen Polo Track</h3>
+                            <p class="text-slate-500 text-sm mb-3">2025 • 48.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Branco</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 77.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 9 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/honda/Honda HRV-V 2023" data-doors="4 portas" data-engine="1.5" data-power="177 cv" data-plate="6" data-ipva="✓ Pago 2026" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Bancos em Couro">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/honda/Honda HRV-V 2023/WhatsApp Image 2026-03-04 at 11.18.29 (2).jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">SUV</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Honda HR-V EXL</h3>
+                            <p class="text-slate-500 text-sm mb-3">2023 • 17.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 143.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
                                     Ver Detalhes
                                 </a>
                             </div>

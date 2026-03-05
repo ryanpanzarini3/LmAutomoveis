@@ -131,7 +131,7 @@
                         <i data-lucide="message-circle" class="w-6 h-6 text-cyan-500"></i>
                     </div>
                     <h3 class="font-bold text-primary mb-2">WhatsApp</h3>
-                    <a href="https://wa.me/5511999999999" target="_blank" class="text-cyan-500 font-medium hover:underline">(11) 99999-9999</a>
+                    <a href="https://wa.me/554298194865" target="_blank" class="text-cyan-500 font-medium hover:underline">+55 42 9819-4865</a>
                     <p class="text-sm text-slate-500 mt-1">Atendimento rápido</p>
                 </div>
 
@@ -164,36 +164,49 @@
                     <h2 class="font-display text-3xl font-bold text-primary mb-2">Envie sua mensagem</h2>
                     <p class="text-slate-600 mb-8">Preencha os dados e nossa equipe entrará em contato.</p>
 
-                    <form class="space-y-5">
+                    <form id="contact-form" action="mailto:ryanpaes67@gmail.com" method="post" enctype="text/plain" class="space-y-5">
                         <div>
                             <label for="nome" class="block text-sm font-semibold text-slate-700 mb-2">Nome completo</label>
-                            <input id="nome" type="text" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="Seu nome">
+                            <input id="nome" name="Nome" type="text" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="Seu nome" required>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
                                 <label for="telefone" class="block text-sm font-semibold text-slate-700 mb-2">Telefone</label>
-                                <input id="telefone" type="tel" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="(00) 00000-0000">
+                                <input id="telefone" name="Telefone" type="tel" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="(00) 00000-0000" required>
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">E-mail</label>
-                                <input id="email" type="email" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="voce@email.com">
+                                <input id="email" name="Email" type="email" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="voce@email.com" required>
                             </div>
                         </div>
 
                         <div>
+                            <label for="veiculo" class="block text-sm font-semibold text-slate-700 mb-2">Veículo de interesse</label>
+                            <select id="veiculo" name="Veiculo de interesse" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400">
+                                <option value="">Selecione um veículo</option>
+                                <option>Hyundai HB20 Confort</option>
+                                <option>Audi A4 Ambiente</option>
+                                <option>BMW X1 xDrive25i</option>
+                                <option>Mercedes GLC 250</option>
+                                <option>Honda Civic Touring</option>
+                                <option>BMW 330i M Sport</option>
+                            </select>
+                        </div>
+
+                        <div>
                             <label for="assunto" class="block text-sm font-semibold text-slate-700 mb-2">Assunto</label>
-                            <select id="assunto" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400">
-                                <option>Quero comprar um veículo</option>
-                                <option>Quero vender meu veículo</option>
-                                <option>Simulação de financiamento</option>
-                                <option>Outros assuntos</option>
+                            <select id="assunto" name="Assunto" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400">
+                                <option value="Quero comprar um veículo">Quero comprar um veículo</option>
+                                <option value="Quero vender meu veículo">Quero vender meu veículo</option>
+                                <option value="Simulação de financiamento">Simulação de financiamento</option>
+                                <option value="Outros assuntos">Outros assuntos</option>
                             </select>
                         </div>
 
                         <div>
                             <label for="mensagem" class="block text-sm font-semibold text-slate-700 mb-2">Mensagem</label>
-                            <textarea id="mensagem" rows="5" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="Como podemos te ajudar?"></textarea>
+                            <textarea id="mensagem" name="Mensagem" rows="5" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:border-cyan-400" placeholder="Como podemos te ajudar?" required></textarea>
                         </div>
 
                         <button type="submit" class="w-full py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold rounded-xl hover:shadow-lg transition-all">
@@ -209,8 +222,9 @@
                         <div class="flex items-start gap-3">
                             <i data-lucide="map-pin" class="w-5 h-5 text-cyan-400 mt-1"></i>
                             <div>
-                                <p class="font-semibold">Av. Tecnologia, 1000 - São Paulo/SP</p>
-                                <p class="text-slate-300 text-sm">Próximo ao Shopping Central</p>
+                                <p class="font-semibold">Av. Ernesto Vilela, 1000 Nova Rússia - Ponta Grossa</p>
+                                <PR></PR></p>
+                                <p class="text-slate-300 text-sm">Próximo ao Supermercado Tozetto, Nova Rússia</p>
                             </div>
                         </div>
 
@@ -219,7 +233,7 @@
                             <div>
                                 <p class="font-semibold">Horário de atendimento</p>
                                 <p class="text-slate-300 text-sm">Segunda a Sexta: 9h às 18h</p>
-                                <p class="text-slate-300 text-sm">Sábado: 9h às 14h</p>
+                                <p class="text-slate-300 text-sm">Sábado: 8h às 14h</p>
                             </div>
                         </div>
 
@@ -233,16 +247,7 @@
                     </div>
 
                     <div class="mt-8 rounded-2xl overflow-hidden border border-white/10">
-                        <iframe
-                            title="Localização L&M Automóveis"
-                            src="https://www.google.com/maps?q=Av.%20Paulista,%201000,%20S%C3%A3o%20Paulo&output=embed"
-                            width="100%"
-                            height="280"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.6288936290343!2d-50.1871549882545!3d-25.08056431906645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e811a7b7957fd3%3A0xc502f1f692aa16e9!2sL%20%26%20M%20Autom%C3%B3veis!5e0!3m2!1spt-BR!2sbr!4v1772740389899!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -281,6 +286,48 @@
                 navbar.classList.remove('shadow-lg');
             }
         });
+
+        const vehicleSelect = document.getElementById('veiculo');
+
+        async function loadVehicleOptions() {
+            if (!vehicleSelect) {
+                return;
+            }
+
+            try {
+                const response = await fetch('estoque.html');
+                if (!response.ok) {
+                    return;
+                }
+
+                const htmlText = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+                const vehicleTitles = Array.from(doc.querySelectorAll('.car-card h3'))
+                    .map((element) => element.textContent.trim())
+                    .filter(Boolean);
+
+                if (vehicleTitles.length === 0) {
+                    return;
+                }
+
+                const uniqueTitles = [...new Set(vehicleTitles)];
+                const currentValue = vehicleSelect.value;
+
+                vehicleSelect.innerHTML = '<option value="">Selecione um veículo</option>';
+                uniqueTitles.forEach((title) => {
+                    const option = document.createElement('option');
+                    option.value = title;
+                    option.textContent = title;
+                    vehicleSelect.appendChild(option);
+                });
+
+                vehicleSelect.value = currentValue;
+            } catch (error) {
+            }
+        }
+
+        loadVehicleOptions();
     </script>
 </body>
 </html>
