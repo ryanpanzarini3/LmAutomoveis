@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque - AutoTech Seminovos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#06b6d4',
+                        accent: '#3b82f6',
+                        surface: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.3); }
+        .checkbox-custom:checked { background-color: #06b6d4; border-color: #06b6d4; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-primary/95 backdrop-blur-md text-white border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="car" class="w-8 h-8 text-secondary"></i>
+                    <span class="font-display text-2xl font-bold tracking-tight">LM Automóveis</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-medium hover:text-secondary transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium text-secondary">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium hover:text-secondary transition-colors">Sobre</a>
+                    <a href="contato.html" class="px-6 py-3 bg-secondary text-primary font-semibold rounded-full hover:bg-cyan-400 transition-all">Contato</a>
+                </div>
+
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="hidden md:hidden bg-primary border-t border-white/10" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-secondary">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium text-secondary">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium hover:text-secondary">Sobre</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium text-secondary">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="pt-32 pb-12 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h1 class="font-display text-4xl font-bold mb-2">Nosso Estoque</h1>
+                    <p class="text-slate-400">Encontre o veículo ideal com nossa tecnologia de busca</p>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-400">
+                    <span>Ordenar por:</span>
+                    <select class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-black focus:outline-none focus:border-secondary">
+                        <option>Mais recentes</option>
+                        <option>Menor preço</option>
+                        <option>Maior preço</option>
+                        <option>Menor km</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Sidebar Filters -->
+            <aside class="lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-display text-lg font-bold text-primary">Filtros</h3>
+                        <button id="clear-filters-btn" class="text-sm text-secondary hover:underline">Limpar</button>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Marca -->
+                        <div>
+                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Marca</h4>
+                            <div id="brand-filters" class="space-y-2 max-h-80 overflow-y-auto pr-1">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Abarth</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Alfa Romeo</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Audi</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">BMW</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">BYD</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Caoa Chery</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Chevrolet</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Citroën</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Fiat</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Ford</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">GWM</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Honda</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Hyundai</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Jac Motors</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Jeep</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Kia</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Land Rover</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Lexus</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Maserati</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Mercedes-Benz</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Mini</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Mitsubishi</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Nissan</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Omoda</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Jaecoo</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Peugeot</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Porsche</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Ram</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Renault</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Subaru</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Suzuki</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Toyota</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Volkswagen</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Volvo</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Ano -->
+                        <div class="border-t border-slate-100 pt-6">
+                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Ano</h4>
+                            <div id="year-filters" class="space-y-2">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">2023-2024 (18)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">2021-2022 (22)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">2019-2020 (7)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Preço -->
+                        <div class="border-t border-slate-100 pt-6">
+                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Faixa de Preço</h4>
+                            <div class="space-y-3">
+                                <input id="price-filter-range" type="range" min="50000" max="500000" step="1000" value="500000" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-secondary">
+                                <div class="flex justify-between text-sm text-slate-600">
+                                    <span>R$ 50.000</span>
+                                    <span id="price-filter-max-label">R$ 500.000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Combustível -->
+                        <div class="border-t border-slate-100 pt-6">
+                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Combustível</h4>
+                            <div id="fuel-filters" class="space-y-2">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Gasolina (35)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Flex (8)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
+                                    <span class="text-sm text-slate-600">Híbrido (4)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Car Grid -->
+            <div class="flex-1">
+                <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    
+                    
+
+                    <!-- Car 4 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/honda/Civic LXS 2014" data-doors="4 portas" data-engine="1.8" data-power="140 cv" data-plate="7" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Central Multimídia|Câmera de Ré">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.54.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-cyan-400 text-primary text-xs font-bold rounded-full">DESTAQUE</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Honda Civic LXS</h3>
+                            <p class="text-slate-500 text-sm mb-3">2014 • 171.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 68.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 5 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/hyundai/HB20 Confort 2015" data-doors="4 portas" data-engine="1.0" data-power="80 cv" data-plate="8" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Central Multimídia|Câmera de Ré">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/hyundai/HB20 Confort 2015/WhatsApp Image 2026-03-04 at 11.26.11.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Hyundai HB20 Comfort</h3>
+                            <p class="text-slate-500 text-sm mb-3">2015 • 144.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 44.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 6 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/citroen/Citroen C3 Origine 2013" data-doors="4 portas" data-engine="1.5" data-power="93 cv" data-plate="2" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Som Bluetooth|Computador de Bordo">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/citroen/Citroen C3 Origine 2013/WhatsApp Image 2026-03-04 at 11.22.05.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Citroën C3 Origine</h3>
+                            <p class="text-slate-500 text-sm mb-3">2013 • 137.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Prata</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 31.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 7 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/volkswagen/Polo 200 TSI 2020" data-doors="4 portas" data-engine="1.0 Turbo" data-power="128 cv" data-plate="3" data-ipva="✓ Pago 2026" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/volkswagen/Polo 200 TSI 2020/WhatsApp Image 2026-03-04 at 11.18.15 (2).jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">TSI</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Volkswagen Polo 200 TSI Highline</h3>
+                            <p class="text-slate-500 text-sm mb-3">2020 • 99.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Prata</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 83.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 8 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/volkswagen/Polo Track 2025" data-doors="4 portas" data-engine="1.0" data-power="84 cv" data-plate="1" data-ipva="✓ Pago 2026" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Sensor de Estacionamento">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/volkswagen/Polo Track 2025/WhatsApp Image 2026-03-04 at 11.18.38 (2).jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-full">NOVO</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Volkswagen Polo Track</h3>
+                            <p class="text-slate-500 text-sm mb-3">2025 • 48.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Branco</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 77.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car 9 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/honda/Honda HRV-V 2023" data-doors="4 portas" data-engine="1.5" data-power="177 cv" data-plate="6" data-ipva="✓ Pago 2026" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Bancos em Couro">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/honda/Honda HRV-V 2023/WhatsApp Image 2026-03-04 at 11.18.29 (2).jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">SUV</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Honda HR-V EXL</h3>
+                            <p class="text-slate-500 text-sm mb-3">2023 • 17.000 km • Flex</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 143.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-12 flex justify-center gap-2">
+                    <button class="w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <button class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center font-medium">1</button>
+                    <button class="w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors">2</button>
+                    <button class="w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors">3</button>
+                    <button class="w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-lucide="car" class="w-8 h-8 text-secondary"></i>
+                        <span class="font-display text-2xl font-bold">LM Automóveis</span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm">Tecnologia e transparência no mercado de seminovos.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Links</h4>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="index.html" class="hover:text-secondary">Home</a></li>
+                        <li><a href="estoque.html" class="hover:text-secondary">Estoque</a></li>
+                        <li><a href="contato.html" class="hover:text-secondary">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li>(11) 9999-9999</li>
+                        <li>contato@autotech.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center text-slate-500 text-sm">
+                © 2026 Ryan Panzarini. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function sanitizeValue(value) {
+            return (value || '').replace(/\s+/g, ' ').trim();
+        }
+
+        function inferFolderFromImage(imagePath) {
+            const normalizedPath = sanitizeValue(imagePath);
+            if (!normalizedPath || normalizedPath.startsWith('http://') || normalizedPath.startsWith('https://')) {
+                return '';
+            }
+
+            const lastSlashIndex = normalizedPath.lastIndexOf('/');
+            if (lastSlashIndex <= 0) {
+                return '';
+            }
+
+            return normalizedPath.slice(0, lastSlashIndex);
+        }
+
+        const carCards = document.querySelectorAll('.car-card');
+
+        carCards.forEach((card) => {
+            const titleText = sanitizeValue(card.querySelector('h3')?.textContent);
+            const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
+            const tags = card.querySelectorAll('.flex.gap-3.mb-4 span');
+            const transmission = sanitizeValue(tags[0]?.textContent);
+            const color = sanitizeValue(tags[1]?.textContent);
+            const priceRaw = sanitizeValue(card.querySelector('p.text-xl')?.textContent);
+            const imageSrc = card.querySelector('img')?.getAttribute('src') || '';
+            const detailLink = card.querySelector('a[href*="detalhes.html"]');
+            const doors = sanitizeValue(card.getAttribute('data-doors'));
+            const engine = sanitizeValue(card.getAttribute('data-engine'));
+            const power = sanitizeValue(card.getAttribute('data-power'));
+            const plate = sanitizeValue(card.getAttribute('data-plate'));
+            const ipva = sanitizeValue(card.getAttribute('data-ipva'));
+            const features = sanitizeValue(card.getAttribute('data-features'));
+            const folder = sanitizeValue(card.getAttribute('data-folder'));
+
+            if (!detailLink || !titleText || !metaText) {
+                return;
+            }
+
+            const titleParts = titleText.split(' ');
+            const brand = sanitizeValue(titleParts.shift());
+            const model = sanitizeValue(titleParts.join(' '));
+
+            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+            const year = metaParts[0] || '';
+            const km = (metaParts[1] || '').replace(' km', '').trim();
+            const fuel = metaParts[2] || '';
+
+            const price = priceRaw.replace('R$', '').trim();
+            const dataImages = sanitizeValue(card.getAttribute('data-images'));
+            const images = dataImages ? dataImages : imageSrc;
+            const resolvedFolder = folder || inferFolderFromImage(imageSrc);
+
+            const params = new URLSearchParams({
+                brand,
+                model,
+                year,
+                km,
+                fuel,
+                transmission,
+                color,
+                price,
+                img: imageSrc,
+                images,
+                doors,
+                engine,
+                power,
+                plate,
+                ipva,
+                features,
+                folder: resolvedFolder
+            });
+
+            detailLink.href = `detalhes.html?${params.toString()}`;
+            card.classList.add('cursor-pointer');
+            card.setAttribute('role', 'link');
+            card.setAttribute('tabindex', '0');
+
+            card.addEventListener('click', (event) => {
+                const interactiveTarget = event.target.closest('a, button, input, select, textarea, label');
+                if (interactiveTarget && interactiveTarget !== detailLink) {
+                    return;
+                }
+
+                window.location.href = detailLink.href;
+            });
+
+            card.addEventListener('keydown', (event) => {
+                if (event.key !== 'Enter' && event.key !== ' ') {
+                    return;
+                }
+
+                event.preventDefault();
+                window.location.href = detailLink.href;
+            });
+        });
+
+        const brandFiltersContainer = document.getElementById('brand-filters');
+        const yearFiltersContainer = document.getElementById('year-filters');
+        const fuelFiltersContainer = document.getElementById('fuel-filters');
+        const priceFilterRange = document.getElementById('price-filter-range');
+        const priceFilterMaxLabel = document.getElementById('price-filter-max-label');
+        const clearFiltersBtn = document.getElementById('clear-filters-btn');
+
+        function normalizeFilterText(value) {
+            return sanitizeValue(value).replace(/\(.*?\)/g, '').trim();
+        }
+
+        function parsePriceToNumber(priceText) {
+            const numericValue = String(priceText || '').replace(/[^\d]/g, '');
+            return Number(numericValue || 0);
+        }
+
+        function formatCurrency(value) {
+            return `R$ ${Number(value || 0).toLocaleString('pt-BR')}`;
+        }
+
+        function parseCardData(card) {
+            const titleText = sanitizeValue(card.querySelector('h3')?.textContent);
+            const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
+            const priceText = sanitizeValue(card.querySelector('p.text-xl')?.textContent);
+            const titleParts = titleText.split(' ');
+            const brand = sanitizeValue(titleParts.shift());
+            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+            const year = Number(metaParts[0] || 0);
+            const fuel = metaParts[2] || '';
+
+            return {
+                brand,
+                year,
+                fuel,
+                price: parsePriceToNumber(priceText)
+            };
+        }
+
+        function getCheckedValues(container) {
+            if (!container) {
+                return [];
+            }
+
+            const checkedInputs = Array.from(container.querySelectorAll('input[type="checkbox"]:checked'));
+            return checkedInputs.map((input) => normalizeFilterText(input.parentElement?.querySelector('span')?.textContent || ''));
+        }
+
+        function yearInSelectedRanges(year, ranges) {
+            if (!ranges.length) {
+                return true;
+            }
+
+            return ranges.some((range) => {
+                const [startYear, endYear] = range.split('-').map((value) => Number(value));
+                if (!startYear || !endYear) {
+                    return false;
+                }
+                return year >= startYear && year <= endYear;
+            });
+        }
+
+        function applyInventoryFilters() {
+            const selectedBrands = getCheckedValues(brandFiltersContainer);
+            const selectedYearRanges = getCheckedValues(yearFiltersContainer);
+            const selectedFuels = getCheckedValues(fuelFiltersContainer);
+            const selectedMaxPrice = Number(priceFilterRange?.value || 500000);
+
+            if (priceFilterMaxLabel) {
+                priceFilterMaxLabel.textContent = formatCurrency(selectedMaxPrice);
+            }
+
+            carCards.forEach((card) => {
+                const cardData = parseCardData(card);
+                const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(cardData.brand);
+                const matchesYear = yearInSelectedRanges(cardData.year, selectedYearRanges);
+                const matchesFuel = selectedFuels.length === 0 || selectedFuels.includes(cardData.fuel);
+                const matchesPrice = cardData.price <= selectedMaxPrice;
+
+                const shouldShow = matchesBrand && matchesYear && matchesFuel && matchesPrice;
+                card.classList.toggle('hidden', !shouldShow);
+            });
+        }
+
+        const filterCheckboxes = document.querySelectorAll('#brand-filters input[type="checkbox"], #year-filters input[type="checkbox"], #fuel-filters input[type="checkbox"]');
+        filterCheckboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', applyInventoryFilters);
+        });
+
+        if (priceFilterRange) {
+            priceFilterRange.addEventListener('input', applyInventoryFilters);
+        }
+
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', () => {
+                filterCheckboxes.forEach((checkbox) => {
+                    checkbox.checked = false;
+                });
+
+                if (priceFilterRange) {
+                    priceFilterRange.value = String(priceFilterRange.max || 500000);
+                }
+
+                applyInventoryFilters();
+            });
+        }
+
+        applyInventoryFilters();
+    </script>
+</body>
+</html>
