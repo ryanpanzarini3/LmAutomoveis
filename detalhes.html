@@ -137,7 +137,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                 <!-- Main Image Gallery -->
                 <div class="space-y-4">
                     <div class="relative rounded-2xl overflow-hidden bg-slate-100 aspect-video shadow-xl">
-                        <img id="main-image" src="Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.54.jpeg" alt="BMW 320i" class="w-full h-full object-cover cursor-zoom-in">
+                        <img id="main-image" src="" alt="Imagem do Veículo" class="w-full h-full object-cover cursor-zoom-in">
                         <button class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-400 transition-colors" onclick="prevImage()">
                             <i data-lucide="chevron-left" class="w-6 h-6"></i>
                         </button>
@@ -927,9 +927,9 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             link: document.getElementById('share-link')
         };
 
-        // Criar URL simples para compartilhar (sem todos os parâmetros)
+        // Criar URL simples para compartilhar (com parâmetros essenciais)
         const baseUrl = 'https://lmautomoveis.seg.br/detalhes.html';
-        const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}`;
+        const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}&images=${encodeURIComponent(vehicleFromUrl.images)}&folder=${encodeURIComponent(vehicleFromUrl.folder)}&color=${encodeURIComponent(vehicleFromUrl.color)}&transmission=${encodeURIComponent(vehicleFromUrl.transmission)}&doors=${encodeURIComponent(vehicleFromUrl.doors)}&engine=${encodeURIComponent(vehicleFromUrl.engine)}&power=${encodeURIComponent(vehicleFromUrl.power)}&plate=${encodeURIComponent(vehicleFromUrl.plate)}&ipva=${encodeURIComponent(vehicleFromUrl.ipva)}&features=${encodeURIComponent(vehicleFromUrl.features)}`;
         const shareTitle = vehicleName || 'Confira este veículo!';
         const shortMessage = `${shareTitle} - ${vehicleFromUrl.year} - R$ ${vehicleFromUrl.price}`;
         const shareMessage = `${shortMessage} ${cleanShareUrl}`;
