@@ -929,7 +929,8 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         const baseUrl = window.location.origin + window.location.pathname;
         const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}`;
         const shareTitle = vehicleName || 'Confira este veículo!';
-        const shareMessage = `Confira este ${shareTitle} na LM Automóveis! ${cleanShareUrl}`;
+        const shortMessage = `${shareTitle} - ${vehicleFromUrl.year} - R$ ${vehicleFromUrl.price}`;
+        const shareMessage = `${shortMessage} ${cleanShareUrl}`;
 
         if (shareButtons.facebook) {
             shareButtons.facebook.addEventListener('click', () => {
@@ -947,7 +948,8 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
 
         if (shareButtons.whatsapp) {
             shareButtons.whatsapp.addEventListener('click', () => {
-                const whatsappUrl = `https://wa.me/554299226561?text=${encodeURIComponent(shareMessage)}`;
+                // Sem número forçado - deixa a pessoa escolher para qual número enviar
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
                 window.open(whatsappUrl, '_blank');
             });
         }
