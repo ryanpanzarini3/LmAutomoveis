@@ -925,27 +925,29 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             link: document.getElementById('share-link')
         };
 
-        const shareUrl = window.location.href;
+        // Criar URL simples para compartilhar (sem todos os parâmetros)
+        const baseUrl = window.location.origin + window.location.pathname;
+        const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}`;
         const shareTitle = vehicleName || 'Confira este veículo!';
-        const shareMessage = `Confira este ${shareTitle} na LM Automóveis! ${shareUrl}`;
+        const shareMessage = `Confira este ${shareTitle} na LM Automóveis! ${cleanShareUrl}`;
 
         if (shareButtons.facebook) {
             shareButtons.facebook.addEventListener('click', () => {
-                const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+                const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(cleanShareUrl)}`;
                 window.open(facebookShareUrl, 'facebook-share', 'width=600,height=400');
             });
         }
 
         if (shareButtons.twitter) {
             shareButtons.twitter.addEventListener('click', () => {
-                const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(`Veja este ${shareTitle} na LM Automóveis!`)}`;
+                const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(cleanShareUrl)}&text=${encodeURIComponent(`Veja este ${shareTitle} na LM Automóveis!`)}`;
                 window.open(twitterShareUrl, 'twitter-share', 'width=600,height=400');
             });
         }
 
         if (shareButtons.whatsapp) {
             shareButtons.whatsapp.addEventListener('click', () => {
-                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+                const whatsappUrl = `https://wa.me/554299226561?text=${encodeURIComponent(shareMessage)}`;
                 window.open(whatsappUrl, '_blank');
             });
         }
@@ -953,7 +955,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         if (shareButtons.link) {
             shareButtons.link.addEventListener('click', () => {
                 // Copiar para clipboard
-                navigator.clipboard.writeText(shareUrl).then(() => {
+                navigator.clipboard.writeText(cleanShareUrl).then(() => {
                     // Feedback visual
                     const originalHTML = shareButtons.link.innerHTML;
                     shareButtons.link.innerHTML = '<i data-lucide="check" class="w-5 h-5 mx-auto text-green-500"></i>';
@@ -965,7 +967,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                     }, 2000);
                 }).catch(() => {
                     // Fallback se clipboard não funcionar
-                    alert('Link: ' + shareUrl);
+                    alert('Link: ' + cleanShareUrl);
                 });
             });
         }
