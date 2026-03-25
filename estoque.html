@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estoque - AutoTech Seminovos</title>
+    <title>Estoque - L&M Automóveis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="flex items-center gap-2 text-sm text-slate-400">
                     <span>Ordenar por:</span>
-                    <select class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-black focus:outline-none focus:border-secondary">
+                    <select id="sort-select" class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-black focus:outline-none focus:border-secondary">
                         <option>Mais recentes</option>
                         <option>Menor preço</option>
                         <option>Maior preço</option>
@@ -113,24 +113,14 @@
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Alfa Romeo</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Audi</span>
                                 </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">BMW</span>
-                                </label>
+                                
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">BYD</span>
                                 </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Caoa Chery</span>
-                                </label>
+                               
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Chevrolet</span>
@@ -149,20 +139,13 @@
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">GWM</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Honda</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Hyundai</span>
                                 </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Jac Motors</span>
-                                </label>
+                                
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Jeep</span>
@@ -175,22 +158,8 @@
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Land Rover</span>
                                 </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Lexus</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Maserati</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Mercedes-Benz</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Mini</span>
-                                </label>
+                                
+                                
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Mitsubishi</span>
@@ -199,21 +168,10 @@
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Nissan</span>
                                 </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Omoda</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Jaecoo</span>
-                                </label>
+                               
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Peugeot</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Porsche</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
@@ -223,14 +181,7 @@
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Renault</span>
                                 </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Subaru</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Suzuki</span>
-                                </label>
+                               
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Toyota</span>
@@ -238,10 +189,6 @@
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
                                     <span class="text-sm text-slate-600">Volkswagen</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Volvo</span>
                                 </label>
                             </div>
                         </div>
@@ -252,27 +199,27 @@
                             <div id="year-filters" class="space-y-2">
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2023-2024 (20)</span>
+                                    <span class="text-sm text-slate-600">2023-2024</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2021-2022 (22)</span>
+                                    <span class="text-sm text-slate-600">2021-2022</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2019-2020 (9)</span>
+                                    <span class="text-sm text-slate-600">2019-2020</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2017-2018 (2)</span>
+                                    <span class="text-sm text-slate-600">2017-2018</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2015-2016 (3)</span>
+                                    <span class="text-sm text-slate-600">2015-2016</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2025-2026 (3)</span>
+                                    <span class="text-sm text-slate-600">2025-2026</span>
                                 </label>
                             </div>
                         </div>
@@ -295,19 +242,19 @@
                             <div id="fuel-filters" class="space-y-2">
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Gasolina (35)</span>
+                                    <span class="text-sm text-slate-600">Gasolina</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Flex (16)</span>
+                                    <span class="text-sm text-slate-600">Flex</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Híbrido (4)</span>
+                                    <span class="text-sm text-slate-600">Híbrido</span>
                                 </label>
                                 <label class="flex items-center gap-2 cursor-pointer">
                                     <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Energia (1)</span>
+                                    <span class="text-sm text-slate-600">Energia</span>
                                 </label>
                             </div>
                         </div>
@@ -317,12 +264,12 @@
 
             <!-- Car Grid -->
             <div class="flex-1">
-                <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div id="car-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                     
                     
 
                         <!-- Car 1 -->
-                        <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/BYD/Byd Dolphin mini 2025" data-images="Estoque/BYD/Byd Dolphin mini 2025/IMG_0344.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0345.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0346.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0347.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0348.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0349.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0350.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0351.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0352.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0353.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0354.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0355.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0356.jpg" data-doors="4 portas" data-engine="Elétrico" data-power="75 cv" data-plate="0" data-ipva="✓ Pago 2026" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Carregador Portátil">
+                        <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/BYD/Byd Dolphin mini 2025" data-images="Estoque/BYD/Byd Dolphin mini 2025/IMG_0344.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0345.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0346.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0347.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0348.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0349.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0350.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0351.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0352.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0353.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0354.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0355.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0356.jpg" data-doors="4 portas" data-engine="Elétrico" data-power="75 cv" data-plate="0" data-ipva="Em dia" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Carregador Portátil">
                             <div class="relative h-56 overflow-hidden">
                                 <img src="Estoque/BYD/Byd Dolphin mini 2025/IMG_0344.jpg" alt="BYD Dolphin Mini" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                 <div class="absolute top-4 left-4">
@@ -737,8 +684,8 @@
                         <a href="https://www.facebook.com/lm.automoveis.908" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all" aria-label="Facebook">
                             <i class="fa-brands fa-facebook-f text-lg"></i>
                         </a>
-                        <a href="https://www.instagram.com/lm_automoveispg/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all" aria-label="YouTube">
-                            <i class="fa-brands fa-youtube text-lg"></i>
+                        <a href="https://www.tiktok.com/@oficiallmautomoveis.pg?is_from_webapp=1&sender_device=pc" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
                         </a>
                     </div>
                 </div>
@@ -753,8 +700,8 @@
                 <div>
                     <h4 class="font-semibold mb-4">Contato</h4>
                     <ul class="space-y-2 text-slate-400 text-sm">
-                        <li>(11) 9999-9999</li>
-                        <li>contato@autotech.com</li>
+                        <li>(42) 3025-6505 </li>
+                        <li>angelo7676@ig.com.br</li>
                     </ul>
                 </div>
             </div>
@@ -1073,6 +1020,63 @@
                     currentPage += 1;
                     applyInventoryFilters();
                 }
+            });
+        }
+
+        // Renderizar ordenação de carros
+        const sortSelect = document.getElementById('sort-select');
+        const carGrid = document.getElementById('car-grid');
+
+        function extractKmFromCard(card) {
+            const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
+            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+            const kmText = (metaParts[1] || '').replace(' km', '').trim();
+            return Number(kmText.replace(/\./g, '') || 0);
+        }
+
+        function extractYearFromCard(card) {
+            const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
+            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+            return Number(metaParts[0] || 0);
+        }
+
+        function extractPriceFromCard(card) {
+            const priceText = sanitizeValue(card.querySelector('p.text-xl')?.textContent);
+            return parsePriceToNumber(priceText);
+        }
+
+        function sortCarCards(sortType) {
+            const visibleCards = Array.from(carCards).filter(card => !card.classList.contains('hidden'));
+
+            visibleCards.sort((a, b) => {
+                switch (sortType) {
+                    case 'Mais recentes':
+                        return extractYearFromCard(b) - extractYearFromCard(a);
+                    case 'Menor preço':
+                        return extractPriceFromCard(a) - extractPriceFromCard(b);
+                    case 'Maior preço':
+                        return extractPriceFromCard(b) - extractPriceFromCard(a);
+                    case 'Menor km':
+                        return extractKmFromCard(a) - extractKmFromCard(b);
+                    default:
+                        return 0;
+                }
+            });
+
+            // Remover cards do grid
+            visibleCards.forEach(card => {
+                carGrid.removeChild(card);
+            });
+
+            // Reinserir cards na ordem ordenada
+            visibleCards.forEach(card => {
+                carGrid.appendChild(card);
+            });
+        }
+
+        if (sortSelect) {
+            sortSelect.addEventListener('change', (event) => {
+                sortCarCards(event.target.value);
             });
         }
 
