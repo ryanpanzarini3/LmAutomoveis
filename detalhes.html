@@ -468,10 +468,11 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Vehicle Data from URL
+        // Vehicle Data from URL or localStorage
         const searchParams = new URLSearchParams(window.location.search);
+        const carId = searchParams.get('id');
 
-        const vehicleFromUrl = {
+        let vehicleFromUrl = {
             brand: searchParams.get('brand') || '',
             model: searchParams.get('model') || '',
             year: searchParams.get('year') || '',
@@ -490,6 +491,33 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             ipva: searchParams.get('ipva') || '',
             features: searchParams.get('features') || ''
         };
+
+        // Se houver um ID na URL, tentar recuperar do localStorage
+        if (carId) {
+            const savedData = localStorage.getItem(`car_${carId}`);
+            if (savedData) {
+                const parsed = JSON.parse(savedData);
+                vehicleFromUrl = {
+                    brand: parsed.brand || '',
+                    model: parsed.model || '',
+                    year: parsed.year || '',
+                    km: parsed.km || '',
+                    fuel: parsed.fuel || '',
+                    transmission: parsed.transmission || '',
+                    color: parsed.color || '',
+                    price: parsed.price || '',
+                    image: parsed.img || '',
+                    images: parsed.images || '',
+                    folder: parsed.folder || '',
+                    doors: parsed.doors || '',
+                    engine: parsed.engine || '',
+                    power: parsed.power || '',
+                    plate: parsed.plate || '',
+                    ipva: parsed.ipva || '',
+                    features: parsed.features || ''
+                };
+            }
+        }
 
         const vehicleName = `${vehicleFromUrl.brand} ${vehicleFromUrl.model}`.trim();
 
@@ -927,7 +955,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             link: document.getElementById('share-link')
         };
 
-        // Criar URL simples para compartilhar (com parâmetros essenciais)
+        // Criar URL para compartilhar (com todos os parâmetros)
         const baseUrl = 'https://lmautomoveis.seg.br/detalhes.html';
         const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}&images=${encodeURIComponent(vehicleFromUrl.images)}&folder=${encodeURIComponent(vehicleFromUrl.folder)}&color=${encodeURIComponent(vehicleFromUrl.color)}&transmission=${encodeURIComponent(vehicleFromUrl.transmission)}&doors=${encodeURIComponent(vehicleFromUrl.doors)}&engine=${encodeURIComponent(vehicleFromUrl.engine)}&power=${encodeURIComponent(vehicleFromUrl.power)}&plate=${encodeURIComponent(vehicleFromUrl.plate)}&ipva=${encodeURIComponent(vehicleFromUrl.ipva)}&features=${encodeURIComponent(vehicleFromUrl.features)}`;
         const shareTitle = vehicleName || 'Confira este veículo!';
@@ -950,8 +978,37 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
 
         if (shareButtons.whatsapp) {
             shareButtons.whatsapp.addEventListener('click', () => {
+                // Usar URL curta para WhatsApp
+                const carIdForShare = `${vehicleFromUrl.brand}-${vehicleFromUrl.model}-${vehicleFromUrl.year}`.toLowerCase().replace(/\s+/g, '-');
+                
+                // Salvar dados do carro em localStorage
+                const vehicleDataForShare = {
+                    brand: vehicleFromUrl.brand,
+                    model: vehicleFromUrl.model,
+                    year: vehicleFromUrl.year,
+                    km: vehicleFromUrl.km,
+                    fuel: vehicleFromUrl.fuel,
+                    transmission: vehicleFromUrl.transmission,
+                    color: vehicleFromUrl.color,
+                    price: vehicleFromUrl.price,
+                    img: vehicleFromUrl.image,
+                    images: vehicleFromUrl.images,
+                    folder: vehicleFromUrl.folder,
+                    doors: vehicleFromUrl.doors,
+                    engine: vehicleFromUrl.engine,
+                    power: vehicleFromUrl.power,
+                    plate: vehicleFromUrl.plate,
+                    ipva: vehicleFromUrl.ipva,
+                    features: vehicleFromUrl.features
+                };
+                localStorage.setItem(`car_${carIdForShare}`, JSON.stringify(vehicleDataForShare));
+                
+                // Usar URL curta
+                const shortShareUrl = `https://lmautomoveis.seg.br/detalhes.html?id=${carIdForShare}`;
+                const shareMessageShort = `${shareTitle} - ${vehicleFromUrl.year} - R$ ${vehicleFromUrl.price} ${shortShareUrl}`;
+                
                 // Sem número forçado - deixa a pessoa escolher para qual número enviar
-                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessageShort)}`;
                 window.open(whatsappUrl, '_blank');
             });
         }
