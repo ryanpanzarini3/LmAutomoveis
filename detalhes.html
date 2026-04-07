@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L&M Automóveis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=2">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=
+
+Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#06b6d4',
+                        accent: '#3b82f6',
+                        surface: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .logo-l-e {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+        }
+        .logo-m {
+            color: #ffd700;
+            animation: glowYellow 3s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+        .logo-auto {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+        @keyframes glowWhite {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+        @keyframes glowYellow {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            }
+        }
+        .thumbnail-active {
+            border-color: #06b6d4 !important;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 text-white transition-all duration-300" id="navbar" style="background-color: #1e3a5f;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="flex items-center space-x-2 font-display text-2xl text-white font-bold tracking-tight hover:opacity-80 transition-opacity">
+                        <i data-lucide="car" class="w-8 h-8 text-white-400"></i>
+                        <span>
+                            <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Sobre</a>
+                    <a href="contato.html" class="px-6 py-3 bg-cyan-400 text-primary font-semibold rounded-full hover:bg-cyan-300 transition-all">
+                        Contato
+                    </a>
+                </div>
+
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #1e3a5f;">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Sobre</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium text-cyan-400">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="pt-28 pb-4 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-2 text-sm text-slate-500">
+                <a href="index.html" class="hover:text-cyan-400">Home</a>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <a href="estoque.html" class="hover:text-cyan-400">Estoque</a>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <span id="breadcrumb-vehicle" class="text-primary font-medium">BMW 320i Sport</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column - Images & Details -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Main Image Gallery -->
+                <div class="space-y-4">
+                    <div class="relative rounded-2xl overflow-hidden bg-slate-100 aspect-video shadow-xl">
+                        <img id="main-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect fill='%23f1f5f9' width='800' height='450'/%3E%3Crect fill='%23e2e8f0' x='50' y='50' width='700' height='350' rx='20'/%3E%3Ctext x='400' y='200' font-size='32' font-weight='bold' text-anchor='middle' fill='%23475569' font-family='Arial, sans-serif'%3ECarregando imagem do veículo...%3C/text%3E%3Ccircle cx='400' cy='280' r='30' fill='none' stroke='%2306b6d4' stroke-width='4' opacity='0.3'/%3E%3Ccircle cx='400' cy='280' r='30' fill='none' stroke='%2306b6d4' stroke-width='4' stroke-dasharray='47' opacity='0.8'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 400 280' to='360 400 280' dur='1s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E" alt="Carregando imagem do veículo" class="w-full h-full object-cover cursor-zoom-in">
+                        <button class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-400 transition-colors" onclick="prevImage()">
+                            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                        </button>
+                        <button class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-400 transition-colors" onclick="nextImage()">
+                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                        </button>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-4 py-2 bg-cyan-400 text-primary text-sm font-bold rounded-full shadow-lg">DESTAQUE</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Thumbnails -->
+                    <div id="thumbnails-container" class="grid grid-cols-5 gap-3"></div>
+                </div>
+
+                <!-- Vehicle Info -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h1 id="vehicle-title" class="font-display text-4xl font-bold text-primary mb-2">Honda Civic LXS</h1>
+                    <p id="vehicle-subtitle" class="text-slate-500 text-lg mb-6">2014 • 171.000 km • Flex</p>
+                    
+                    <div class="flex items-baseline gap-2 mb-8">
+                        <span id="vehicle-price" class="text-4xl font-bold text-cyan-400">R$ 68.900</span>
+                        <span class="text-slate-500">à vista</span>
+                    </div>
+
+                    <!-- Key Features -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 pb-8 border-b border-slate-200">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                                <i data-lucide="calendar" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Ano</p>
+                                <p id="feature-year" class="font-semibold text-primary">2014</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                                <i data-lucide="gauge" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Quilometragem</p>
+                                <p id="feature-km" class="font-semibold text-primary">171.000 km</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                                <i data-lucide="fuel" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Combustível</p>
+                                <p id="feature-fuel" class="font-semibold text-primary">Flex</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                                <i data-lucide="settings-2" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">Câmbio</p>
+                                <p id="feature-transmission" class="font-semibold text-primary">Automático</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Specifications -->
+                    <h3 class="font-display text-2xl font-bold text-primary mb-4">Especificações</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-8">
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Marca</span>
+                            <span id="spec-brand" class="font-semibold text-primary">Honda</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Modelo</span>
+                            <span id="spec-model" class="font-semibold text-primary">Civic LXS</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Cor</span>
+                            <span id="spec-color" class="font-semibold text-primary">Preto</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Portas</span>
+                            <span id="spec-doors" class="font-semibold text-primary">4 portas</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Motor</span>
+                            <span id="spec-engine" class="font-semibold text-primary">2.0 16V Turbo</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Potência</span>
+                            <span id="spec-power" class="font-semibold text-primary">184 cv</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">Final de Placa</span>
+                            <span id="spec-plate" class="font-semibold text-primary">5</span>
+                        </div>
+                        <div class="flex justify-between py-3 border-b border-slate-100">
+                            <span class="text-slate-600">IPVA</span>
+                            <span id="spec-ipva" class="font-semibold text-green-500">✓ Pago 2024</span>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <h3 class="font-display text-2xl font-bold text-primary mb-4">Equipamentos</h3>
+                    <div id="features-list" class="grid md:grid-cols-2 gap-3">
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Ar Condicionado Digital</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Vidros Elétricos</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Travas Elétricas</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Direção Elétrica</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Airbags Frontais e Laterais</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>ABS e Controle de Estabilidade</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Sensor de Estacionamento</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Câmera de Ré</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Central Multimídia</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Bancos em Couro</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Rodas de Liga Leve 18"</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>Faróis em LED</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column - Contact & Actions -->
+            <div class="space-y-6">
+                <!-- Contact Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg sticky top-24">
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Interessado?</h3>
+                    
+                    <div class="space-y-3 mb-6">
+                        <a id="whatsapp-interest-link" href="https://wa.me/554299226561?text=Olá!%20Tenho%20interesse%20no%20BMW%20320i%20Sport%202022" target="_blank" class="w-full py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            Falar no WhatsApp
+                        </a>
+                        
+                        <a href="tel:+554230256505" class="w-full py-3 bg-cyan-400 text-primary font-semibold rounded-lg hover:bg-cyan-300 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            Ligar Agora
+                        </a>
+                        
+                    </div>
+
+                <!-- Badges -->
+                <div class="bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl p-6 text-white shadow-lg">
+                    <h4 class="font-display text-lg font-bold mb-4">Garantias</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Garantia 3 meses</p>
+                                
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <i data-lucide="file-check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Laudo Digital</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Share -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h4 class="font-semibold text-primary mb-3">Compartilhar</h4>
+                    <div class="flex gap-2">
+                        <button id="share-facebook" class="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-all" title="Compartilhar no Facebook">
+                            <i class="fa-brands fa-facebook-f text-lg mx-auto text-blue-600"></i>
+                        </button>
+                        <button id="share-twitter" class="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-all" title="Compartilhar no Twitter">
+                            <i class="fa-brands fa-twitter text-lg mx-auto text-sky-500"></i>
+                        </button>
+                        <button id="share-whatsapp" class="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-all" title="Compartilhar no WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-lg mx-auto text-green-500"></i>
+                        </button>
+                        <button id="share-link" class="flex-1 py-2 border border-slate-200 rounded-lg hover:bg-slate-50 transition-all" title="Copiar link">
+                            <i data-lucide="link" class="w-5 h-5 mx-auto text-slate-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Similar Vehicles -->
+    <section class="py-16 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-display text-3xl font-bold text-primary mb-8">Veículos Similares</h2>
+            
+            <div id="similar-vehicles-grid" class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 text-slate-500">
+                    Carregando veículos do estoque...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-lucide="car" class="w-8 h-8 text-cyan-400"></i>
+                        <span class="font-display text-2xl font-bold">
+                            <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                        </span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm">
+                        Seminovos de qualidade com garantia e inspeção completa.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/lm_automoveispg/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://www.facebook.com/lm.automoveis.908" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Links</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li><a href="estoque.html" class="hover:text-cyan-400 transition-colors">Estoque</a></li>
+                        <li><a href="sobre.html" class="hover:text-cyan-400 transition-colors">Sobre</a></li>
+                        <li><a href="contato.html" class="hover:text-cyan-400 transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contato</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-cyan-400"></i>
+                            (42) 3025-6505
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
+                            contato@lmautomoveis.com
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-cyan-400"></i>
+                            Seg-Sex: 9h às 18h
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-slate-500 text-sm">© 2026 Ryan Panzarini. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Lightbox -->
+    <div id="image-modal" class="fixed inset-0 z-[70] hidden bg-black/90 p-4 sm:p-8">
+        <button id="close-image-modal" class="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors flex items-center justify-center" aria-label="Fechar imagem">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <button id="prev-image-modal" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors flex items-center justify-center" aria-label="Imagem anterior">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+
+        <button id="next-image-modal" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors flex items-center justify-center" aria-label="Próxima imagem">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+
+        <div class="h-full w-full flex items-center justify-center">
+            <img id="modal-image" src="" alt="Imagem ampliada" class="max-w-full max-h-full object-contain rounded-lg">
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/554299226561" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Vehicle Data from URL
+        const searchParams = new URLSearchParams(window.location.search);
+
+        let vehicleFromUrl = {
+            brand: searchParams.get('brand') || '',
+            model: searchParams.get('model') || '',
+            year: searchParams.get('year') || '',
+            km: searchParams.get('km') || '',
+            fuel: searchParams.get('fuel') || '',
+            transmission: searchParams.get('transmission') || '',
+            color: searchParams.get('color') || '',
+            price: searchParams.get('price') || '',
+            image: searchParams.get('img') || '',
+            images: searchParams.get('images') || '',
+            folder: searchParams.get('folder') || '',
+            doors: searchParams.get('doors') || '',
+            engine: searchParams.get('engine') || '',
+            power: searchParams.get('power') || '',
+            plate: searchParams.get('plate') || '',
+            ipva: searchParams.get('ipva') || '',
+            features: searchParams.get('features') || ''
+        };
+
+        const vehicleName = `${vehicleFromUrl.brand} ${vehicleFromUrl.model}`.trim();
+
+        if (vehicleName) {
+            const titleElement = document.getElementById('vehicle-title');
+            const subtitleElement = document.getElementById('vehicle-subtitle');
+            const breadcrumbElement = document.getElementById('breadcrumb-vehicle');
+            const priceElement = document.getElementById('vehicle-price');
+            const specBrandElement = document.getElementById('spec-brand');
+            const specModelElement = document.getElementById('spec-model');
+            const specColorElement = document.getElementById('spec-color');
+            const specDoorsElement = document.getElementById('spec-doors');
+            const specEngineElement = document.getElementById('spec-engine');
+            const specPowerElement = document.getElementById('spec-power');
+            const specPlateElement = document.getElementById('spec-plate');
+            const specIpvaElement = document.getElementById('spec-ipva');
+            const featureYearElement = document.getElementById('feature-year');
+            const featureKmElement = document.getElementById('feature-km');
+            const featureFuelElement = document.getElementById('feature-fuel');
+            const featureTransmissionElement = document.getElementById('feature-transmission');
+            const featuresListElement = document.getElementById('features-list');
+            const whatsappInterestLink = document.getElementById('whatsapp-interest-link');
+
+            if (titleElement) titleElement.textContent = vehicleName;
+            if (breadcrumbElement) breadcrumbElement.textContent = vehicleName;
+            if (specBrandElement && vehicleFromUrl.brand) specBrandElement.textContent = vehicleFromUrl.brand;
+            if (specModelElement && vehicleFromUrl.model) specModelElement.textContent = vehicleFromUrl.model;
+            if (specColorElement && vehicleFromUrl.color) specColorElement.textContent = vehicleFromUrl.color;
+            if (specDoorsElement && vehicleFromUrl.doors) specDoorsElement.textContent = vehicleFromUrl.doors;
+            if (specEngineElement && vehicleFromUrl.engine) specEngineElement.textContent = vehicleFromUrl.engine;
+            if (specPowerElement && vehicleFromUrl.power) specPowerElement.textContent = vehicleFromUrl.power;
+            if (specPlateElement && vehicleFromUrl.plate) specPlateElement.textContent = vehicleFromUrl.plate;
+            if (specIpvaElement && vehicleFromUrl.ipva) specIpvaElement.textContent = vehicleFromUrl.ipva;
+            if (featureYearElement && vehicleFromUrl.year) featureYearElement.textContent = vehicleFromUrl.year;
+            if (featureKmElement && vehicleFromUrl.km) featureKmElement.textContent = `${vehicleFromUrl.km} km`;
+            if (featureFuelElement && vehicleFromUrl.fuel) featureFuelElement.textContent = vehicleFromUrl.fuel;
+            if (featureTransmissionElement && vehicleFromUrl.transmission) featureTransmissionElement.textContent = vehicleFromUrl.transmission;
+            if (priceElement && vehicleFromUrl.price) priceElement.textContent = `R$ ${vehicleFromUrl.price}`;
+
+            if (featuresListElement && vehicleFromUrl.features) {
+                const features = vehicleFromUrl.features.split('|').map((item) => item.trim()).filter(Boolean);
+                if (features.length > 0) {
+                    featuresListElement.innerHTML = features.map((feature) => `
+                        <div class="flex items-center gap-2 text-slate-700">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                            <span>${feature}</span>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            if (whatsappInterestLink && vehicleName) {
+                const interestText = `Olá! Tenho interesse no ${vehicleName}${vehicleFromUrl.year ? ` ${vehicleFromUrl.year}` : ''}`;
+                whatsappInterestLink.href = `https://wa.me/554299226561?text=${encodeURIComponent(interestText)}`;
+            }
+
+            const subtitleParts = [];
+            if (vehicleFromUrl.year) subtitleParts.push(vehicleFromUrl.year);
+            if (vehicleFromUrl.km) subtitleParts.push(`${vehicleFromUrl.km} km`);
+            if (vehicleFromUrl.fuel) subtitleParts.push(vehicleFromUrl.fuel);
+            if (subtitleElement && subtitleParts.length > 0) {
+                subtitleElement.textContent = subtitleParts.join(' • ');
+            }
+
+            const pageTitleParts = [vehicleName];
+            if (vehicleFromUrl.year) {
+                pageTitleParts.push(vehicleFromUrl.year);
+            }
+            document.title = `${pageTitleParts.join(' ')} - L&M Automóveis`;
+
+            lucide.createIcons();
+        }
+
+        function sanitizeValue(value) {
+            return (value || '').replace(/\s+/g, ' ').trim();
+        }
+
+        function parsePriceValue(priceText) {
+            const normalized = sanitizeValue(priceText).replace('R$', '').replace(/\./g, '').replace(',', '.');
+            const parsed = Number.parseFloat(normalized);
+            return Number.isFinite(parsed) ? parsed : 0;
+        }
+
+        function parseYearValue(yearText) {
+            const parsed = Number.parseInt(sanitizeValue(yearText), 10);
+            return Number.isFinite(parsed) ? parsed : 0;
+        }
+
+        function buildVehicleDetailsLink(vehicle) {
+            const params = new URLSearchParams({
+                brand: vehicle.brand || '',
+                model: vehicle.model || '',
+                year: vehicle.year || '',
+                km: vehicle.km || '',
+                fuel: vehicle.fuel || '',
+                transmission: vehicle.transmission || '',
+                color: vehicle.color || '',
+                price: vehicle.price || '',
+                img: vehicle.image || '',
+                images: vehicle.images || vehicle.image || '',
+                doors: vehicle.doors || '',
+                engine: vehicle.engine || '',
+                power: vehicle.power || '',
+                plate: vehicle.plate || '',
+                ipva: vehicle.ipva || '',
+                features: vehicle.features || '',
+                folder: vehicle.folder || ''
+            });
+
+            return `detalhes.html?${params.toString()}`;
+        }
+
+        async function loadStockVehicles() {
+            const response = await fetch('estoque.html');
+            if (!response.ok) {
+                throw new Error('Nao foi possivel carregar o estoque.');
+            }
+
+            const html = await response.text();
+            const parser = new DOMParser();
+            const stockDocument = parser.parseFromString(html, 'text/html');
+            const cards = Array.from(stockDocument.querySelectorAll('.car-card'));
+
+            return cards.map((card) => {
+                const titleText = sanitizeValue(card.querySelector('h3')?.textContent);
+                const titleParts = titleText.split(' ').filter(Boolean);
+                const brand = sanitizeValue(titleParts.shift());
+                const model = sanitizeValue(titleParts.join(' '));
+                const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
+                const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+                const tags = card.querySelectorAll('.flex.gap-3.mb-4 span');
+                const image = sanitizeValue(card.querySelector('img')?.getAttribute('src'));
+                const price = sanitizeValue(card.querySelector('p.text-xl')?.textContent).replace('R$', '').trim();
+
+                return {
+                    title: titleText,
+                    brand,
+                    model,
+                    year: metaParts[0] || '',
+                    km: (metaParts[1] || '').replace(' km', '').trim(),
+                    fuel: metaParts[2] || '',
+                    transmission: sanitizeValue(tags[0]?.textContent),
+                    color: sanitizeValue(tags[1]?.textContent),
+                    price,
+                    image,
+                    images: sanitizeValue(card.getAttribute('data-images')) || image,
+                    folder: sanitizeValue(card.getAttribute('data-folder')),
+                    doors: sanitizeValue(card.getAttribute('data-doors')),
+                    engine: sanitizeValue(card.getAttribute('data-engine')),
+                    power: sanitizeValue(card.getAttribute('data-power')),
+                    plate: sanitizeValue(card.getAttribute('data-plate')),
+                    ipva: sanitizeValue(card.getAttribute('data-ipva')),
+                    features: sanitizeValue(card.getAttribute('data-features'))
+                };
+            }).filter((vehicle) => vehicle.title && vehicle.image);
+        }
+
+        function renderSimilarVehicles(vehicles) {
+            const grid = document.getElementById('similar-vehicles-grid');
+            if (!grid) {
+                return;
+            }
+
+            if (!vehicles.length) {
+                grid.innerHTML = `
+                    <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 text-slate-500">
+                        Nenhum veículo similar encontrado no estoque.
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = vehicles.map((vehicle) => {
+                const detailsUrl = buildVehicleDetailsLink(vehicle);
+                return `
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-slate-100">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${vehicle.image}" alt="${vehicle.title}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">${vehicle.title}</h3>
+                            <p class="text-slate-500 text-sm mb-3">${vehicle.year} • ${vehicle.km} km • ${vehicle.fuel}</p>
+                            <div class="flex justify-between items-center pt-3 border-t border-slate-100">
+                                <p class="text-2xl font-bold text-cyan-400">R$ ${vehicle.price}</p>
+                                <a href="${detailsUrl}" class="text-sm text-primary font-semibold hover:text-cyan-400">Ver mais →</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function initializeSimilarVehicles() {
+            try {
+                const stockVehicles = await loadStockVehicles();
+                if (!stockVehicles.length) {
+                    renderSimilarVehicles([]);
+                    return;
+                }
+
+                const currentVehicleTitle = sanitizeValue(`${vehicleFromUrl.brand} ${vehicleFromUrl.model}`);
+                const currentYear = parseYearValue(vehicleFromUrl.year);
+                const currentFuel = sanitizeValue(vehicleFromUrl.fuel);
+                const currentBrand = sanitizeValue(vehicleFromUrl.brand);
+                const currentPrice = parsePriceValue(vehicleFromUrl.price);
+
+                const candidateVehicles = stockVehicles.filter((vehicle) => {
+                    const sameByTitle = currentVehicleTitle && sanitizeValue(vehicle.title) === currentVehicleTitle;
+                    const sameByMainImage = vehicleFromUrl.image && sanitizeValue(vehicle.image) === sanitizeValue(vehicleFromUrl.image);
+                    return !sameByTitle && !sameByMainImage;
+                });
+
+                const rankedVehicles = candidateVehicles
+                    .map((vehicle) => {
+                        let score = 0;
+                        const vehicleYear = parseYearValue(vehicle.year);
+                        const vehiclePrice = parsePriceValue(vehicle.price);
+
+                        if (currentFuel && sanitizeValue(vehicle.fuel) === currentFuel) score += 3;
+                        if (currentBrand && sanitizeValue(vehicle.brand) === currentBrand) score += 2;
+                        if (currentYear && vehicleYear && Math.abs(vehicleYear - currentYear) <= 2) score += 1;
+                        if (currentPrice && vehiclePrice && Math.abs(vehiclePrice - currentPrice) <= 20000) score += 1;
+
+                        return { vehicle, score };
+                    })
+                    .sort((a, b) => b.score - a.score);
+
+                renderSimilarVehicles(rankedVehicles.slice(0, 3).map((item) => item.vehicle));
+            } catch (error) {
+                renderSimilarVehicles([]);
+            }
+        }
+
+        // Image Gallery
+        const mainImage = document.getElementById('main-image');
+        const thumbnailsContainer = document.getElementById('thumbnails-container');
+        const imageModal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeImageModalBtn = document.getElementById('close-image-modal');
+        const prevImageModalBtn = document.getElementById('prev-image-modal');
+        const nextImageModalBtn = document.getElementById('next-image-modal');
+        let images = [];
+        let currentImage = 0;
+
+        function isImageModalOpen() {
+            return imageModal && !imageModal.classList.contains('hidden');
+        }
+
+        function openImageModal(index = currentImage) {
+            if (!images.length || !imageModal || !modalImage) {
+                return;
+            }
+
+            updateImage(index);
+            modalImage.src = images[currentImage];
+            imageModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeImageModal() {
+            if (!imageModal) {
+                return;
+            }
+
+            imageModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        async function loadImagesFromFolder(folderPath) {
+            if (!folderPath) {
+                return [];
+            }
+
+            try {
+                const response = await fetch(`${folderPath}/imagens.json`);
+                if (!response.ok) {
+                    return [];
+                }
+
+                const manifest = await response.json();
+                const manifestImages = Array.isArray(manifest)
+                    ? manifest
+                    : Array.isArray(manifest.images) ? manifest.images : [];
+
+                return manifestImages
+                    .map((imagePath) => String(imagePath || '').trim())
+                    .filter(Boolean)
+                    .map((imagePath) => {
+                        if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
+                            return imagePath;
+                        }
+                        return `${folderPath}/${imagePath}`;
+                    });
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function renderThumbnails() {
+            if (!thumbnailsContainer) {
+                return;
+            }
+
+            thumbnailsContainer.innerHTML = images.map((imagePath, index) => `
+                <button class="thumbnail aspect-[4/3] rounded-lg overflow-hidden border-2 border-transparent hover:border-cyan-400 transition-all" onclick="changeImage(${index})">
+                    <img src="${imagePath}" class="w-full h-full object-cover" alt="Imagem ${index + 1}">
+                </button>
+            `).join('');
+        }
+
+        async function initializeGallery() {
+            const parsedImages = vehicleFromUrl.images
+                ? vehicleFromUrl.images
+                    .split('|')
+                    .map((imagePath) => imagePath.trim())
+                    .filter((imagePath) => imagePath && imagePath.includes('/'))
+                : [];
+
+            const folderImages = await loadImagesFromFolder(vehicleFromUrl.folder);
+
+            images = folderImages.length > 0
+                ? folderImages
+                : (parsedImages.length > 0
+                    ? parsedImages
+                    : (vehicleFromUrl.image ? [vehicleFromUrl.image] : [mainImage?.getAttribute('src')].filter(Boolean)));
+
+            images = images.filter(Boolean);
+
+            currentImage = 0;
+
+            if (mainImage && images.length > 0) {
+                mainImage.src = images[0];
+            }
+
+            renderThumbnails();
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            if (thumbnails.length > 0) {
+                thumbnails[0].classList.add('thumbnail-active');
+            }
+        }
+
+        function updateImage(index) {
+            if (!images.length || !mainImage) {
+                return;
+            }
+
+            currentImage = index;
+            mainImage.src = images[index];
+
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach((thumb, i) => {
+                if (i === index) {
+                    thumb.classList.add('thumbnail-active');
+                } else {
+                    thumb.classList.remove('thumbnail-active');
+                }
+            });
+
+            if (isImageModalOpen() && modalImage) {
+                modalImage.src = images[index];
+            }
+        }
+
+        function changeImage(index) {
+            updateImage(index);
+        }
+
+        function nextImage() {
+            if (!images.length) {
+                return;
+            }
+
+            currentImage = (currentImage + 1) % images.length;
+            updateImage(currentImage);
+        }
+
+        function prevImage() {
+            if (!images.length) {
+                return;
+            }
+
+            currentImage = (currentImage - 1 + images.length) % images.length;
+            updateImage(currentImage);
+        }
+
+        if (mainImage) {
+            mainImage.addEventListener('click', () => openImageModal(currentImage));
+        }
+
+        if (closeImageModalBtn) {
+            closeImageModalBtn.addEventListener('click', closeImageModal);
+        }
+
+        if (prevImageModalBtn) {
+            prevImageModalBtn.addEventListener('click', () => prevImage());
+        }
+
+        if (nextImageModalBtn) {
+            nextImageModalBtn.addEventListener('click', () => nextImage());
+        }
+
+        if (imageModal) {
+            imageModal.addEventListener('click', (event) => {
+                if (event.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (!isImageModalOpen()) {
+                return;
+            }
+
+            if (event.key === 'Escape') {
+                closeImageModal();
+                return;
+            }
+
+            if (event.key === 'ArrowLeft') {
+                prevImage();
+                return;
+            }
+
+            if (event.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+
+        // Share functionality
+        const shareButtons = {
+            facebook: document.getElementById('share-facebook'),
+            twitter: document.getElementById('share-twitter'),
+            whatsapp: document.getElementById('share-whatsapp'),
+            link: document.getElementById('share-link')
+        };
+
+        // Criar URL para compartilhar (com todos os parâmetros)
+        const baseUrl = 'https://lmautomoveis.seg.br/detalhes.html';
+        const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}&images=${encodeURIComponent(vehicleFromUrl.images)}&folder=${encodeURIComponent(vehicleFromUrl.folder)}&color=${encodeURIComponent(vehicleFromUrl.color)}&transmission=${encodeURIComponent(vehicleFromUrl.transmission)}&doors=${encodeURIComponent(vehicleFromUrl.doors)}&engine=${encodeURIComponent(vehicleFromUrl.engine)}&power=${encodeURIComponent(vehicleFromUrl.power)}&plate=${encodeURIComponent(vehicleFromUrl.plate)}&ipva=${encodeURIComponent(vehicleFromUrl.ipva)}&features=${encodeURIComponent(vehicleFromUrl.features)}`;
+        const shareTitle = vehicleName || 'Confira este veículo!';
+        const shortMessage = `${shareTitle} - ${vehicleFromUrl.year} - R$ ${vehicleFromUrl.price}`;
+        const shareMessage = `${shortMessage} ${cleanShareUrl}`;
+
+        if (shareButtons.facebook) {
+            shareButtons.facebook.addEventListener('click', () => {
+                const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(cleanShareUrl)}`;
+                window.open(facebookShareUrl, 'facebook-share', 'width=600,height=400');
+            });
+        }
+
+        if (shareButtons.twitter) {
+            shareButtons.twitter.addEventListener('click', () => {
+                const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(cleanShareUrl)}&text=${encodeURIComponent(`Veja este ${shareTitle} na LM Automóveis!`)}`;
+                window.open(twitterShareUrl, 'twitter-share', 'width=600,height=400');
+            });
+        }
+
+        if (shareButtons.whatsapp) {
+            shareButtons.whatsapp.addEventListener('click', () => {
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+
+        if (shareButtons.link) {
+            shareButtons.link.addEventListener('click', () => {
+                // Copiar para clipboard
+                navigator.clipboard.writeText(cleanShareUrl).then(() => {
+                    // Feedback visual
+                    const originalHTML = shareButtons.link.innerHTML;
+                    shareButtons.link.innerHTML = '<i data-lucide="check" class="w-5 h-5 mx-auto text-green-500"></i>';
+                    lucide.createIcons();
+                    
+                    setTimeout(() => {
+                        shareButtons.link.innerHTML = originalHTML;
+                        lucide.createIcons();
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback se clipboard não funcionar
+                    alert('Link: ' + cleanShareUrl);
+                });
+            });
+        }
+
+        initializeGallery();
+        initializeSimilarVehicles();
+    </script>
+</body>
+</html>

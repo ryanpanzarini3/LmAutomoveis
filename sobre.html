@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - L&M Automóveis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#06b6d4',
+                        accent: '#3b82f6',
+                        surface: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .logo-l-e {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+        }
+        .logo-m {
+            color: #ffd700;
+            animation: glowYellow 3s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+        .logo-auto {
+            color: #ffffff;
+            animation: glowWhite 3s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+        @keyframes glowWhite {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+        }
+        @keyframes glowYellow {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 text-white transition-all duration-300" id="navbar" style="background-color: #1e3a5f;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="flex items-center space-x-2 font-display text-2xl text-white font-bold tracking-tight hover:opacity-80 transition-opacity">
+                        <i data-lucide="car" class="w-8 h-8 text-white-400"></i>
+                        <span>
+                            <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                        </span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium text-cyan-400 transition-colors">Sobre</a>
+                    <a href="contato.html" class="px-6 py-3 bg-cyan-400 text-primary font-semibold rounded-full hover:bg-cyan-300 transition-all">
+                        Contato
+                    </a>
+                </div>
+
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #1e3a5f;">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium text-cyan-400">Sobre</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-primary to-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="font-display text-5xl md:text-6xl font-bold mb-6">Sobre a <span class="text-cyan-400">L&M Automóveis</span></h1>
+                <p class="text-xl text-slate-300">
+                    Há mais de 5 anos oferecendo os melhores seminovos com qualidade, transparência e garantia.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-display text-4xl font-bold text-primary mb-6">Nossa História</h2>
+                    <div class="space-y-4 text-slate-600 text-lg">
+                        <p>
+                            A L&M Automóveis nasceu em 2019 com o propósito de revolucionar o mercado de seminovos na região. 
+                            Fundada por Lucas e Marcelo, dois apaixonados por automóveis, a empresa surgiu da necessidade de 
+                            trazer mais transparência e confiança para quem busca um veículo usado de qualidade.
+                        </p>
+                        <p>
+                            Desde o início, investimos em tecnologia avançada de inspeção e em um processo rigoroso de 
+                            avaliação de cada veículo. Nossa inspeção de 150 pontos garante que apenas os melhores carros 
+                            cheguem ao nosso showroom.
+                        </p>
+                        <p>
+                            Hoje, com mais de 500 veículos vendidos e 98% de satisfação dos clientes, continuamos firmes 
+                            em nosso compromisso de oferecer qualidade, garantia e o melhor atendimento.
+                            (História fictícia criada para fins de demonstração)
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="imagens/WhatsApp Image 2026-03-02 at 15.50.33.jpeg" alt="Loja" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-cyan-400 text-primary rounded-2xl p-6 shadow-xl">
+                        <p class="text-4xl font-bold">500+</p>
+                        <p class="text-sm font-semibold">Carros Vendidos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission, Vision, Values -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="target" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-primary mb-4">Missão</h3>
+                    <p class="text-slate-600">
+                        Oferecer veículos seminovos de qualidade excepcional, com total transparência e garantia, 
+                        proporcionando uma experiência de compra confiável e satisfatória.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="eye" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-primary mb-4">Visão</h3>
+                    <p class="text-slate-600">
+                        Ser referência no mercado de seminovos, reconhecida pela qualidade dos veículos, 
+                        inovação tecnológica em inspeção e excelência no atendimento ao cliente.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="heart" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-primary mb-4">Valores</h3>
+                    <p class="text-slate-600">
+                        Transparência, confiança, qualidade, comprometimento com o cliente e inovação são os 
+                        pilares que guiam todas as nossas ações e decisões.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-primary mb-4">Por que escolher a L&M?</h2>
+                <p class="text-slate-600 text-lg max-w-2xl mx-auto">
+                    Oferecemos muito mais do que apenas veículos seminovos. Oferecemos tranquilidade e confiança.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="shield-check" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-primary text-lg mb-2">Garantia de 3 meses</h3>
+                    <p class="text-slate-600 text-sm">
+                        Todos os veículos com garantia para sua tranquilidade 
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="file-check" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-primary text-lg mb-2">Laudo Digital</h3>
+                    <p class="text-slate-600 text-sm">
+                        Transparência total com laudo completo
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-primary mb-4">Nossa Equipe</h2>
+                <p class="text-slate-600 text-lg">
+                    Profissionais experientes e apaixonados por automóveis
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                     <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="imagens/WhatsApp Image 2026-03-25 at 09.57.53.jpeg" alt="Loja" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="font-display text-xl font-bold text-primary mb-1">Thiago Bayer</h3>
+                        <p class="text-cyan-400 font-semibold mb-3">Marketing</p>
+                        <p class="text-slate-600 text-sm">
+                            1 ano criando campanhas de sucesso para o setor automotivo
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                     <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="imagens/WhatsApp Image 2026-03-25 at 09.51.07.jpeg" alt="Loja" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="font-display text-xl font-bold text-primary mb-1">Eduardo Alemida</h3>
+                        <p class="text-cyan-400 font-semibold mb-3">Diretor Comercial</p>
+                        <p class="text-slate-600 text-sm">
+                            12 anos atuando em vendas de veículos premium
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="imagens/WhatsApp Image 2026-03-25 at 09.53.23.jpeg" alt="Loja" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="font-display text-xl font-bold text-primary mb-1">Romulo Almeida</h3>
+                        <p class="text-cyan-400 font-semibold mb-3">Vendedor</p>
+                        <p class="text-slate-600 text-sm">
+                            8 anos atuando em vendas de veículos
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-20 bg-gradient-to-br from-primary to-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <p class="font-display text-5xl font-bold text-cyan-400 mb-2">500+</p>
+                    <p class="text-slate-300">Veículos Vendidos</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display text-5xl font-bold text-cyan-400 mb-2">98%</p>
+                    <p class="text-slate-300">Satisfação</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display text-5xl font-bold text-cyan-400 mb-2">+13</p>
+                    <p class="text-slate-300">Anos no Mercado</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display text-5xl font-bold text-cyan-400 mb-2">150</p>
+                    <p class="text-slate-300">Pontos de Inspeção</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-primary mb-4">Informações de Contato</h2>
+                <p class="text-slate-600 text-lg">
+                    Entre em contato conosco para dúvidas ou agendamentos
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="phone" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Telefone</h3>
+                    <p class="text-slate-600 text-lg font-semibold">(42) 3025-6505</p>
+                    <p class="text-slate-500 text-sm mt-2">Ligue para nós</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="mail" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Email</h3>
+                    <p class="text-slate-600 text-lg font-semibold break-all">angelo7676@ig.com.br</p>
+                    <p class="text-slate-500 text-sm mt-2">Envie uma mensagem</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="clock" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Horário de Atendimento</h3>
+                    <div class="text-slate-600 text-sm space-y-1">
+                        <p><span class="font-semibold">Segunda a Sexta:</span> 8h às 18h</p>
+                        <p><span class="font-semibold">Sábado:</span> 8h às 12h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-4xl font-bold text-primary mb-6">Venha nos visitar!</h2>
+            <p class="text-slate-600 text-lg mb-8">
+                Conheça nosso showroom e toda a nossa estrutura. Estamos prontos para ajudá-lo a encontrar o carro ideal.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="estoque.html" class="px-8 py-4 bg-cyan-400 text-primary font-bold rounded-full hover:bg-cyan-300 transition-all">
+                    Ver Estoque
+                </a>
+                <a href="contato.html" class="px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all">
+                    Entre em Contato
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-lucide="car" class="w-8 h-8 text-cyan-400"></i>
+                        <span class="font-display text-2xl font-bold">
+                            <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                        </span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm">
+                        Seminovos de qualidade com garantia e inspeção completa.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/lm_automoveispg/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://www.facebook.com/lm.automoveis.908" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Links</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li><a href="estoque.html" class="hover:text-cyan-400 transition-colors">Estoque</a></li>
+                        <li><a href="sobre.html" class="hover:text-cyan-400 transition-colors">Sobre</a></li>
+                        <li><a href="contato.html" class="hover:text-cyan-400 transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contato</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-cyan-400"></i>
+                            <a href="tel:+5542302256505" class="hover:text-cyan-400 transition-colors">(42) 3025-6505</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
+                            <a href="mailto:angelo7676@ig.com.br" class="hover:text-cyan-400 transition-colors">angelo7676@ig.com.br</a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-cyan-400 mt-1"></i>
+                            <div class="text-sm">
+                                <p>Seg-Sex: 8h às 18h</p>
+                                <p>Sábado: 8h às 12h</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-slate-500 text-sm">© 2026 Ryan Panzarini. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/554299226561" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+    </a>
+
+    <script>
+        lucide.createIcons();
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

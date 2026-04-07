@@ -1,0 +1,45 @@
+<div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group"
+    data-folder="Estoque/marca/modelo"
+    data-images="Estoque/marca/modelo/foto1.jpeg|Estoque/marca/modelo/foto2.jpeg|Estoque/marca/modelo/foto3.jpeg"
+    data-doors="4 portas"
+    data-engine="1.5 Turbo"
+    data-power="173 cv"
+    data-plate="5"
+    data-ipva="Em dia"
+    data-features="Ar Condicionado Digital|Direção Elétrica|ABS e Controle de Estabilidade|Airbags Frontais e Laterais|Câmera de Ré|Central Multimídia">
+    <div class="relative h-56 overflow-hidden">
+        <img src="Estoque/marca/modelo/foto1.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+        <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 bg-secondary text-primary text-xs font-bold rounded-full">NOVO</span>
+        </div>
+    </div>
+    <div class="p-5">
+        <h3 class="font-display text-lg font-bold text-primary mb-1">Marca Modelo Versão</h3>
+        <p class="text-slate-500 text-sm mb-3">2023 • 12.000 km • Flex</p>
+        <div class="flex gap-3 mb-4">
+            <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
+            <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Preto</span>
+        </div>
+        <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+            <p class="text-xl font-bold text-primary">R$ 129.900</p>
+            <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                Ver Detalhes
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--
+Modo recomendado para puxar imagens da pasta do carro automaticamente:
+1) mantenha data-folder="Estoque/marca/modelo"
+2) opcionalmente remova data-images (se quiser usar só o manifesto)
+3) crie o arquivo: Estoque/marca/modelo/imagens.json
+     conteúdo exemplo:
+     {
+         "images": [
+             "foto1.jpeg",
+             "foto2.jpeg",
+             "foto3.jpeg"
+         ]
+     }
+-->
