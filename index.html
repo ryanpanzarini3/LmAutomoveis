@@ -110,28 +110,8 @@
 </head>
 <body class="text-slate-800 antialiased">
 
-    <!-- Banner Feirão Banco Safra -->
-    <div id="feirao-banner" class="relative w-full z-[60] overflow-hidden" style="background: linear-gradient(135deg, #0a1f5c 0%, #1a3a8f 50%, #0a1f5c 100%);">
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute top-0 left-0 w-32 h-32 bg-yellow-400/10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-400/10 rounded-full translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-center gap-3 text-center relative z-10">
-            <div class="flex items-center gap-3 flex-wrap justify-center">
-                <span class="logo-m font-black text-lg md:text-xl tracking-wide uppercase">⚡ Super Final de Semana</span>
-                <span class="hidden sm:inline text-white/40">|</span>
-                <span class="text-white font-semibold text-sm md:text-base">Dias <span class="text-yellow-300 font-bold">17, 18 e 19</span> deste mês</span>
-                <span class="hidden sm:inline text-white/40">|</span>
-                <span class="text-white text-sm">Em parceria com</span>
-                <span class="px-3 py-1 bg-white rounded-lg text-blue-900 font-black text-sm tracking-wide">$ BANCO SAFRA</span>
-                <span class="text-yellow-300 font-semibold text-sm">— Condições Especiais!</span>
-            </div>
-            <button onclick="document.getElementById('feirao-banner').remove()" class="ml-2 text-white/50 hover:text-white transition-colors text-xl leading-none flex-shrink-0" aria-label="Fechar">×</button>
-        </div>
-    </div>
-
     <!-- Navigation -->
-<nav id="navbar" class="sticky top-0 left-0 w-full bg-primary/95 backdrop-blur-md z-50 border-b border-white/10 shadow-lg shadow-black/10">
+<nav id="navbar" class="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-50 border-b border-white/10 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-2">
@@ -638,9 +618,11 @@
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg');
+                navbar.classList.add('shadow-lg', 'bg-primary/95');
+                navbar.classList.remove('bg-transparent');
             } else {
-                navbar.classList.remove('shadow-lg');
+                navbar.classList.remove('shadow-lg', 'bg-primary/95');
+                navbar.classList.add('bg-transparent');
             }
         });
 
