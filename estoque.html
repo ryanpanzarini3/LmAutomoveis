@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -105,216 +105,98 @@
     </nav>
 
     <!-- Header -->
-    <div class="pt-32 pb-12 bg-primary text-white">
+    <div class="pt-32 pb-20 text-white" style="background-color: #042249;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-end">
+            <div>
+                <h1 class="font-display text-4xl font-bold mb-2">Nosso Estoque</h1>
+                <p class="text-slate-400">Encontre o veículo ideal com nossa tecnologia de busca</p>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-slate-300">
+                <span>Ordenar por:</span>
+                <select id="sort-select" class="border border-white/20 rounded-lg px-3 py-2 text-sm bg-white/10 text-white focus:outline-none focus:border-secondary backdrop-blur-sm">
+                    <option class="text-slate-800">Mais recentes</option>
+                    <option class="text-slate-800">Menor preço</option>
+                    <option class="text-slate-800">Maior preço</option>
+                    <option class="text-slate-800">Menor km</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="relative z-10 -mt-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h1 class="font-display text-4xl font-bold mb-2">Nosso Estoque</h1>
-                    <p class="text-slate-400">Encontre o veículo ideal com nossa tecnologia de busca</p>
+            <div class="rounded-2xl shadow-2xl px-6 py-5" style="background-color: #1e3a5f;">
+            <div class="flex flex-wrap gap-4 items-end">
+                <!-- Buscar -->
+                <div class="flex-1 min-w-[200px]">
+                    <label class="block text-xs font-semibold text-white uppercase tracking-wide mb-1.5">Buscar</label>
+                    <input id="search-input" type="text" placeholder="Buscar por modelo ou palavra-chave" class="w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-xl text-sm text-white placeholder-white/40 focus:outline-none focus:border-secondary focus:bg-white/15 transition-all">
                 </div>
-                <div class="flex items-center gap-2 text-sm text-slate-400">
-                    <span>Ordenar por:</span>
-                    <select id="sort-select" class="bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-black focus:outline-none focus:border-secondary">
-                        <option>Mais recentes</option>
-                        <option>Menor preço</option>
-                        <option>Maior preço</option>
-                        <option>Menor km</option>
+                <!-- Tipo -->
+                <div class="min-w-[155px]">
+                    <label class="block text-xs font-semibold text-white uppercase tracking-wide mb-1.5">Tipo (Carro/Moto)</label>
+                    <select id="type-select" class="w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-xl text-sm text-white focus:outline-none focus:border-secondary transition-all appearance-none cursor-pointer">
+                        <option value="" class="text-white-800 bg-white">Carro/Moto</option>
+                        <option value="Carro" class="text-white-800 bg-white">Carro</option>
+                        <option value="Moto" class="text-white-800 bg-white">Moto</option>
                     </select>
                 </div>
+                <!-- Marca -->
+                <div class="min-w-[155px] relative" id="brand-dropdown-wrapper">
+                    <label class="block text-xs font-semibold text-white uppercase tracking-wide mb-1.5">Marca</label>
+                    <button type="button" id="brand-dropdown-btn" class="w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-xl text-sm text-white text-left flex justify-between items-center gap-2 focus:outline-none focus:border-secondary transition-all">
+                        <span id="brand-dropdown-label" class="text-white">Marca</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-white/40 flex-shrink-0"></i>
+                    </button>
+                    <div id="brand-dropdown-panel" class="hidden absolute top-full left-0 mt-1 w-64 bg-white border border-slate-200 rounded-2xl shadow-xl z-50 p-3">
+                        <div class="flex items-center gap-2 border-b border-slate-100 pb-2 mb-2">
+                            <i data-lucide="search" class="w-4 h-4 text-slate-400 flex-shrink-0"></i>
+                            <input id="brand-search-input" type="text" placeholder="Buscar marca..." class="flex-1 text-sm outline-none text-slate-700">
+                            <button type="button" id="brand-clear-btn" class="text-xs text-secondary hover:underline flex-shrink-0">Limpar</button>
+                        </div>
+                        <div id="brand-list" class="grid grid-cols-2 gap-1 max-h-52 overflow-y-auto"></div>
+                    </div>
+                </div>
+                <!-- Faixa de Preço -->
+                <div class="min-w-[180px]">
+                    <label class="block text-xs font-semibold text-white uppercase tracking-wide mb-1.5">Faixa de Preço</label>
+                    <input id="price-filter-range" type="range" min="50000" max="500000" step="1000" value="500000" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer accent-secondary">
+                    <div class="flex justify-between text-xs text-white/40 mt-1.5">
+                        <span>R$ 50.000</span>
+                        <span id="price-filter-max-label" class="font-medium text-white/70">R$ 500.000</span>
+                    </div>
+                </div>
+                <!-- Combustível -->
+                <div class="min-w-[140px]">
+                    <label class="block text-xs font-semibold text-white uppercase tracking-wide mb-1.5">Combustível</label>
+                    <select id="fuel-select" class="w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-xl text-sm text-white focus:outline-none focus:border-secondary transition-all appearance-none cursor-pointer">
+                        <option value="" class="text-slate-800 bg-white">Combustível</option>
+                        <option value="Flex" class="text-slate-800 bg-white">Flex</option>
+                        <option value="Gasolina" class="text-slate-800 bg-white">Gasolina</option>
+                        <option value="Híbrido" class="text-slate-800 bg-white">Híbrido</option>
+                        <option value="Energia" class="text-slate-800 bg-white">Energia</option>
+                    </select>
+                </div>
+                <!-- Botões -->
+                <div class="flex gap-2 pb-0.5">
+                    <button id="filter-btn" class="px-6 py-2.5 bg-white text-primary text-sm font-semibold rounded-xl hover:bg-slate-100 transition-all shadow-sm">Filtrar</button>
+                    <button id="clear-filters-btn" class="px-4 py-2.5 text-sm text-white/60 rounded-xl hover:text-white hover:bg-white/10 transition-all">Limpar</button>
+                </div>
+            </div>
             </div>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="flex flex-col lg:flex-row gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div id="car-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             
-            <!-- Sidebar Filters -->
-            <aside class="lg:w-64 flex-shrink-0">
-                <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-display text-lg font-bold text-primary">Filtros</h3>
-                        <button id="clear-filters-btn" class="text-sm text-secondary hover:underline">Limpar</button>
-                    </div>
 
-                    <div class="space-y-6">
-                        <!-- Tipo -->
-                        <div>
-                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Tipo</h4>
-                            <div id="type-filters" class="space-y-2">
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Carro</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Moto</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Marca -->
-                        <div class="border-t border-slate-100 pt-6">
-                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Marca</h4>
-                            <div id="brand-filters" class="space-y-2 max-h-80 overflow-y-auto pr-1">
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Abarth</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Audi</span>
-                                </label>
-                                
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">BYD</span>
-                                </label>
-                               
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Chevrolet</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Citroën</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Fiat</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Ford</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Honda</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Hyundai</span>
-                                </label>
-                                
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Jeep</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Kia</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Land Rover</span>
-                                </label>
-                                
-                                
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Mitsubishi</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Nissan</span>
-                                </label>
-                               
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Peugeot</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Ram</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Renault</span>
-                                </label>
-                               
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Toyota</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Volkswagen</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Ano -->
-                        <div class="border-t border-slate-100 pt-6">
-                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Ano</h4>
-                            <div id="year-filters" class="space-y-2">
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2023-2024</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2021-2022</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2019-2020</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2017-2018</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2015-2016</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">2025-2026</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Preço -->
-                        <div class="border-t border-slate-100 pt-6">
-                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Faixa de Preço</h4>
-                            <div class="space-y-3">
-                                <input id="price-filter-range" type="range" min="50000" max="500000" step="1000" value="500000" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-secondary">
-                                <div class="flex justify-between text-sm text-slate-600">
-                                    <span>R$ 50.000</span>
-                                    <span id="price-filter-max-label">R$ 500.000</span>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Combustível -->
-                        <div class="border-t border-slate-100 pt-6">
-                            <h4 class="font-semibold text-sm mb-3 text-slate-700">Combustível</h4>
-                            <div id="fuel-filters" class="space-y-2">
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Gasolina</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Flex</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Híbrido</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-secondary focus:ring-secondary checkbox-custom">
-                                    <span class="text-sm text-slate-600">Energia</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Car Grid -->
-            <div class="flex-1">
-                <div id="car-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                     
                     
 
@@ -879,19 +761,19 @@
                         </div>
                     </div>
 
-                <!-- Pagination -->
-                <div id="inventory-pagination" class="mt-12 flex justify-center gap-2">
-                    <button id="page-prev" class="w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors">
-                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                    </button>
-                    <button class="page-btn w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center font-medium" data-page="1">1</button>
-                    <button class="page-btn w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors" data-page="2">2</button>
-                    <button class="page-btn w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors" data-page="3">3</button>
-                    <button id="page-next" class="w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors">
-                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                    </button>
-                </div>
-            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div id="inventory-pagination" class="mt-12 flex justify-center gap-2">
+            <button id="page-prev" class="w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <button class="page-btn w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center font-medium" data-page="1">1</button>
+            <button class="page-btn w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors" data-page="2">2</button>
+            <button class="page-btn w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors" data-page="3">3</button>
+            <button id="page-next" class="w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
         </div>
     </div>
 
@@ -941,13 +823,10 @@
 
     <script>
         lucide.createIcons();
-        
+
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
         function sanitizeValue(value) {
             return (value || '').replace(/\s+/g, ' ').trim();
@@ -955,16 +834,9 @@
 
         function inferFolderFromImage(imagePath) {
             const normalizedPath = sanitizeValue(imagePath);
-            if (!normalizedPath || normalizedPath.startsWith('http://') || normalizedPath.startsWith('https://')) {
-                return '';
-            }
-
+            if (!normalizedPath || normalizedPath.startsWith('http://') || normalizedPath.startsWith('https://')) return '';
             const lastSlashIndex = normalizedPath.lastIndexOf('/');
-            if (lastSlashIndex <= 0) {
-                return '';
-            }
-
-            return normalizedPath.slice(0, lastSlashIndex);
+            return lastSlashIndex <= 0 ? '' : normalizedPath.slice(0, lastSlashIndex);
         }
 
         const carCards = document.querySelectorAll('.car-card');
@@ -985,64 +857,30 @@
             const ipva = sanitizeValue(card.getAttribute('data-ipva'));
             const features = sanitizeValue(card.getAttribute('data-features'));
             const folder = sanitizeValue(card.getAttribute('data-folder'));
-
-            if (!detailLink || !titleText || !metaText) {
-                return;
-            }
-
+            if (!detailLink || !titleText || !metaText) return;
             const titleParts = titleText.split(' ');
             const brand = sanitizeValue(titleParts.shift());
             const model = sanitizeValue(titleParts.join(' '));
-
             const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
             const year = metaParts[0] || '';
             const km = (metaParts[1] || '').replace(' km', '').trim();
             const fuel = metaParts[2] || '';
-
             const price = priceRaw.replace('R$', '').trim();
             const dataImages = sanitizeValue(card.getAttribute('data-images'));
             const images = dataImages ? dataImages : imageSrc;
             const resolvedFolder = folder || inferFolderFromImage(imageSrc);
-
-            const params = new URLSearchParams({
-                brand,
-                model,
-                year,
-                km,
-                fuel,
-                transmission,
-                color,
-                price,
-                img: imageSrc,
-                images,
-                doors,
-                engine,
-                power,
-                plate,
-                ipva,
-                features,
-                folder: resolvedFolder
-            });
-
+            const params = new URLSearchParams({ brand, model, year, km, fuel, transmission, color, price, img: imageSrc, images, doors, engine, power, plate, ipva, features, folder: resolvedFolder });
             detailLink.href = `detalhes.html?${params.toString()}`;
             card.classList.add('cursor-pointer');
             card.setAttribute('role', 'link');
             card.setAttribute('tabindex', '0');
-
             card.addEventListener('click', (event) => {
                 const interactiveTarget = event.target.closest('a, button, input, select, textarea, label');
-                if (interactiveTarget && interactiveTarget !== detailLink) {
-                    return;
-                }
-
+                if (interactiveTarget && interactiveTarget !== detailLink) return;
                 window.location.href = detailLink.href;
             });
-
             card.addEventListener('keydown', (event) => {
-                if (event.key !== 'Enter' && event.key !== ' ') {
-                    return;
-                }
-
+                if (event.key !== 'Enter' && event.key !== ' ') return;
                 event.preventDefault();
                 window.location.href = detailLink.href;
             });
@@ -1053,33 +891,81 @@
             return folder.toLowerCase().includes('/motos/') ? 'Moto' : 'Carro';
         }
 
-        const brandFiltersContainer = document.getElementById('brand-filters');
-        const typeFiltersContainer = document.getElementById('type-filters');
-        const yearFiltersContainer = document.getElementById('year-filters');
-        const fuelFiltersContainer = document.getElementById('fuel-filters');
+        // ----- Brand Dropdown -----
+        const brandOptions = ['BYD','Chevrolet','Citroën','Fiat','Ford','Honda','Hyundai','Jeep','Kia','Land Rover','Mitsubishi','Nissan','Peugeot','Ram','Renault','Toyota','Volkswagen'];
+        let selectedBrand = '';
+
+        function renderBrandList(filterText) {
+            const brandList = document.getElementById('brand-list');
+            if (!brandList) return;
+            const filtered = filterText ? brandOptions.filter(b => b.toLowerCase().includes(filterText.toLowerCase())) : brandOptions;
+            brandList.innerHTML = filtered.map(brand => {
+                const isSelected = selectedBrand === brand;
+                return `<button type="button" class="brand-option text-left px-2 py-1.5 text-sm rounded-lg transition-colors ${isSelected ? 'bg-primary text-white' : 'hover:bg-slate-100 text-slate-700'}" data-brand="${brand}">${brand}</button>`;
+            }).join('');
+            brandList.querySelectorAll('.brand-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    selectedBrand = selectedBrand === btn.dataset.brand ? '' : btn.dataset.brand;
+                    updateBrandLabel();
+                    document.getElementById('brand-dropdown-panel').classList.add('hidden');
+                    currentPage = 1;
+                    applyInventoryFilters();
+                });
+            });
+        }
+
+        function updateBrandLabel() {
+            const label = document.getElementById('brand-dropdown-label');
+            if (!label) return;
+            label.textContent = selectedBrand || 'Marca';
+            label.className = selectedBrand ? 'font-medium text-primary' : 'text-slate-500';
+        }
+
+        const brandDropdownBtn = document.getElementById('brand-dropdown-btn');
+        const brandDropdownPanel = document.getElementById('brand-dropdown-panel');
+        if (brandDropdownBtn) {
+            brandDropdownBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = brandDropdownPanel.classList.contains('hidden');
+                brandDropdownPanel.classList.toggle('hidden', !isHidden);
+                if (isHidden) { renderBrandList(''); lucide.createIcons(); document.getElementById('brand-search-input')?.focus(); }
+            });
+        }
+        document.addEventListener('click', (e) => {
+            const wrapper = document.getElementById('brand-dropdown-wrapper');
+            if (wrapper && !wrapper.contains(e.target)) brandDropdownPanel?.classList.add('hidden');
+        });
+        document.getElementById('brand-search-input')?.addEventListener('input', (e) => renderBrandList(e.target.value));
+        document.getElementById('brand-clear-btn')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectedBrand = '';
+            updateBrandLabel();
+            renderBrandList('');
+            currentPage = 1;
+            applyInventoryFilters();
+        });
+
+        // ----- Filter & Pagination -----
         const priceFilterRange = document.getElementById('price-filter-range');
         const priceFilterMaxLabel = document.getElementById('price-filter-max-label');
         const clearFiltersBtn = document.getElementById('clear-filters-btn');
         const pagePrevBtn = document.getElementById('page-prev');
         const pageNextBtn = document.getElementById('page-next');
         const pageButtons = Array.from(document.querySelectorAll('.page-btn'));
-        const itemsPerPage = 9;
-        const totalPages = 3;
+        const itemsPerPage = 12;
         let currentPage = 1;
+        let lastFilteredCount = 0;
         let selectedExactYear = '';
         let selectedModelFilter = '';
 
-        function normalizeFilterText(value) {
-            return sanitizeValue(value).replace(/\(.*?\)/g, '').trim();
-        }
-
         function parsePriceToNumber(priceText) {
-            const numericValue = String(priceText || '').replace(/[^\d]/g, '');
-            return Number(numericValue || 0);
+            return Number(String(priceText || '').replace(/[^\d]/g, '') || 0);
         }
-
         function formatCurrency(value) {
             return `R$ ${Number(value || 0).toLocaleString('pt-BR')}`;
+        }
+        function getTotalPages(count) {
+            return Math.max(1, Math.ceil(count / itemsPerPage));
         }
 
         function parseCardData(card) {
@@ -1090,235 +976,120 @@
             const brand = sanitizeValue(titleParts.shift());
             const model = sanitizeValue(titleParts.join(' '));
             const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
-            const year = Number(metaParts[0] || 0);
-            const fuel = metaParts[2] || '';
-
-            return {
-                type: inferVehicleType(card),
-                brand,
-                model,
-                year,
-                fuel,
-                price: parsePriceToNumber(priceText)
-            };
+            return { type: inferVehicleType(card), brand, model, year: Number(metaParts[0] || 0), fuel: metaParts[2] || '', price: parsePriceToNumber(priceText) };
         }
 
         function applyInitialSearchFiltersFromUrl() {
             const params = new URLSearchParams(window.location.search);
             const requestedBrand = sanitizeValue(params.get('brand'));
-            const requestedModel = sanitizeValue(params.get('model'));
-            const requestedYear = sanitizeValue(params.get('year'));
-
-            selectedModelFilter = requestedModel;
-            selectedExactYear = requestedYear;
-
-            if (requestedBrand && brandFiltersContainer) {
-                const brandCheckboxes = Array.from(brandFiltersContainer.querySelectorAll('input[type="checkbox"]'));
-                brandCheckboxes.forEach((checkbox) => {
-                    const labelText = normalizeFilterText(checkbox.parentElement?.querySelector('span')?.textContent || '');
-                    checkbox.checked = labelText === requestedBrand;
-                });
-            }
-        }
-
-        function getCheckedValues(container) {
-            if (!container) {
-                return [];
-            }
-
-            const checkedInputs = Array.from(container.querySelectorAll('input[type="checkbox"]:checked'));
-            return checkedInputs.map((input) => normalizeFilterText(input.parentElement?.querySelector('span')?.textContent || ''));
-        }
-
-        function yearInSelectedRanges(year, ranges) {
-            if (!ranges.length) {
-                return true;
-            }
-
-            return ranges.some((range) => {
-                const [startYear, endYear] = range.split('-').map((value) => Number(value));
-                if (!startYear || !endYear) {
-                    return false;
-                }
-                return year >= startYear && year <= endYear;
-            });
+            selectedModelFilter = sanitizeValue(params.get('model'));
+            selectedExactYear = sanitizeValue(params.get('year'));
+            if (requestedBrand) { selectedBrand = requestedBrand; updateBrandLabel(); }
         }
 
         function applyInventoryFilters() {
-            const selectedTypes = getCheckedValues(typeFiltersContainer);
-            const selectedBrands = getCheckedValues(brandFiltersContainer);
-            const selectedYearRanges = getCheckedValues(yearFiltersContainer);
-            const selectedFuels = getCheckedValues(fuelFiltersContainer);
+            const searchText = sanitizeValue(document.getElementById('search-input')?.value).toLowerCase();
+            const selectedType = sanitizeValue(document.getElementById('type-select')?.value);
             const selectedMaxPrice = Number(priceFilterRange?.value || 500000);
+            const selectedFuel = sanitizeValue(document.getElementById('fuel-select')?.value);
 
-            if (priceFilterMaxLabel) {
-                priceFilterMaxLabel.textContent = formatCurrency(selectedMaxPrice);
-            }
+            if (priceFilterMaxLabel) priceFilterMaxLabel.textContent = formatCurrency(selectedMaxPrice);
 
             const filteredCards = Array.from(carCards).filter((card) => {
-                const cardData = parseCardData(card);
-                const matchesType = selectedTypes.length === 0 || selectedTypes.includes(cardData.type);
-                const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(cardData.brand);
-                const matchesYear = yearInSelectedRanges(cardData.year, selectedYearRanges);
-                const matchesExactYear = !selectedExactYear || String(cardData.year) === selectedExactYear;
-                const matchesFuel = selectedFuels.length === 0 || selectedFuels.includes(cardData.fuel);
-                const matchesPrice = cardData.price <= selectedMaxPrice;
-                const matchesModel = !selectedModelFilter || cardData.model === selectedModelFilter;
-
-                return matchesType && matchesBrand && matchesYear && matchesExactYear && matchesFuel && matchesPrice && matchesModel;
+                const d = parseCardData(card);
+                const fullText = (d.brand + ' ' + d.model).toLowerCase();
+                return (!searchText || fullText.includes(searchText))
+                    && (!selectedType || d.type === selectedType)
+                    && (!selectedBrand || d.brand === selectedBrand)
+                    && (!selectedFuel || d.fuel === selectedFuel)
+                    && (d.price <= selectedMaxPrice)
+                    && (!selectedExactYear || String(d.year) === selectedExactYear)
+                    && (!selectedModelFilter || d.model === selectedModelFilter);
             });
 
-            if (currentPage < 1) {
-                currentPage = 1;
-            }
+            lastFilteredCount = filteredCards.length;
+            const totalPages = getTotalPages(lastFilteredCount);
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
 
-            if (currentPage > totalPages) {
-                currentPage = totalPages;
-            }
+            carCards.forEach((card) => card.classList.add('hidden'));
+            filteredCards.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).forEach((card) => card.classList.remove('hidden'));
 
-            carCards.forEach((card) => {
-                card.classList.add('hidden');
-            });
+            const paginationContainer = document.getElementById('inventory-pagination');
+            if (paginationContainer) paginationContainer.classList.toggle('hidden', totalPages <= 1);
 
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            filteredCards.slice(startIndex, endIndex).forEach((card) => {
-                card.classList.remove('hidden');
-            });
-
-            if (pagePrevBtn) {
-                pagePrevBtn.disabled = currentPage === 1;
-                pagePrevBtn.classList.toggle('opacity-40', currentPage === 1);
-            }
-
-            if (pageNextBtn) {
-                pageNextBtn.disabled = currentPage === totalPages;
-                pageNextBtn.classList.toggle('opacity-40', currentPage === totalPages);
-            }
-
+            if (pagePrevBtn) { pagePrevBtn.disabled = currentPage === 1; pagePrevBtn.classList.toggle('opacity-40', currentPage === 1); }
+            if (pageNextBtn) { pageNextBtn.disabled = currentPage === totalPages; pageNextBtn.classList.toggle('opacity-40', currentPage === totalPages); }
             pageButtons.forEach((button) => {
                 const buttonPage = Number(button.dataset.page || 1);
                 const isActive = buttonPage === currentPage;
-
+                button.classList.toggle('hidden', buttonPage > totalPages);
                 button.classList.toggle('bg-primary', isActive);
                 button.classList.toggle('text-white', isActive);
-                button.classList.toggle('font-medium', isActive);
                 button.classList.toggle('border', !isActive);
                 button.classList.toggle('border-slate-200', !isActive);
             });
         }
 
-        const filterCheckboxes = document.querySelectorAll('#type-filters input[type="checkbox"], #brand-filters input[type="checkbox"], #year-filters input[type="checkbox"], #fuel-filters input[type="checkbox"]');
-        filterCheckboxes.forEach((checkbox) => {
-            checkbox.addEventListener('change', applyInventoryFilters);
-        });
-
-        if (priceFilterRange) {
-            priceFilterRange.addEventListener('input', applyInventoryFilters);
-        }
+        // Filter event listeners
+        document.getElementById('search-input')?.addEventListener('input', () => { currentPage = 1; applyInventoryFilters(); });
+        document.getElementById('type-select')?.addEventListener('change', () => { currentPage = 1; applyInventoryFilters(); });
+        document.getElementById('fuel-select')?.addEventListener('change', () => { currentPage = 1; applyInventoryFilters(); });
+        if (priceFilterRange) priceFilterRange.addEventListener('input', applyInventoryFilters);
+        document.getElementById('filter-btn')?.addEventListener('click', () => { currentPage = 1; applyInventoryFilters(); });
 
         if (clearFiltersBtn) {
             clearFiltersBtn.addEventListener('click', () => {
-                filterCheckboxes.forEach((checkbox) => {
-                    checkbox.checked = false;
-                });
-
-                selectedExactYear = '';
-                selectedModelFilter = '';
-
-                if (priceFilterRange) {
-                    priceFilterRange.value = String(priceFilterRange.max || 500000);
-                }
-
-                currentPage = 1;
-                applyInventoryFilters();
+                const si = document.getElementById('search-input'); if (si) si.value = '';
+                const ts = document.getElementById('type-select'); if (ts) ts.value = '';
+                const fs = document.getElementById('fuel-select'); if (fs) fs.value = '';
+                selectedBrand = ''; updateBrandLabel();
+                selectedExactYear = ''; selectedModelFilter = '';
+                if (priceFilterRange) priceFilterRange.value = String(priceFilterRange.max || 500000);
+                currentPage = 1; applyInventoryFilters();
             });
         }
 
-        pageButtons.forEach((button) => {
-            button.addEventListener('click', () => {
-                currentPage = Number(button.dataset.page || 1);
-                applyInventoryFilters();
-            });
-        });
+        pageButtons.forEach((button) => { button.addEventListener('click', () => { currentPage = Number(button.dataset.page || 1); applyInventoryFilters(); }); });
+        if (pagePrevBtn) { pagePrevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage -= 1; applyInventoryFilters(); } }); }
+        if (pageNextBtn) { pageNextBtn.addEventListener('click', () => { if (currentPage < getTotalPages(lastFilteredCount)) { currentPage += 1; applyInventoryFilters(); } }); }
 
-        if (pagePrevBtn) {
-            pagePrevBtn.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage -= 1;
-                    applyInventoryFilters();
-                }
-            });
-        }
-
-        if (pageNextBtn) {
-            pageNextBtn.addEventListener('click', () => {
-                if (currentPage < totalPages) {
-                    currentPage += 1;
-                    applyInventoryFilters();
-                }
-            });
-        }
-
-        // Renderizar ordenação de carros
+        // ----- Sorting -----
         const sortSelect = document.getElementById('sort-select');
         const carGrid = document.getElementById('car-grid');
 
         function extractKmFromCard(card) {
-            const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
-            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
-            const kmText = (metaParts[1] || '').replace(' km', '').trim();
-            return Number(kmText.replace(/\./g, '') || 0);
+            const meta = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent).split('•');
+            return Number((meta[1] || '').replace(' km', '').replace(/\./g, '').trim() || 0);
         }
-
         function extractYearFromCard(card) {
-            const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
-            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
-            return Number(metaParts[0] || 0);
+            return Number(sanitizeValue(card.querySelector('p.text-slate-500')?.textContent).split('•')[0] || 0);
         }
-
         function extractPriceFromCard(card) {
-            const priceText = sanitizeValue(card.querySelector('p.text-xl')?.textContent);
-            return parsePriceToNumber(priceText);
+            return parsePriceToNumber(sanitizeValue(card.querySelector('p.text-xl')?.textContent));
         }
 
         function sortCarCards(sortType) {
-            const visibleCards = Array.from(carCards).filter(card => !card.classList.contains('hidden'));
-
-            visibleCards.sort((a, b) => {
+            const allCards = Array.from(carCards);
+            allCards.sort((a, b) => {
                 switch (sortType) {
-                    case 'Mais recentes':
-                        return extractYearFromCard(b) - extractYearFromCard(a);
-                    case 'Menor preço':
-                        return extractPriceFromCard(a) - extractPriceFromCard(b);
-                    case 'Maior preço':
-                        return extractPriceFromCard(b) - extractPriceFromCard(a);
-                    case 'Menor km':
-                        return extractKmFromCard(a) - extractKmFromCard(b);
-                    default:
-                        return 0;
+                    case 'Mais recentes': return extractYearFromCard(b) - extractYearFromCard(a);
+                    case 'Menor preço': return extractPriceFromCard(a) - extractPriceFromCard(b);
+                    case 'Maior preço': return extractPriceFromCard(b) - extractPriceFromCard(a);
+                    case 'Menor km': return extractKmFromCard(a) - extractKmFromCard(b);
+                    default: return 0;
                 }
             });
-
-            // Remover cards do grid
-            visibleCards.forEach(card => {
-                carGrid.removeChild(card);
-            });
-
-            // Reinserir cards na ordem ordenada
-            visibleCards.forEach(card => {
-                carGrid.appendChild(card);
-            });
+            allCards.forEach(card => carGrid.appendChild(card));
+            applyInventoryFilters();
         }
 
-        if (sortSelect) {
-            sortSelect.addEventListener('change', (event) => {
-                sortCarCards(event.target.value);
-            });
-        }
+        if (sortSelect) { sortSelect.addEventListener('change', (event) => sortCarCards(event.target.value)); }
 
         applyInitialSearchFiltersFromUrl();
         applyInventoryFilters();
     </script>
+
 </body>
 </html>
+
