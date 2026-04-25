@@ -450,6 +450,10 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         <div class="h-full w-full flex items-center justify-center">
             <img id="modal-image" src="" alt="Imagem ampliada" class="max-w-full max-h-full object-contain rounded-lg">
         </div>
+
+        <div id="modal-swipe-hint" class="hidden absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/55 border border-white/25 text-white text-xs sm:text-sm font-semibold tracking-wide pointer-events-none transition-opacity duration-300">
+            Arraste para trocar
+        </div>
     </div>
 
     <!-- WhatsApp Float -->
@@ -731,11 +735,65 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         const closeImageModalBtn = document.getElementById('close-image-modal');
         const prevImageModalBtn = document.getElementById('prev-image-modal');
         const nextImageModalBtn = document.getElementById('next-image-modal');
+        const modalSwipeHint = document.getElementById('modal-swipe-hint');
         let images = [];
         let currentImage = 0;
+        let modalTouchStartX = 0;
+        let modalTouchStartY = 0;
+        let modalTouchEndX = 0;
+        let modalTouchEndY = 0;
+        const MODAL_SWIPE_MIN_DISTANCE = 50;
+        const MODAL_SWIPE_MAX_VERTICAL_DRIFT = 80;
+        const MODAL_SWIPE_HINT_KEY = 'lm_swipe_hint_seen';
+        let modalSwipeHintTimeout;
 
         function isImageModalOpen() {
             return imageModal && !imageModal.classList.contains('hidden');
+        }
+
+        function canShowSwipeHint() {
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            if (!isTouchDevice) {
+                return false;
+            }
+
+            try {
+                return localStorage.getItem(MODAL_SWIPE_HINT_KEY) !== '1';
+            } catch (error) {
+                return true;
+            }
+        }
+
+        function markSwipeHintAsSeen() {
+            try {
+                localStorage.setItem(MODAL_SWIPE_HINT_KEY, '1');
+            } catch (error) {
+                // Ignore storage errors and continue.
+            }
+        }
+
+        function showModalSwipeHint() {
+            if (!modalSwipeHint || !canShowSwipeHint()) {
+                return;
+            }
+
+            if (modalSwipeHintTimeout) {
+                clearTimeout(modalSwipeHintTimeout);
+            }
+
+            modalSwipeHint.classList.remove('hidden', 'opacity-0');
+            modalSwipeHint.classList.add('opacity-100');
+
+            markSwipeHintAsSeen();
+
+            modalSwipeHintTimeout = setTimeout(() => {
+                modalSwipeHint.classList.remove('opacity-100');
+                modalSwipeHint.classList.add('opacity-0');
+
+                setTimeout(() => {
+                    modalSwipeHint.classList.add('hidden');
+                }, 300);
+            }, 1800);
         }
 
         function openImageModal(index = currentImage) {
@@ -747,6 +805,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             modalImage.src = images[currentImage];
             imageModal.classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
+            showModalSwipeHint();
         }
 
         function closeImageModal() {
@@ -875,6 +934,26 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             updateImage(currentImage);
         }
 
+        function handleModalSwipeGesture() {
+            if (!isImageModalOpen()) {
+                return;
+            }
+
+            const deltaX = modalTouchEndX - modalTouchStartX;
+            const deltaY = Math.abs(modalTouchEndY - modalTouchStartY);
+
+            if (Math.abs(deltaX) < MODAL_SWIPE_MIN_DISTANCE || deltaY > MODAL_SWIPE_MAX_VERTICAL_DRIFT) {
+                return;
+            }
+
+            if (deltaX < 0) {
+                nextImage();
+                return;
+            }
+
+            prevImage();
+        }
+
         if (mainImage) {
             mainImage.addEventListener('click', () => openImageModal(currentImage));
         }
@@ -896,6 +975,34 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                 if (event.target === imageModal) {
                     closeImageModal();
                 }
+            });
+        }
+
+        if (modalImage) {
+            modalImage.addEventListener('touchstart', (event) => {
+                const firstTouch = event.touches[0];
+                if (!firstTouch) {
+                    return;
+                }
+
+                modalTouchStartX = firstTouch.clientX;
+                modalTouchStartY = firstTouch.clientY;
+                modalTouchEndX = firstTouch.clientX;
+                modalTouchEndY = firstTouch.clientY;
+            }, { passive: true });
+
+            modalImage.addEventListener('touchmove', (event) => {
+                const firstTouch = event.touches[0];
+                if (!firstTouch) {
+                    return;
+                }
+
+                modalTouchEndX = firstTouch.clientX;
+                modalTouchEndY = firstTouch.clientY;
+            }, { passive: true });
+
+            modalImage.addEventListener('touchend', () => {
+                handleModalSwipeGesture();
             });
         }
 
