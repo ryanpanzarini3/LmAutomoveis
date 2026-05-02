@@ -474,8 +474,10 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
 
         // Vehicle Data from URL
         const searchParams = new URLSearchParams(window.location.search);
+        const vehicleIdFromUrl = Number(searchParams.get('id') || 0);
 
         let vehicleFromUrl = {
+            id: vehicleIdFromUrl || '',
             brand: searchParams.get('brand') || '',
             model: searchParams.get('model') || '',
             year: searchParams.get('year') || '',
@@ -495,9 +497,40 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             features: searchParams.get('features') || ''
         };
 
-        const vehicleName = `${vehicleFromUrl.brand} ${vehicleFromUrl.model}`.trim();
+        function normalizeVehicleFromApi(vehicle) {
+            const images = Array.isArray(vehicle.images) ? vehicle.images.filter(Boolean) : [];
+            return {
+                id: String(vehicle.id || ''),
+                brand: vehicle.brand || '',
+                model: vehicle.model || '',
+                year: vehicle.year ? String(vehicle.year) : '',
+                km: Number(vehicle.km || 0).toLocaleString('pt-BR'),
+                fuel: vehicle.fuel || '',
+                transmission: vehicle.transmission || '',
+                color: vehicle.color || '',
+                price: Number(vehicle.price || 0).toLocaleString('pt-BR'),
+                image: images[0] || '',
+                images: images.join('|'),
+                folder: vehicle.legacy_folder || '',
+                doors: vehicle.doors || '',
+                engine: vehicle.engine || '',
+                power: vehicle.power || '',
+                plate: vehicle.plate || '',
+                ipva: vehicle.ipva || '',
+                features: Array.isArray(vehicle.features) ? vehicle.features.join('|') : ''
+            };
+        }
 
-        if (vehicleName) {
+        function getVehicleName() {
+            return `${vehicleFromUrl.brand} ${vehicleFromUrl.model}`.trim();
+        }
+
+        function applyVehicleData() {
+            const vehicleName = getVehicleName();
+            if (!vehicleName) {
+                return;
+            }
+
             const titleElement = document.getElementById('vehicle-title');
             const subtitleElement = document.getElementById('vehicle-subtitle');
             const breadcrumbElement = document.getElementById('breadcrumb-vehicle');
@@ -567,6 +600,25 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             lucide.createIcons();
         }
 
+        async function hydrateVehicleFromApi() {
+            if (!vehicleFromUrl.id) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/vehicles/${vehicleFromUrl.id}`);
+                if (!response.ok) {
+                    return;
+                }
+
+                const vehicle = await response.json();
+                vehicleFromUrl = normalizeVehicleFromApi(vehicle);
+                applyVehicleData();
+            } catch (error) {
+                // Keep the URL-param fallback when the API is unavailable.
+            }
+        }
+
         function sanitizeValue(value) {
             return (value || '').replace(/\s+/g, ' ').trim();
         }
@@ -584,6 +636,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
 
         function buildVehicleDetailsLink(vehicle) {
             const params = new URLSearchParams({
+                id: vehicle.id || '',
                 brand: vehicle.brand || '',
                 model: vehicle.model || '',
                 year: vehicle.year || '',
@@ -607,6 +660,22 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         }
 
         async function loadStockVehicles() {
+            try {
+                const response = await fetch('/api/vehicles');
+                if (response.ok) {
+                    const vehicles = await response.json();
+                    return vehicles.map((vehicle) => {
+                        const normalized = normalizeVehicleFromApi(vehicle);
+                        return {
+                            ...normalized,
+                            title: `${normalized.brand} ${normalized.model}`.trim()
+                        };
+                    }).filter((vehicle) => vehicle.title && vehicle.image);
+                }
+            } catch (error) {
+                // Fall back to parsing the static HTML when the API is unavailable.
+            }
+
             const response = await fetch('estoque.html');
             if (!response.ok) {
                 throw new Error('Nao foi possivel carregar o estoque.');
@@ -629,6 +698,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                 const price = sanitizeValue(card.querySelector('p.text-xl')?.textContent).replace('R$', '').trim();
 
                 return {
+                    id: sanitizeValue(card.getAttribute('data-id')),
                     title: titleText,
                     brand,
                     model,
@@ -1034,30 +1104,61 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             link: document.getElementById('share-link')
         };
 
-        // Criar URL para compartilhar (com todos os parâmetros)
-        const baseUrl = 'https://lmautomoveis.seg.br/detalhes.html';
-        const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}&images=${encodeURIComponent(vehicleFromUrl.images)}&folder=${encodeURIComponent(vehicleFromUrl.folder)}&color=${encodeURIComponent(vehicleFromUrl.color)}&transmission=${encodeURIComponent(vehicleFromUrl.transmission)}&doors=${encodeURIComponent(vehicleFromUrl.doors)}&engine=${encodeURIComponent(vehicleFromUrl.engine)}&power=${encodeURIComponent(vehicleFromUrl.power)}&plate=${encodeURIComponent(vehicleFromUrl.plate)}&ipva=${encodeURIComponent(vehicleFromUrl.ipva)}&features=${encodeURIComponent(vehicleFromUrl.features)}`;
-        const shareTitle = vehicleName || 'Confira este veículo!';
-        const shortMessage = `${shareTitle} - ${vehicleFromUrl.year} - R$ ${vehicleFromUrl.price}`;
-        const shareMessage = `${shortMessage} ${cleanShareUrl}`;
+        function buildShareUrl() {
+            const baseUrl = 'https://lmautomoveis.seg.br/detalhes.html';
+            if (vehicleFromUrl.id) {
+                return `${baseUrl}?id=${encodeURIComponent(vehicleFromUrl.id)}`;
+            }
+
+            const params = new URLSearchParams({
+                brand: vehicleFromUrl.brand,
+                model: vehicleFromUrl.model,
+                year: vehicleFromUrl.year,
+                km: vehicleFromUrl.km,
+                fuel: vehicleFromUrl.fuel,
+                price: vehicleFromUrl.price,
+                images: vehicleFromUrl.images,
+                folder: vehicleFromUrl.folder,
+                color: vehicleFromUrl.color,
+                transmission: vehicleFromUrl.transmission,
+                doors: vehicleFromUrl.doors,
+                engine: vehicleFromUrl.engine,
+                power: vehicleFromUrl.power,
+                plate: vehicleFromUrl.plate,
+                ipva: vehicleFromUrl.ipva,
+                features: vehicleFromUrl.features
+            });
+
+            return `${baseUrl}?${params.toString()}`;
+        }
+
+        function buildShareTitle() {
+            return getVehicleName() || 'Confira este veículo!';
+        }
+
+        function buildShareMessage() {
+            const shareTitle = buildShareTitle();
+            const shortMessage = `${shareTitle} - ${vehicleFromUrl.year} - R$ ${vehicleFromUrl.price}`;
+            return `${shortMessage} ${buildShareUrl()}`;
+        }
 
         if (shareButtons.facebook) {
             shareButtons.facebook.addEventListener('click', () => {
-                const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(cleanShareUrl)}`;
+                const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(buildShareUrl())}`;
                 window.open(facebookShareUrl, 'facebook-share', 'width=600,height=400');
             });
         }
 
         if (shareButtons.twitter) {
             shareButtons.twitter.addEventListener('click', () => {
-                const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(cleanShareUrl)}&text=${encodeURIComponent(`Veja este ${shareTitle} na LM Automóveis!`)}`;
+                const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(buildShareUrl())}&text=${encodeURIComponent(`Veja este ${buildShareTitle()} na LM Automóveis!`)}`;
                 window.open(twitterShareUrl, 'twitter-share', 'width=600,height=400');
             });
         }
 
         if (shareButtons.whatsapp) {
             shareButtons.whatsapp.addEventListener('click', () => {
-                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(buildShareMessage())}`;
                 window.open(whatsappUrl, '_blank');
             });
         }
@@ -1065,6 +1166,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         if (shareButtons.link) {
             shareButtons.link.addEventListener('click', () => {
                 // Copiar para clipboard
+                const cleanShareUrl = buildShareUrl();
                 navigator.clipboard.writeText(cleanShareUrl).then(() => {
                     // Feedback visual
                     const originalHTML = shareButtons.link.innerHTML;
@@ -1082,8 +1184,14 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             });
         }
 
-        initializeGallery();
-        initializeSimilarVehicles();
+        async function initializeVehiclePage() {
+            applyVehicleData();
+            await hydrateVehicleFromApi();
+            await initializeGallery();
+            await initializeSimilarVehicles();
+        }
+
+        initializeVehiclePage();
     </script>
 </body>
 </html>

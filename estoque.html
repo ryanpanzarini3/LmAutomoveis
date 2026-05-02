@@ -234,7 +234,7 @@
                             </div>
                             <div class="p-5">
                                 <h3 class="font-display text-lg font-bold text-primary mb-1">Chevrolet Montana LS</h3>
-                                <p class="text-slate-500 text-sm mb-3">2017 • 90.000 km • Flex</p>
+                                <p class="text-slate-500 text-sm mb-3">2017 • 96.000 km • Flex</p>
                                 <div class="flex gap-3 mb-4">
                                     <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">MT</span>
                                     <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Preta</span>
@@ -438,7 +438,7 @@
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Preto</span>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                                <p class="text-xl font-bold text-primary">R$ 45.900</p>
+                                <p class="text-xl font-bold text-primary">R$ 44.900</p>
                                 <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
                                     Ver Detalhes
                                 </a>
@@ -815,9 +815,102 @@
             return lastSlashIndex <= 0 ? '' : normalizedPath.slice(0, lastSlashIndex);
         }
 
-        const carCards = document.querySelectorAll('.car-card');
+        const carGrid = document.getElementById('car-grid');
+        let carCards = Array.from(document.querySelectorAll('.car-card'));
 
-        carCards.forEach((card) => {
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function escapeAttribute(value) {
+            return escapeHtml(value).replace(/'/g, '&#39;');
+        }
+
+        function buildVehicleDetailsUrl(vehicle) {
+            const primaryImage = Array.isArray(vehicle.images) ? vehicle.images[0] || '' : (vehicle.image || '');
+            const imageList = Array.isArray(vehicle.images)
+                ? vehicle.images.join('|')
+                : sanitizeValue(vehicle.images) || primaryImage;
+            const params = new URLSearchParams({
+                id: vehicle.id || '',
+                brand: vehicle.brand || '',
+                model: vehicle.model || '',
+                year: vehicle.year || '',
+                km: vehicle.km || '',
+                fuel: vehicle.fuel || '',
+                transmission: vehicle.transmission || '',
+                color: vehicle.color || '',
+                price: vehicle.price || '',
+                img: primaryImage,
+                images: imageList,
+                doors: vehicle.doors || '',
+                engine: vehicle.engine || '',
+                power: vehicle.power || '',
+                plate: vehicle.plate || '',
+                ipva: vehicle.ipva || '',
+                features: Array.isArray(vehicle.features) ? vehicle.features.join('|') : (vehicle.features || ''),
+                folder: vehicle.folder || vehicle.legacy_folder || ''
+            });
+
+            return `detalhes.html?${params.toString()}`;
+        }
+
+        function renderVehicleCard(vehicle) {
+            const images = Array.isArray(vehicle.images)
+                ? vehicle.images.filter(Boolean)
+                : String(vehicle.images || '')
+                    .split('|')
+                    .map((item) => sanitizeValue(item))
+                    .filter(Boolean);
+            const primaryImage = images[0] || 'https://placehold.co/800x450/e2e8f0/475569?text=Sem+imagem';
+            const badge = sanitizeValue(vehicle.badge);
+            const badgeClass = sanitizeValue(vehicle.badge_color) || 'bg-cyan-400 text-primary';
+            const year = Number(vehicle.year || 0);
+            const km = Number(vehicle.km || 0).toLocaleString('pt-BR');
+            const detailsUrl = buildVehicleDetailsUrl(vehicle);
+
+            return `
+                <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group"
+                    data-id="${escapeAttribute(vehicle.id || '')}"
+                    data-folder="${escapeAttribute(vehicle.folder || vehicle.legacy_folder || '')}"
+                    data-images="${escapeAttribute(images.join('|'))}"
+                    data-doors="${escapeAttribute(vehicle.doors || '')}"
+                    data-engine="${escapeAttribute(vehicle.engine || '')}"
+                    data-power="${escapeAttribute(vehicle.power || '')}"
+                    data-plate="${escapeAttribute(vehicle.plate || '')}"
+                    data-ipva="${escapeAttribute(vehicle.ipva || '')}"
+                    data-features="${escapeAttribute(Array.isArray(vehicle.features) ? vehicle.features.join('|') : (vehicle.features || ''))}">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="${escapeAttribute(primaryImage)}" alt="${escapeAttribute(`${vehicle.brand || ''} ${vehicle.model || ''}`.trim())}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        ${badge ? `
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 text-xs font-bold rounded-full ${escapeAttribute(badgeClass)}">${escapeHtml(badge)}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-lg font-bold text-primary mb-1">${escapeHtml(`${vehicle.brand || ''} ${vehicle.model || ''}`.trim())}</h3>
+                        <p class="text-slate-500 text-sm mb-3">${escapeHtml(`${year || ''} • ${km} km • ${vehicle.fuel || ''}`)}</p>
+                        <div class="flex gap-3 mb-4">
+                            <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">${escapeHtml(vehicle.transmission || '-')}</span>
+                            <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">${escapeHtml(vehicle.color || '-')}</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                            <p class="text-xl font-bold text-primary">${formatCurrency(vehicle.price)}</p>
+                            <a href="${detailsUrl}" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function attachCardLinkBehavior(card) {
             const titleText = sanitizeValue(card.querySelector('h3')?.textContent);
             const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
             const tags = card.querySelectorAll('.flex.gap-3.mb-4 span');
@@ -833,6 +926,7 @@
             const ipva = sanitizeValue(card.getAttribute('data-ipva'));
             const features = sanitizeValue(card.getAttribute('data-features'));
             const folder = sanitizeValue(card.getAttribute('data-folder'));
+            const id = sanitizeValue(card.getAttribute('data-id'));
             if (!detailLink || !titleText || !metaText) return;
             const titleParts = titleText.split(' ');
             const brand = sanitizeValue(titleParts.shift());
@@ -845,7 +939,7 @@
             const dataImages = sanitizeValue(card.getAttribute('data-images'));
             const images = dataImages ? dataImages : imageSrc;
             const resolvedFolder = folder || inferFolderFromImage(imageSrc);
-            const params = new URLSearchParams({ brand, model, year, km, fuel, transmission, color, price, img: imageSrc, images, doors, engine, power, plate, ipva, features, folder: resolvedFolder });
+            const params = new URLSearchParams({ id, brand, model, year, km, fuel, transmission, color, price, img: imageSrc, images, doors, engine, power, plate, ipva, features, folder: resolvedFolder });
             detailLink.href = `detalhes.html?${params.toString()}`;
             card.classList.add('cursor-pointer');
             card.setAttribute('role', 'link');
@@ -860,7 +954,43 @@
                 event.preventDefault();
                 window.location.href = detailLink.href;
             });
-        });
+        }
+
+        function syncBrandOptionsFromCards() {
+            const dynamicBrands = Array.from(new Set(carCards.map((card) => {
+                const titleText = sanitizeValue(card.querySelector('h3')?.textContent);
+                return sanitizeValue(titleText.split(' ')[0]);
+            }).filter(Boolean)));
+
+            brandOptions = Array.from(new Set([...brandOptions, ...dynamicBrands])).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+        }
+
+        async function loadVehiclesFromApi() {
+            const response = await fetch('/api/vehicles');
+            if (!response.ok) {
+                throw new Error('Nao foi possivel carregar os veiculos.');
+            }
+
+            return response.json();
+        }
+
+        function hydrateCurrentCards() {
+            carCards = Array.from(document.querySelectorAll('.car-card'));
+            carCards.forEach(attachCardLinkBehavior);
+            syncBrandOptionsFromCards();
+        }
+
+        function renderInventoryFromApi(vehicles) {
+            if (!carGrid || !Array.isArray(vehicles) || !vehicles.length) {
+                hydrateCurrentCards();
+                return;
+            }
+
+            carGrid.innerHTML = vehicles.map(renderVehicleCard).join('');
+            carCards = Array.from(carGrid.querySelectorAll('.car-card'));
+            carCards.forEach(attachCardLinkBehavior);
+            syncBrandOptionsFromCards();
+        }
 
         function inferVehicleType(card) {
             const folder = sanitizeValue(card.getAttribute('data-folder'));
@@ -868,7 +998,7 @@
         }
 
         // ----- Brand Dropdown -----
-        const brandOptions = ['BYD','Chevrolet','Citroën','Fiat','Ford','Honda','Hyundai','Jeep','Kia','Land Rover','Mitsubishi','Nissan','Peugeot','Ram','Renault','Toyota','Volkswagen'];
+        let brandOptions = ['BYD','Chevrolet','Citroën','Fiat','Ford','Honda','Hyundai','Jeep','Kia','Land Rover','Mitsubishi','Nissan','Peugeot','Ram','Renault','Toyota','Volkswagen'];
         let selectedBrand = '';
 
         function renderBrandList(filterText) {
@@ -1032,7 +1162,6 @@
 
         // ----- Sorting -----
         const sortSelect = document.getElementById('sort-select');
-        const carGrid = document.getElementById('car-grid');
 
         function extractKmFromCard(card) {
             const meta = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent).split('•');
@@ -1062,8 +1191,20 @@
 
         if (sortSelect) { sortSelect.addEventListener('change', (event) => sortCarCards(event.target.value)); }
 
-        applyInitialSearchFiltersFromUrl();
-        applyInventoryFilters();
+        async function initializeInventory() {
+            try {
+                const vehicles = await loadVehiclesFromApi();
+                renderInventoryFromApi(vehicles);
+            } catch (error) {
+                hydrateCurrentCards();
+            }
+
+            applyInitialSearchFiltersFromUrl();
+            applyInventoryFilters();
+            lucide.createIcons();
+        }
+
+        initializeInventory();
     </script>
 
 </body>
