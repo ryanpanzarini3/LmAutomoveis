@@ -1,5 +1,5 @@
 {
-  "lastId": 22,
+  "lastId": 24,
   "vehicles": [
     {
       "id": 1,
@@ -786,48 +786,6 @@
       "updated_at": "2026-04-28T19:31:12.713Z"
     },
     {
-      "id": 18,
-      "brand": "Renault",
-      "model": "Duster Oroch Dynamique",
-      "year": 2020,
-      "km": 82000,
-      "fuel": "Flex",
-      "transmission": "Manual",
-      "color": "Branco",
-      "price": 77900,
-      "type": "Carro",
-      "engine": "1.6",
-      "power": "115 cv",
-      "doors": "4 portas",
-      "plate": "0",
-      "ipva": "✓ Em dia",
-      "description": "",
-      "badge": "PICAPE",
-      "badge_color": "px-3 py-1 bg-amber-500 text-white text-xs font-bold rounded-full",
-      "legacy_folder": "Estoque/Renault/Duster Oroch",
-      "images": [
-        "Estoque/Renault/Duster Oroch/IMG_1320.JPG",
-        "Estoque/Renault/Duster Oroch/IMG_1321.JPG",
-        "Estoque/Renault/Duster Oroch/IMG_1322.JPG",
-        "Estoque/Renault/Duster Oroch/IMG_1323.JPG",
-        "Estoque/Renault/Duster Oroch/IMG_1324.JPG",
-        "Estoque/Renault/Duster Oroch/IMG_1325.JPG",
-        "Estoque/Renault/Duster Oroch/IMG_1326.JPG",
-        "Estoque/Renault/Duster Oroch/IMG_1327.JPG"
-      ],
-      "features": [
-        "Direção Hidráulica",
-        "Vidros Elétricos",
-        "Retrovisores Elétricos",
-        "Ar Condicionado",
-        "Central Multimídia",
-        "Laudo Cautelar"
-      ],
-      "active": true,
-      "created_at": "2026-04-28T19:31:12.714Z",
-      "updated_at": "2026-04-28T19:31:12.714Z"
-    },
-    {
       "id": 19,
       "brand": "Peugeot",
       "model": "208 Style",
@@ -874,57 +832,6 @@
       "active": true,
       "created_at": "2026-04-28T19:31:12.714Z",
       "updated_at": "2026-04-28T19:31:12.714Z"
-    },
-    {
-      "id": 22,
-      "brand": "Mitsubishi",
-      "model": "Pajero TR4 4x4",
-      "year": 2010,
-      "km": 240000,
-      "fuel": "Flex",
-      "transmission": "AT",
-      "color": "Completo",
-      "price": 56900,
-      "type": "Carro",
-      "engine": "2.0",
-      "power": "Consulte",
-      "doors": "4 portas",
-      "plate": "Consulte",
-      "ipva": "Consulte",
-      "description": "",
-      "badge": "4X4",
-      "badge_color": "px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full",
-      "legacy_folder": "Estoque/Mitsubishi/Pajero TR4",
-      "images": [
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1647.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1648.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1649.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1650.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1651.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1652.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1653.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1654.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1655.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1657.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1658.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1659.JPG",
-        "Estoque/Mitsubishi/Pajero TR4/IMG_1660.JPG"
-      ],
-      "features": [
-        "Ar Condicionado",
-        "Direção Hidráulica",
-        "Vidros Elétricos",
-        "Travas Elétricas",
-        "Airbag",
-        "Freios ABS",
-        "Tração 4x4",
-        "Rodas de Liga",
-        "Som",
-        "Sensor de Estacionamento"
-      ],
-      "active": true,
-      "created_at": "2026-04-28T19:31:12.715Z",
-      "updated_at": "2026-04-28T19:31:12.715Z"
     }
   ]
 }
