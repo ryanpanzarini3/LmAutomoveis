@@ -1,0 +1,85 @@
+:root {
+    color-scheme: light;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+}
+.glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.glass-dark {
+    background: rgba(0, 39, 118, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.card-hover {
+    transition: all 0.3s ease;
+}
+.card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px -20px rgba(0, 151, 38, 0.35);
+}
+.btn-glow:hover {
+    box-shadow: 0 0 18px rgba(255, 204, 41, 0.45);
+}
+.logo-l-e {
+    color: #ffffff;
+    animation: glowWhite 3s ease-in-out infinite;
+}
+.logo-m {
+    color: #9e7e14;
+    animation: glowYellow 3s ease-in-out infinite;
+    animation-delay: 0.3s;
+}
+.logo-auto {
+    color: #009C3B;
+    animation: glowGreen 3s ease-in-out infinite;
+    animation-delay: 0.6s;
+}
+.brazil-banner {
+    background: #FFCC29;
+    color: #002776;
+    text-align: center;
+    font-weight: 700;
+    padding: 0.8rem 1rem;
+    border-bottom: 4px solid #009C3B;
+}
+.brazil-banner span {
+    margin: 0 0.35rem;
+}
+.brazil-headline {
+    position: relative;
+}
+.brazil-headline::before,
+.brazil-headline::after {
+    content: '🇧🇷';
+    display: inline-block;
+    margin: 0 0.45rem;
+}
+@keyframes glowWhite {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+}
+@keyframes glowYellow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(255, 205, 0, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 205, 0, 0.8), 0 0 30px rgba(255, 205, 0, 0.5);
+    }
+}
+@keyframes glowGreen {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(0, 156, 59, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(0, 156, 59, 0.8), 0 0 30px rgba(0, 156, 59, 0.5);
+    }
+}

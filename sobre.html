@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -14,10 +14,10 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0f172a',
-                        secondary: '#06b6d4',
-                        accent: '#3b82f6',
-                        surface: '#f8fafc'
+                        primary: '#002776',
+                        secondary: '#009C3B',
+                        accent: '#FFCC29',
+                        surface: '#FFFFFF'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -27,6 +27,7 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="theme.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -65,9 +66,8 @@
     </style>
 </head>
 <body class="text-slate-800 antialiased">
-
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 text-white transition-all duration-300" id="navbar" style="background-color: #1e3a5f;">
+    <nav id="navbar" class="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-50 border-b border-white/10 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-2">
@@ -80,10 +80,10 @@
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Home</a>
-                    <a href="estoque.html" class="text-sm font-medium hover:text-cyan-400 transition-colors">Estoque</a>
-                    <a href="sobre.html" class="text-sm font-medium text-cyan-400 transition-colors">Sobre</a>
-                    <a href="contato.html" class="px-6 py-3 bg-cyan-400 text-primary font-semibold rounded-full hover:bg-cyan-300 transition-all">
+                    <a href="index.html" class="text-sm font-medium hover:text-accent transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium hover:text-accent transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium text-accent transition-colors">Sobre</a>
+                    <a href="contato.html" class="px-6 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-accent/90 transition-all">
                         Contato
                     </a>
                 </div>
@@ -95,21 +95,21 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #1e3a5f;">
+        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #002776;">
             <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="index.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Home</a>
-                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Estoque</a>
-                <a href="sobre.html" class="block py-3 text-sm font-medium text-cyan-400">Sobre</a>
-                <a href="contato.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Contato</a>
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-accent">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-accent">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium text-accent">Sobre</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium hover:text-accent">Contato</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-16 bg-gradient-to-br from-primary to-slate-800 text-white">
+    <section class="pt-32 pb-16 bg-gradient-to-br from-primary via-secondary to-accent text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto">
-                <h1 class="font-display text-5xl md:text-6xl font-bold mb-6">Sobre a <span class="text-cyan-400">L&M Automóveis</span></h1>
+                <h1 class="font-display text-5xl md:text-6xl font-bold mb-6 brazil-headline">Sobre a <span class="text-accent">L&M Automóveis</span></h1>
                 <p class="text-xl text-slate-300">
                     Há mais de 5 anos oferecendo os melhores seminovos com qualidade, transparência e garantia.
                 </p>
@@ -145,7 +145,7 @@
                     <div class="rounded-2xl overflow-hidden shadow-2xl">
                         <img src="imagens/WhatsApp Image 2026-03-02 at 15.50.33.jpeg" alt="Loja" class="w-full h-full object-cover">
                     </div>
-                    <div class="absolute -bottom-6 -right-6 bg-cyan-400 text-primary rounded-2xl p-6 shadow-xl">
+                    <div class="absolute -bottom-6 -right-6 bg-accent text-primary rounded-2xl p-6 shadow-xl">
                         <p class="text-4xl font-bold">500+</p>
                         <p class="text-sm font-semibold">Carros Vendidos</p>
                     </div>
@@ -159,8 +159,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mb-6">
-                        <i data-lucide="target" class="w-8 h-8 text-cyan-400"></i>
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="target" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h3 class="font-display text-2xl font-bold text-primary mb-4">Missão</h3>
                     <p class="text-slate-600">
@@ -170,19 +170,19 @@
                 </div>
 
                 <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mb-6">
-                        <i data-lucide="eye" class="w-8 h-8 text-cyan-400"></i>
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="eye" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h3 class="font-display text-2xl font-bold text-primary mb-4">Visão</h3>
                     <p class="text-slate-600">
                         Ser referência no mercado de seminovos, reconhecida pela qualidade dos veículos, 
-                        inovação tecnológica em inspeção e excelência no atendimento ao cliente.
+                        inovaÃ§Ã£o tecnolÃ³gica em inspeÃ§Ã£o e excelÃªncia no atendimento ao cliente.
                     </p>
                 </div>
 
                 <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mb-6">
-                        <i data-lucide="heart" class="w-8 h-8 text-cyan-400"></i>
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="heart" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h3 class="font-display text-2xl font-bold text-primary mb-4">Valores</h3>
                     <p class="text-slate-600">
@@ -206,7 +206,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 <div class="text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-20 h-20 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="shield-check" class="w-10 h-10 text-white"></i>
                     </div>
                     <h3 class="font-bold text-primary text-lg mb-2">Garantia de 3 meses</h3>
@@ -215,7 +215,7 @@
                     </p>
                 </div>
                 <div class="text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-20 h-20 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="file-check" class="w-10 h-10 text-white"></i>
                     </div>
                     <h3 class="font-bold text-primary text-lg mb-2">Laudo Digital</h3>
@@ -244,7 +244,7 @@
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="font-display text-xl font-bold text-primary mb-1">Thiago Bayer</h3>
-                        <p class="text-cyan-400 font-semibold mb-3">Marketing</p>
+                        <p class="text-accent font-semibold mb-3">Marketing</p>
                         <p class="text-slate-600 text-sm">
                             1 ano criando campanhas de sucesso para o setor automotivo
                         </p>
@@ -257,7 +257,7 @@
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="font-display text-xl font-bold text-primary mb-1">Eduardo Alemida</h3>
-                        <p class="text-cyan-400 font-semibold mb-3">Diretor Comercial</p>
+                        <p class="text-accent font-semibold mb-3">Diretor Comercial</p>
                         <p class="text-slate-600 text-sm">
                             12 anos atuando em vendas de veículos premium
                         </p>
@@ -270,7 +270,7 @@
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="font-display text-xl font-bold text-primary mb-1">Romulo Almeida</h3>
-                        <p class="text-cyan-400 font-semibold mb-3">Vendedor</p>
+                        <p class="text-accent font-semibold mb-3">Vendedor</p>
                         <p class="text-slate-600 text-sm">
                             8 anos atuando em vendas de veículos
                         </p>
@@ -281,23 +281,23 @@
     </section>
 
     <!-- Stats -->
-    <section class="py-20 bg-gradient-to-br from-primary to-slate-800 text-white">
+    <section class="py-20 bg-gradient-to-br from-primary via-secondary to-accent text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center">
-                    <p class="font-display text-5xl font-bold text-cyan-400 mb-2">500+</p>
+                    <p class="font-display text-5xl font-bold text-accent mb-2">500+</p>
                     <p class="text-slate-300">Veículos Vendidos</p>
                 </div>
                 <div class="text-center">
-                    <p class="font-display text-5xl font-bold text-cyan-400 mb-2">98%</p>
+                    <p class="font-display text-5xl font-bold text-accent mb-2">98%</p>
                     <p class="text-slate-300">Satisfação</p>
                 </div>
                 <div class="text-center">
-                    <p class="font-display text-5xl font-bold text-cyan-400 mb-2">+13</p>
+                    <p class="font-display text-5xl font-bold text-accent mb-2">+13</p>
                     <p class="text-slate-300">Anos no Mercado</p>
                 </div>
                 <div class="text-center">
-                    <p class="font-display text-5xl font-bold text-cyan-400 mb-2">150</p>
+                    <p class="font-display text-5xl font-bold text-accent mb-2">150</p>
                     <p class="text-slate-300">Pontos de Inspeção</p>
                 </div>
             </div>
@@ -316,17 +316,17 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
-                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="phone" class="w-8 h-8 text-cyan-400"></i>
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="phone" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h3 class="font-display text-xl font-bold text-primary mb-4">Telefone</h3>
                     <p class="text-slate-600 text-lg font-semibold">(42) 3025-6505</p>
-                    <p class="text-slate-500 text-sm mt-2">Ligue para nós</p>
+                    <p class="text-slate-500 text-sm mt-2">Ligue para nÃ³s</p>
                 </div>
 
                 <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
-                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="mail" class="w-8 h-8 text-cyan-400"></i>
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="mail" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h3 class="font-display text-xl font-bold text-primary mb-4">Email</h3>
                     <p class="text-slate-600 text-lg font-semibold break-all">angelo7676@ig.com.br</p>
@@ -334,8 +334,8 @@
                 </div>
 
                 <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
-                    <div class="w-16 h-16 bg-cyan-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="clock" class="w-8 h-8 text-cyan-400"></i>
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="clock" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h3 class="font-display text-xl font-bold text-primary mb-4">Horário de Atendimento</h3>
                     <div class="text-slate-600 text-sm space-y-1">
@@ -355,7 +355,7 @@
                 Conheça nosso showroom e toda a nossa estrutura. Estamos prontos para ajudá-lo a encontrar o carro ideal.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="estoque.html" class="px-8 py-4 bg-cyan-400 text-primary font-bold rounded-full hover:bg-cyan-300 transition-all">
+                <a href="estoque.html" class="px-8 py-4 bg-accent text-primary font-bold rounded-full hover:bg-accent/90 transition-all">
                     Ver Estoque
                 </a>
                 <a href="contato.html" class="px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all">
@@ -371,7 +371,7 @@
             <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div class="col-span-2">
                     <div class="flex items-center space-x-2 mb-4">
-                        <i data-lucide="car" class="w-8 h-8 text-cyan-400"></i>
+                        <i data-lucide="car" class="w-8 h-8 text-accent"></i>
                         <span class="font-display text-2xl font-bold">
                             <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
                         </span>
@@ -380,10 +380,10 @@
                         Seminovos de qualidade com garantia e inspeção completa.
                     </p>
                     <div class="flex gap-4">
-                        <a href="https://www.instagram.com/lm_automoveispg/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                        <a href="https://www.instagram.com/lm_automoveispg/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all">
                             <i class="fa-brands fa-instagram text-lg"></i>
                         </a>
-                        <a href="https://www.facebook.com/lm.automoveis.908" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-cyan-400 transition-all">
+                        <a href="https://www.facebook.com/lm.automoveis.908" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-all">
                             <i class="fa-brands fa-facebook-f text-lg"></i>
                         </a>
                     </div>
@@ -392,9 +392,9 @@
                 <div>
                     <h4 class="font-semibold text-lg mb-4">Links</h4>
                     <ul class="space-y-3 text-slate-400">
-                        <li><a href="estoque.html" class="hover:text-cyan-400 transition-colors">Estoque</a></li>
-                        <li><a href="sobre.html" class="hover:text-cyan-400 transition-colors">Sobre</a></li>
-                        <li><a href="contato.html" class="hover:text-cyan-400 transition-colors">Contato</a></li>
+                        <li><a href="estoque.html" class="hover:text-accent transition-colors">Estoque</a></li>
+                        <li><a href="sobre.html" class="hover:text-accent transition-colors">Sobre</a></li>
+                        <li><a href="contato.html" class="hover:text-accent transition-colors">Contato</a></li>
                     </ul>
                 </div>
                 
@@ -402,15 +402,15 @@
                     <h4 class="font-semibold text-lg mb-4">Contato</h4>
                     <ul class="space-y-3 text-slate-400">
                         <li class="flex items-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4 text-cyan-400"></i>
-                            <a href="tel:+5542302256505" class="hover:text-cyan-400 transition-colors">(42) 3025-6505</a>
+                            <i data-lucide="phone" class="w-4 h-4 text-accent"></i>
+                            <a href="tel:+5542302256505" class="hover:text-accent transition-colors">(42) 3025-6505</a>
                         </li>
                         <li class="flex items-center gap-2">
-                            <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
-                            <a href="mailto:angelo7676@ig.com.br" class="hover:text-cyan-400 transition-colors">angelo7676@ig.com.br</a>
+                            <i data-lucide="mail" class="w-4 h-4 text-accent"></i>
+                            <a href="mailto:angelo7676@ig.com.br" class="hover:text-accent transition-colors">angelo7676@ig.com.br</a>
                         </li>
                         <li class="flex items-start gap-2">
-                            <i data-lucide="clock" class="w-4 h-4 text-cyan-400 mt-1"></i>
+                            <i data-lucide="clock" class="w-4 h-4 text-accent mt-1"></i>
                             <div class="text-sm">
                                 <p>Seg-Sex: 8h às 18h</p>
                                 <p>Sábado: 8h às 12h</p>
@@ -421,7 +421,7 @@
             </div>
             
             <div class="border-t border-white/10 pt-8 text-center">
-                <p class="text-slate-500 text-sm">© 2026 Ryan Panzarini. Todos os direitos reservados.</p>
+                <p class="text-slate-500 text-sm">Â© 2026 Ryan Panzarini. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -444,3 +444,5 @@
     </script>
 </body>
 </html>
+
+

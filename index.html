@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -15,10 +15,10 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0f172a',
-                        secondary: '#06b6d4',
-                        accent: '#3b82f6',
-                        surface: '#f8fafc',
+                        primary: '#002776',
+                        secondary: '#009C3B',
+                        accent: '#FFCC29',
+                        surface: '#FFFFFF',
                         glass: 'rgba(255, 255, 255, 0.1)'
                     },
                     fontFamily: {
@@ -28,7 +28,8 @@
                 }
             }
         }
-    </script>
+    </script>    
+    <link rel="stylesheet" href="theme.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -109,6 +110,7 @@
     </style>
 </head>
 <body class="text-slate-800 antialiased">
+    <div class="brazil-banner"><span>🇧🇷</span><span>Promo Copa do Mundo — Rumo ao Hexa!</span><span>🇧🇷</span></div>
 
     <!-- Navigation -->
 <nav id="navbar" class="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-50 border-b border-white/10 transition-all duration-300">
@@ -116,15 +118,15 @@
         <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-2">
                     <span class="font-display text-2xl text-white font-bold tracking-tight">
-                        <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                        <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS  🇧🇷</span>
                     </span>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-sm font-medium text-white logo-auto hover:text-cyan-400 transition-colors">Home</a>
-                    <a href="estoque.html" class="text-sm font-medium text-white logo-auto hover:text-cyan-400 transition-colors">Estoque</a>
-                    <a href="sobre.html" class="text-sm font-medium text-white logo-auto hover:text-cyan-400 transition-colors">Sobre</a>
-                    <a href="contato.html" class="px-6 py-3 bg-cyan-400 text-primary font-semibold rounded-full hover:bg-cyan-300 transition-all btn-glow">
+                    <a href="index.html" class="text-sm font-medium text-white logo-auto hover:text-accent transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium text-white logo-auto hover:text-accent transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium text-white logo-auto hover:text-accent transition-colors">Sobre</a>
+                    <a href="contato.html" class="px-6 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-accent/90 transition-all btn-glow">
                         Contato
                     </a>
                 </div>
@@ -136,12 +138,12 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #1e3a5f;">
+        <div class="hidden md:hidden border-t border-white/10" id="mobile-menu" style="background-color: #002776;">
             <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="index.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Home</a>
-                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Estoque</a>
-                <a href="sobre.html" class="block py-3 text-sm font-medium hover:text-cyan-400">Sobre</a>
-                <a href="contato.html" class="block py-3 text-sm font-medium text-cyan-400">Contato</a>
+                <a href="index.html" class="block py-3 text-sm font-medium hover:text-accent">Home</a>
+                <a href="estoque.html" class="block py-3 text-sm font-medium hover:text-accent">Estoque</a>
+                <a href="sobre.html" class="block py-3 text-sm font-medium hover:text-accent">Sobre</a>
+                <a href="contato.html" class="block py-3 text-sm font-medium text-accent">Contato</a>
             </div>
         </div>
     </nav>
@@ -151,9 +153,9 @@
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div class="fade-in">
-                <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-cyan-400 text-sm font-medium mb-6">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 mr-2 animate-pulse"></span>
-                    Tecnologia em cada detalhe
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-accent text-sm font-medium mb-6">
+                    <span class="w-2 h-2 rounded-full bg-accent mr-2 animate-pulse"></span>
+                    #RumoAoHexa 🇧🇷
                 </div>
                 <h1 class="font-display text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
                     SUA NOVA<span class="text-gradient"> CONQUISTA</span> COMEÇA AQUI
@@ -163,7 +165,7 @@
                     Transparência digital e garantia real em cada negócio.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="estoque.html" class="px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-cyan-400 transition-all btn-glow text-center">
+                    <a href="estoque.html" class="px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-accent transition-all btn-glow text-center">
                         Ver Estoque
                     </a>
                     <a href="contato.html" class="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all text-center">
@@ -173,25 +175,25 @@
                 
                 <div class="mt-12 flex items-center gap-8 text-white text-sm">
                     <div class="flex items-center gap-2">
-                        <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400"></i>
+                        <i data-lucide="shield-check" class="w-5 h-5 text-accent"></i>
                         <span>Garantia 3 meses</span>
                     </div>
                 </div>
             </div>
             
             <div class="relative animate-float hidden lg:block">
-                <div class="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-cyan-400/30 hover:border-cyan-400/50 transition-all duration-300">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-accent/30 hover:border-accent/50 transition-all duration-300">
                     <img src="Estoque/Volkswagem/Polo Track/IMG_0479.jpg" class="w-full h-[500px] object-cover transform hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
                     <div class="absolute bottom-4 left-4 right-4">
                         <div class="glass rounded-xl p-3 backdrop-blur-xl bg-white/10 border border-white/30">
                             <div class="text-white text-sm">
-                                <p class="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Destaque</p>
+                                <p class="text-xs font-semibold text-accent uppercase tracking-wider">Destaque</p>
                                 <p class="font-display text-xl font-bold mb-2">POLO TRACK</p>
                                 <div class="grid grid-cols-2 gap-2">
                                     <div>
-                                        <p class="text-xs text-cyan-300 font-semibold">À vista:</p>
-                                        <p class="text-lg font-bold text-cyan-400">R$ 77.900</p>
+                                        <p class="text-xs text-accent/80 font-semibold">A vista:</p>
+                                        <p class="text-lg font-bold text-accent">R$ 77.900</p>
                                     </div>
                                     <div>
                                         <p class="text-xs text-slate-300 line-through">De R$ 80.900</p>
@@ -204,10 +206,10 @@
                 </div>
                 
                 <!-- Floating Stats -->
-                <div class="absolute -top-6 -right-6 glass rounded-2xl p-5 shadow-2xl border-2 border-cyan-400/30 bg-gradient-to-br from-primary to-slate-800">
+                <div class="absolute -top-6 -right-6 glass rounded-2xl p-5 shadow-2xl border-2 border-accent/30 bg-gradient-to-br from-primary via-secondary to-accent">
                     <div class="flex items-center gap-3">
-                        <div class="w-14 h-14 rounded-full bg-cyan-400/20 flex items-center justify-center border-2 border-cyan-400/40">
-                            <i data-lucide="trending-up" class="w-7 h-7 text-cyan-400"></i>
+                        <div class="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center border-2 border-accent/40">
+                            <i data-lucide="trending-up" class="w-7 h-7 text-accent"></i>
                         </div>
                         <div>
                             <p class="text-3xl font-bold text-white">1000+</p>
@@ -234,7 +236,7 @@
                         <option value="BYD">BYD</option>
                         <option value="Caoa Chery">Caoa Chery</option>
                         <option value="Chevrolet">Chevrolet</option>
-                        <option value="Citroën">Citroën</option>
+                        <option value="CitroÃ«n">CitroÃ«n</option>
                         <option value="Fiat">Fiat</option>
                         <option value="Ford">Ford</option>
                         <option value="GWM">GWM</option>
@@ -295,7 +297,7 @@
 
             <div id="featured-cars-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Car Card 2 -->
-                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Nissan" data-model="March SV" data-year="2019" data-folder="Estoque/Nissan/March SV 2019" data-images="Estoque/Nissan/March SV 2019/IMG_3665.JPG|Estoque/Nissan/March SV 2019/IMG_3666.JPG|Estoque/Nissan/March SV 2019/IMG_3667.JPG|Estoque/Nissan/March SV 2019/IMG_3668.JPG|Estoque/Nissan/March SV 2019/IMG_3669.JPG|Estoque/Nissan/March SV 2019/IMG_3670.JPG|Estoque/Nissan/March SV 2019/IMG_3671.JPG|Estoque/Nissan/March SV 2019/IMG_3672.JPG|Estoque/Nissan/March SV 2019/IMG_3673.JPG|Estoque/Nissan/March SV 2019/IMG_3675.JPG|Estoque/Nissan/March SV 2019/IMG_3676.JPG|Estoque/Nissan/March SV 2019/IMG_3677.JPG|Estoque/Nissan/March SV 2019/IMG_3678.JPG" data-doors="4 portas" data-engine="1.6" data-power="111 cv" data-plate="0" data-ipva="✓ Em dia" data-color="Branco" data-transmission="Manual" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia">
+                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Nissan" data-model="March SV" data-year="2019" data-folder="Estoque/Nissan/March SV 2019" data-images="Estoque/Nissan/March SV 2019/IMG_3665.JPG|Estoque/Nissan/March SV 2019/IMG_3666.JPG|Estoque/Nissan/March SV 2019/IMG_3667.JPG|Estoque/Nissan/March SV 2019/IMG_3668.JPG|Estoque/Nissan/March SV 2019/IMG_3669.JPG|Estoque/Nissan/March SV 2019/IMG_3670.JPG|Estoque/Nissan/March SV 2019/IMG_3671.JPG|Estoque/Nissan/March SV 2019/IMG_3672.JPG|Estoque/Nissan/March SV 2019/IMG_3673.JPG|Estoque/Nissan/March SV 2019/IMG_3675.JPG|Estoque/Nissan/March SV 2019/IMG_3676.JPG|Estoque/Nissan/March SV 2019/IMG_3677.JPG|Estoque/Nissan/March SV 2019/IMG_3678.JPG" data-doors="4 portas" data-engine="1.6" data-power="111 cv" data-plate="0" data-ipva="âœ“ Em dia" data-color="Branco" data-transmission="Manual" data-features="Ar Condicionado|DireÃ§Ã£o HidrÃ¡ulica|Vidros ElÃ©tricos|Travas ElÃ©tricas|Freios ABS|Airbag Duplo|Central MultimÃ­dia">
                     <div class="relative h-64 overflow-hidden">
                         <img src="Estoque/Nissan/March SV 2019/IMG_3665.JPG" alt="Nissan March SV 2019" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute top-4 left-4">
@@ -311,7 +313,7 @@
                         <div class="flex justify-between items-start mb-2">
                             <div>
                                 <h3 class="font-display text-xl font-bold text-primary">Nissan March SV</h3>
-                                <p class="text-slate-500 text-sm">2019 • 77.000 km</p>
+                                <p class="text-slate-500 text-sm">2019 . 77.000 km</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
@@ -327,7 +329,7 @@
                         <div class="pt-4 border-t border-slate-100 mt-auto">
                             <p class="text-xs text-slate-400 line-through mb-1">De R$ 62.900</p>
                             <p class="text-sm text-slate-500 font-medium">Por</p>
-                            <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 58.900</p>                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(6,182,212,0.28)] hover:from-cyan-400 hover:to-emerald-400 transition-all">
+                            <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 58.900</p>                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-secondary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(255,204,41,0.28)] hover:from-secondary hover:to-accent transition-all">
                                 Tenho Interesse
                             </a>
                         </div>
@@ -335,7 +337,7 @@
                 </div>
 
                 <!-- Car Card 3 -->
-                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Fiat" data-model="Argo Drive 1.0" data-year="2025" data-folder="Estoque/Fiat/Argo Drive 2025" data-images="Estoque/Fiat/Argo Drive 2025/IMG_0861.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0864.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0865.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0866.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0868.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0869.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0870.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0872.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0874.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0876.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0879.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0880.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0882.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0883.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0884.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0885.jpg" data-doors="4 portas" data-engine="1.0" data-power="82 cv" data-plate="0" data-ipva="✓ Quitado" data-color="Azul" data-transmission="Manual" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos Dianteiros|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia|Computador de Bordo">
+                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Fiat" data-model="Argo Drive 1.0" data-year="2025" data-folder="Estoque/Fiat/Argo Drive 2025" data-images="Estoque/Fiat/Argo Drive 2025/IMG_0861.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0864.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0865.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0866.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0868.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0869.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0870.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0872.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0874.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0876.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0879.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0880.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0882.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0883.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0884.jpg|Estoque/Fiat/Argo Drive 2025/IMG_0885.jpg" data-doors="4 portas" data-engine="1.0" data-power="82 cv" data-plate="0" data-ipva="âœ“ Quitado" data-color="Azul" data-transmission="Manual" data-features="Ar Condicionado|DireÃ§Ã£o ElÃ©trica|Vidros ElÃ©tricos Dianteiros|Travas ElÃ©tricas|Freios ABS|Airbag Duplo|Central MultimÃ­dia|Computador de Bordo">
                     <div class="relative h-64 overflow-hidden">
                         <img src="Estoque/Fiat/Argo Drive 2025/IMG_0861.jpg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute top-4 left-4">
@@ -351,7 +353,7 @@
                         <div class="flex justify-between items-start mb-2">
                             <div>
                                 <h3 class="font-display text-xl font-bold text-primary">Fiat Argo Drive 1.0</h3>
-                                <p class="text-slate-500 text-sm">2025 • 36.000 km</p>
+                                <p class="text-slate-500 text-sm">2025 . 36.000 km</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
@@ -368,7 +370,7 @@
                             <p class="text-xs text-slate-400 line-through mb-1">De R$ 74.900</p>
                             <p class="text-sm text-slate-500 font-medium">Por</p>
                             <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 73.900</p>
-                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(6,182,212,0.28)] hover:from-cyan-400 hover:to-emerald-400 transition-all">
+                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-secondary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(255,204,41,0.28)] hover:from-secondary hover:to-accent transition-all">
                                 Tenho Interesse
                             </a>
                         </div>
@@ -378,7 +380,7 @@
 
 
                 <!-- Car Card 4 -->
-                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Chevrolet" data-model="Cruze LT" data-year="2020" data-folder="Estoque/Chevrolet/Cruze LT 2020" data-images="Estoque/Chevrolet/Cruze LT 2020/IMG_7082.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7083.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7084.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7085.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7086.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7087.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7088.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7089.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7090.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7091.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7092.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7093.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7094.jpg" data-doors="4 portas" data-engine="1.4 Turbo" data-power="150 cv" data-plate="0" data-ipva="✓ Em dia" data-color="Cinza" data-transmission="Automático" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia|Câmera de Ré|Manual do Proprietário|Chave Cópia|Laudo Cautelar">
+                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Chevrolet" data-model="Cruze LT" data-year="2020" data-folder="Estoque/Chevrolet/Cruze LT 2020" data-images="Estoque/Chevrolet/Cruze LT 2020/IMG_7082.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7083.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7084.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7085.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7086.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7087.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7088.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7089.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7090.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7091.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7092.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7093.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7094.jpg" data-doors="4 portas" data-engine="1.4 Turbo" data-power="150 cv" data-plate="0" data-ipva="âœ“ Em dia" data-color="Cinza" data-transmission="AutomÃ¡tico" data-features="Ar Condicionado|DireÃ§Ã£o ElÃ©trica|Vidros ElÃ©tricos|Travas ElÃ©tricas|Freios ABS|Airbag Duplo|Central MultimÃ­dia|CÃ¢mera de RÃ©|Manual do ProprietÃ¡rio|Chave CÃ³pia|Laudo Cautelar">
                     <div class="relative h-64 overflow-hidden">
                         <img src="Estoque/Chevrolet/Cruze LT 2020/IMG_7082.jpg" alt="Chevrolet Cruze LT 2020" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute top-4 left-4">
@@ -394,7 +396,7 @@
                         <div class="flex justify-between items-start mb-2">
                             <div>
                                 <h3 class="font-display text-xl font-bold text-primary">Chevrolet Cruze LT 2020</h3>
-                                <p class="text-slate-500 text-sm">2020 • 68.000 km</p>
+                                <p class="text-slate-500 text-sm">2020 . 68.000 km</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
@@ -404,14 +406,14 @@
                             </div>
                             <div class="flex items-center gap-1">
                                 <i data-lucide="settings-2" class="w-4 h-4"></i>
-                                <span>Automático</span>
+                                <span>AutomÃ¡tico</span>
                             </div>
                         </div>
                         <div class="pt-4 border-t border-slate-100 mt-auto">
                             <p class="text-xs text-slate-400 line-through mb-1">De R$ 94.900</p>
                             <p class="text-sm text-slate-500 font-medium">Por</p>
                             <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 91.900</p>
-                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(6,182,212,0.28)] hover:from-cyan-400 hover:to-emerald-400 transition-all">
+                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-secondary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(255,204,41,0.28)] hover:from-secondary hover:to-accent transition-all">
                                 Tenho Interesse
                             </a>
                         </div>
@@ -419,7 +421,7 @@
                 </div>
 
                 <!-- Car Card 5 -->
-                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Volkswagen" data-model="Polo Track" data-year="2025" data-folder="Estoque/Volkswagem/Polo Track" data-images="Estoque/Volkswagem/Polo Track/IMG_0466.jpg|Estoque/Volkswagem/Polo Track/IMG_0467.jpg|Estoque/Volkswagem/Polo Track/IMG_0468.jpg|Estoque/Volkswagem/Polo Track/IMG_0469.jpg|Estoque/Volkswagem/Polo Track/IMG_0470.jpg|Estoque/Volkswagem/Polo Track/IMG_0471.jpg|Estoque/Volkswagem/Polo Track/IMG_0472.jpg|Estoque/Volkswagem/Polo Track/IMG_0473.jpg|Estoque/Volkswagem/Polo Track/IMG_0474.jpg|Estoque/Volkswagem/Polo Track/IMG_0475.jpg|Estoque/Volkswagem/Polo Track/IMG_0476.jpg|Estoque/Volkswagem/Polo Track/IMG_0477.jpg|Estoque/Volkswagem/Polo Track/IMG_0478.jpg|Estoque/Volkswagem/Polo Track/IMG_0479.jpg" data-doors="4 portas" data-engine="1.0" data-power="84 cv" data-plate="1" data-ipva="✓ Em dia" data-color="Branco" data-transmission="Manual" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Sensor de Estacionamento">
+                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Volkswagen" data-model="Polo Track" data-year="2025" data-folder="Estoque/Volkswagem/Polo Track" data-images="Estoque/Volkswagem/Polo Track/IMG_0466.jpg|Estoque/Volkswagem/Polo Track/IMG_0467.jpg|Estoque/Volkswagem/Polo Track/IMG_0468.jpg|Estoque/Volkswagem/Polo Track/IMG_0469.jpg|Estoque/Volkswagem/Polo Track/IMG_0470.jpg|Estoque/Volkswagem/Polo Track/IMG_0471.jpg|Estoque/Volkswagem/Polo Track/IMG_0472.jpg|Estoque/Volkswagem/Polo Track/IMG_0473.jpg|Estoque/Volkswagem/Polo Track/IMG_0474.jpg|Estoque/Volkswagem/Polo Track/IMG_0475.jpg|Estoque/Volkswagem/Polo Track/IMG_0476.jpg|Estoque/Volkswagem/Polo Track/IMG_0477.jpg|Estoque/Volkswagem/Polo Track/IMG_0478.jpg|Estoque/Volkswagem/Polo Track/IMG_0479.jpg" data-doors="4 portas" data-engine="1.0" data-power="84 cv" data-plate="1" data-ipva="âœ“ Em dia" data-color="Branco" data-transmission="Manual" data-features="Ar Condicionado|DireÃ§Ã£o ElÃ©trica|Vidros ElÃ©tricos|Travas ElÃ©tricas|Freios ABS|Controle de Estabilidade|Central MultimÃ­dia|Sensor de Estacionamento">
                     <div class="relative h-64 overflow-hidden">
                         <img src="Estoque/Volkswagem/Polo Track/IMG_0466.jpg" alt="Volkswagen Polo Track 2025" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute top-4 left-4">
@@ -435,7 +437,7 @@
                         <div class="flex justify-between items-start mb-2">
                             <div>
                                 <h3 class="font-display text-xl font-bold text-primary">Volkswagen Polo Track 2025</h3>
-                                <p class="text-slate-500 text-sm">2025 • 48.000 km</p>
+                                <p class="text-slate-500 text-sm">2025 . 48.000 km</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
@@ -452,7 +454,7 @@
                             <p class="text-xs text-slate-400 line-through mb-1">De R$ 79.900</p>
                             <p class="text-sm text-slate-500 font-medium">Por</p>
                             <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 77.900</p>
-                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(6,182,212,0.28)] hover:from-cyan-400 hover:to-emerald-400 transition-all">
+                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-secondary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(255,204,41,0.28)] hover:from-secondary hover:to-accent transition-all">
                                 Tenho Interesse
                             </a>
                         </div>
@@ -462,12 +464,12 @@
             </div>
 
             <p id="featured-no-results" class="hidden mt-8 text-center text-slate-500 font-medium">
-                Nenhum veículo encontrado com os filtros selecionados.
+                Nenhum veí­culo encontrado com os filtros selecionados.
             </p>
 
             <div class="text-center mt-12">
                 <a href="estoque.html" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all">
-                    Ver Todos os Veículos
+                    Ver Todos os Veí­culos
                     <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </a>
             </div>
@@ -480,7 +482,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center">
                     <p class="font-display text-4xl font-bold text-primary mb-2">500+</p>
-                    <p class="text-slate-600 text-sm">Veículos vendidos</p>
+                    <p class="text-slate-600 text-sm">Veí­culos vendidos</p>
                 </div>
                 <div class="text-center">
                     <p class="font-display text-4xl font-bold text-primary mb-2">98%</p>
@@ -532,7 +534,7 @@
                 <div class="col-span-2">
                     <div class="flex items-center space-x-2 mb-4">
                         <i data-lucide="car" class="w-8 h-8 text-secondary"></i>
-                        <span class="font-display text-2xl font-bold">L&M Automóveis</span>
+                        <span class="font-display text-2xl font-bold">L&M AutomÃ³veis</span>
                     </div>
                     <p class="text-slate-400 mb-6 max-w-sm">
                         Tecnologia e transparência no mercado de seminovos. 
@@ -552,7 +554,7 @@
                 </div>
                 
                 <div>
-                    <h4 class="font-semibold text-lg mb-4">Links Rápidos</h4>
+                    <h4 class="font-semibold text-lg mb-4">Links RÃ¡pidos</h4>
                     <ul class="space-y-3 text-slate-400">
                         <li><a href="estoque.html" class="hover:text-secondary transition-colors">Estoque</a></li>
                         <li><a href="sobre.html" class="hover:text-secondary transition-colors">Sobre Nós</a></li>
@@ -658,11 +660,11 @@
             const tagValues = Array.from(card.querySelectorAll('.my-4 span')).map((item) => sanitizeValue(item.textContent));
             const imageSrc = card.querySelector('img')?.getAttribute('src') || '';
             
-            // Tenta encontrar o preço em p.text-2xl, se não existir busca em paragrafos com "R$"
+            // Tenta encontrar o preÃ§o em p.text-2xl, se nÃ£o existir busca em paragrafos com "R$"
             let priceRaw = sanitizeValue(card.querySelector('p.text-2xl')?.textContent);
             if (!priceRaw) {
                 const allParagraphs = Array.from(card.querySelectorAll('p'));
-                const priceP = allParagraphs.find(p => p.textContent.includes('À vista:'));
+                const priceP = allParagraphs.find(p => p.textContent.includes('Ã€ vista:'));
                 if (priceP) {
                     const match = priceP.textContent.match(/R\$\s*([\d.,]+)/);
                     priceRaw = match ? `R$ ${match[1]}` : '';
@@ -676,7 +678,7 @@
             const titleParts = titleText.split(' ');
             const defaultBrand = sanitizeValue(titleParts.shift());
             const defaultModel = sanitizeValue(titleParts.join(' '));
-            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+            const metaParts = metaText.split('â€¢').map((part) => sanitizeValue(part));
 
             const brand = sanitizeValue(card.getAttribute('data-brand')) || defaultBrand;
             const model = sanitizeValue(card.getAttribute('data-model')) || defaultModel;
@@ -750,7 +752,7 @@
             const titleParts = titleText.split(' ');
             const brand = sanitizeValue(titleParts.shift());
             const model = sanitizeValue(titleParts.join(' '));
-            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+            const metaParts = metaText.split('â€¢').map((part) => sanitizeValue(part));
             const year = sanitizeValue(metaParts[0]);
 
             if (!brand || !model || !year) {
@@ -906,3 +908,5 @@
     </script>
 </body>
 </html>
+
+
