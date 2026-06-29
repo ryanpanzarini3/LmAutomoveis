@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estoque - L&M Automóveis</title>
+    <title>Estoque - L&M Autom�veis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -14,10 +14,10 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0f172a',
-                        secondary: '#06b6d4',
-                        accent: '#3b82f6',
-                        surface: '#f8fafc'
+                        primary: '#002776',
+                        secondary: '#009C3B',
+                        accent: '#FFCC29',
+                        surface: '#FFFFFF'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -27,6 +27,7 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="theme.css">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
@@ -67,25 +68,26 @@
     </style>
 </head>
 <body class="text-slate-800 antialiased">
+   <div class="brazil-banner"><span>BR</span><span>Copa do Mundo — Rumo ao Hexa!</span><span>BR</span></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 text-white transition-all duration-300" id="navbar" style="background-color: #1e3a5f;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+  <!-- Navigation -->
+<nav id="navbar" class="fixed top-0 left-0 w-full bg-transparent backdrop-blur-md z-50 border-b border-white/10 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-2">
-                    <a href="index.html" class="flex items-center space-x-2 font-display text-2xl text-white font-bold tracking-tight hover:opacity-80 transition-opacity">
-                        <i data-lucide="car" class="w-8 h-8 text-white-400"></i>
-                        <span>
-                            <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
-                        </span>
-                    </a>
+                    <span class="font-display text-2xl text-white font-bold tracking-tight">
+                        <span class="logo-l-e">L & </span><span class="logo-m">M </span><span class="logo-auto">AUTOMÓVEIS</span>
+                    </span>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-sm font-medium hover:text-secondary transition-colors">Home</a>
-                    <a href="estoque.html" class="text-sm font-medium text-secondary">Estoque</a>
-                    <a href="sobre.html" class="text-sm font-medium hover:text-secondary transition-colors">Sobre</a>
-                    <a href="contato.html" class="px-6 py-3 bg-secondary text-primary font-semibold rounded-full hover:bg-cyan-400 transition-all">Contato</a>
+                    <a href="index.html" class="text-sm font-medium text-white logo-auto hover:text-accent transition-colors">Home</a>
+                    <a href="estoque.html" class="text-sm font-medium text-white logo-auto hover:text-accent transition-colors">Estoque</a>
+                    <a href="sobre.html" class="text-sm font-medium text-white logo-auto hover:text-accent transition-colors">Sobre</a>
+                    <a href="contato.html" class="px-6 py-3 bg-accent text-primary font-semibold rounded-full hover:bg-accent/90 transition-all btn-glow">
+                        Contato
+                    </a>
                 </div>
 
                 <button class="md:hidden" id="mobile-menu-btn">
@@ -93,7 +95,6 @@
                 </button>
             </div>
         </div>
-        
         <div class="hidden md:hidden bg-primary border-t border-white/10" id="mobile-menu">
             <div class="px-4 pt-2 pb-6 space-y-2">
                 <a href="index.html" class="block py-3 text-sm font-medium hover:text-secondary">Home</a>
@@ -105,7 +106,7 @@
     </nav>
 
     <!-- Header -->
-    <div class="pt-32 pb-20 text-white" style="background-color: #042249;">
+    <div class="pt-32 pb-20 text-white" style="background-color: #002776;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-end">
             <div>
                 <h1 class="font-display text-4xl font-bold mb-2">Nosso Estoque</h1>
@@ -126,7 +127,7 @@
     <!-- Filter Bar -->
     <div class="relative z-10 -mt-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="rounded-2xl shadow-2xl px-6 py-5" style="background-color: #1e3a5f;">
+            <div class="rounded-2xl shadow-2xl px-6 py-5" style="background-color: #002776;">
             <div class="flex flex-wrap gap-4 items-end">
                 <!-- Buscar -->
                 <div class="flex-1 min-w-[200px]">
@@ -158,7 +159,7 @@
                         <div id="brand-list" class="grid grid-cols-2 gap-1 max-h-52 overflow-y-auto"></div>
                     </div>
                 </div>
-                <!-- Faixa de Preço -->
+                <!-- Faixa de Pre�o -->
                 <div class="min-w-[180px]">
                     <label class="block text-xs font-semibold text-white uppercase tracking-wide mb-1.5">Faixa de Preço</label>
                     <input id="price-filter-range" type="range" min="50000" max="500000" step="1000" value="500000" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer accent-secondary">
@@ -167,7 +168,7 @@
                         <span id="price-filter-max-label" class="font-medium text-white/70">R$ 500.000</span>
                     </div>
                 </div>
-                <!-- Combustível -->
+                <!-- Combust�vel -->
                 <div class="min-w-[140px]">
                     <label class="block text-xs font-semibold text-white uppercase tracking-wide mb-1.5">Combustível</label>
                     <select id="fuel-select" class="w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-xl text-sm text-white focus:outline-none focus:border-secondary transition-all appearance-none cursor-pointer">
@@ -178,7 +179,7 @@
                         <option value="Energia" class="text-slate-800 bg-white">Energia</option>
                     </select>
                 </div>
-                <!-- Botões -->
+                <!-- Bot�es -->
                 <div class="flex gap-2 pb-0.5">
                     <button id="filter-btn" class="px-6 py-2.5 bg-white text-primary text-sm font-semibold rounded-xl hover:bg-slate-100 transition-all shadow-sm">Filtrar</button>
                     <button id="clear-filters-btn" class="px-4 py-2.5 text-sm text-white/60 rounded-xl hover:text-white hover:bg-white/10 transition-all">Limpar</button>
@@ -201,7 +202,7 @@
                     
 
                         <!-- Car 1 -->
-                        <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/BYD/Byd Dolphin mini 2025" data-images="Estoque/BYD/Byd Dolphin mini 2025/IMG_0344.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0345.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0346.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0347.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0348.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0349.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0350.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0351.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0352.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0353.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0354.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0355.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0356.jpg" data-doors="4 portas" data-engine="Elétrico" data-power="75 cv" data-plate="0" data-ipva="Em dia" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Carregador Portátil">
+                        <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/BYD/Byd Dolphin mini 2025" data-images="Estoque/BYD/Byd Dolphin mini 2025/IMG_0344.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0345.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0346.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0347.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0348.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0349.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0350.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0351.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0352.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0353.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0354.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0355.jpg|Estoque/BYD/Byd Dolphin mini 2025/IMG_0356.jpg" data-doors="4 portas" data-engine="Elétrico" data-power="75 cv" data-plate="0" data-ipva="Em dia" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Camera de Ré|Carregador Portátil">
                             <div class="relative h-56 overflow-hidden">
                                 <img src="Estoque/BYD/Byd Dolphin mini 2025/IMG_0344.jpg" alt="BYD Dolphin Mini" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                 <div class="absolute top-4 left-4">
@@ -210,7 +211,7 @@
                             </div>
                             <div class="p-5">
                                 <h3 class="font-display text-lg font-bold text-primary mb-1">BYD Dolphin Mini</h3>
-                                <p class="text-slate-500 text-sm mb-3">2025 • 21.000 km • Energia</p>
+                                <p class="text-slate-500 text-sm mb-3">2025 .  21.000 km . Energia</p>
                                 <div class="flex gap-3 mb-4">
                                     <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">AT</span>
                                     <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Preto</span>
@@ -226,16 +227,16 @@
 
                        
                         <!-- Car 4 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/honda/Civic LXS 2014" data-doors="4 portas" data-engine="1.8" data-power="140 cv" data-plate="7" data-ipva="✓ Em dia" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Central Multimídia|Câmera de Ré">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/honda/Civic LXS 2014" data-doors="4 portas" data-engine="1.8" data-power="140 cv" data-plate="7" data-ipva="? Em dia" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Central Multimídia|Camera de Ré">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.54.jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
-                                <span class="px-3 py-1 bg-cyan-400 text-primary text-xs font-bold rounded-full">DESTAQUE</span>
+                                <span class="px-3 py-1 bg-accent text-primary text-xs font-bold rounded-full">DESTAQUE</span>
                             </div>
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Honda Civic LXS</h3>
-                            <p class="text-slate-500 text-sm mb-3">2014 • 145.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2014 . 145.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
@@ -251,7 +252,7 @@
 
                     
                     <!-- Car 8 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Volkswagem/Polo Track" data-images="Estoque/Volkswagem/Polo Track/IMG_0466.jpg|Estoque/Volkswagem/Polo Track/IMG_0467.jpg|Estoque/Volkswagem/Polo Track/IMG_0468.jpg|Estoque/Volkswagem/Polo Track/IMG_0469.jpg|Estoque/Volkswagem/Polo Track/IMG_0470.jpg|Estoque/Volkswagem/Polo Track/IMG_0471.jpg|Estoque/Volkswagem/Polo Track/IMG_0472.jpg|Estoque/Volkswagem/Polo Track/IMG_0473.jpg|Estoque/Volkswagem/Polo Track/IMG_0474.jpg|Estoque/Volkswagem/Polo Track/IMG_0475.jpg|Estoque/Volkswagem/Polo Track/IMG_0476.jpg|Estoque/Volkswagem/Polo Track/IMG_0477.jpg|Estoque/Volkswagem/Polo Track/IMG_0478.jpg|Estoque/Volkswagem/Polo Track/IMG_0479.jpg" data-doors="4 portas" data-engine="1.0" data-power="84 cv" data-plate="1" data-ipva="✓ Em dia" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Sensor de Estacionamento">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Volkswagem/Polo Track" data-images="Estoque/Volkswagem/Polo Track/IMG_0466.jpg|Estoque/Volkswagem/Polo Track/IMG_0467.jpg|Estoque/Volkswagem/Polo Track/IMG_0468.jpg|Estoque/Volkswagem/Polo Track/IMG_0469.jpg|Estoque/Volkswagem/Polo Track/IMG_0470.jpg|Estoque/Volkswagem/Polo Track/IMG_0471.jpg|Estoque/Volkswagem/Polo Track/IMG_0472.jpg|Estoque/Volkswagem/Polo Track/IMG_0473.jpg|Estoque/Volkswagem/Polo Track/IMG_0474.jpg|Estoque/Volkswagem/Polo Track/IMG_0475.jpg|Estoque/Volkswagem/Polo Track/IMG_0476.jpg|Estoque/Volkswagem/Polo Track/IMG_0477.jpg|Estoque/Volkswagem/Polo Track/IMG_0478.jpg|Estoque/Volkswagem/Polo Track/IMG_0479.jpg" data-doors="4 portas" data-engine="1.0" data-power="84 cv" data-plate="1" data-ipva="? Em dia" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Sensor de Estacionamento">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Volkswagem/Polo Track/IMG_0466.jpg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -260,7 +261,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Volkswagen Polo Track</h3>
-                            <p class="text-slate-500 text-sm mb-3">2025 • 48.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2025 . 48.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Branco</span>
@@ -275,7 +276,7 @@
                     </div>
 
                     <!-- Car 9 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/honda/Honda HRV-V 2023" data-doors="4 portas" data-engine="1.5" data-power="177 cv" data-plate="6" data-ipva="✓ Em dia" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Bancos em Couro">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/honda/Honda HRV-V 2023" data-doors="4 portas" data-engine="1.5" data-power="177 cv" data-plate="6" data-ipva="? Em dia" data-features="Ar Condicionado Digital|Dire��o El�trica|Vidros El�tricos|Travas El�tricas|Freios ABS|Controle de Estabilidade|Central Multim�dia|C�mera de R�|Bancos em Couro">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/honda/Honda HRV-V 2023/WhatsApp Image 2026-03-04 at 11.18.29 (2).jpeg" alt="Carro" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -284,7 +285,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Honda HR-V EXL</h3>
-                            <p class="text-slate-500 text-sm mb-3">2023 • 18.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2023 . 18.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
@@ -299,7 +300,7 @@
                     </div>
 
                     <!-- Car 10 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Onix plus Lt" data-images="Estoque/Chevrolet/Onix plus Lt/IMG_0402.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0403.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0404.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0405.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0406.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0407.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0408.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0409.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0410.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0411.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0412.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0413.jpg" data-doors="4 portas" data-engine="1.0" data-power="82 cv" data-plate="0" data-ipva="✓ Em dia" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia|Sensor de Ré">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Onix plus Lt" data-images="Estoque/Chevrolet/Onix plus Lt/IMG_0402.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0403.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0404.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0405.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0406.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0407.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0408.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0409.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0410.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0411.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0412.jpg|Estoque/Chevrolet/Onix plus Lt/IMG_0413.jpg" data-doors="4 portas" data-engine="1.0" data-power="82 cv" data-plate="0" data-ipva="? Em dia" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia|Sensor de Ré">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Chevrolet/Onix plus Lt/IMG_0402.jpg" alt="Chevrolet Onix Plus LT" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -308,7 +309,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Chevrolet Onix Plus LT</h3>
-                            <p class="text-slate-500 text-sm mb-3">2025 • 53.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2025 . 53.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">MT</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Azul</span>
@@ -323,7 +324,7 @@
                     </div>
 
                     <!-- Novo carro - Chevrolet Onix Plus LT 2025 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Onix LT 2025" data-images="Estoque/Chevrolet/Onix LT 2025/IMG_7051.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7052.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7053.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7054.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7055.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7056.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7057.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7058.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7059.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7060.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7061.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7062.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7063.jpg" data-doors="4 portas" data-engine="1.0" data-power="82 cv" data-plate="0" data-ipva="✓ Em dia" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos nas 4 Portas|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia|Sensor de Ré">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Onix LT 2025" data-images="Estoque/Chevrolet/Onix LT 2025/IMG_7051.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7052.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7053.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7054.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7055.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7056.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7057.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7058.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7059.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7060.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7061.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7062.jpg|Estoque/Chevrolet/Onix LT 2025/IMG_7063.jpg" data-doors="4 portas" data-engine="1.0" data-power="82 cv" data-plate="0" data-ipva="? Em dia" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos nas 4 Portas|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia|Sensor de Ré">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Chevrolet/Onix LT 2025/IMG_7051.jpg" alt="Chevrolet Onix Plus LT 2025" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4 flex gap-2">
@@ -333,7 +334,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Chevrolet Onix Plus LT</h3>
-                            <p class="text-slate-500 text-sm mb-3">2025 • 55.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2025 . 55.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
@@ -348,7 +349,7 @@
                     </div>
 
                     <!-- Car 11 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Tracker Lt 2024" data-images="Estoque/Chevrolet/Tracker Lt 2024/IMG_0379.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0380.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0381.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0382.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0383.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0384.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0385.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0386.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0387.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0388.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0390.jpg" data-doors="4 portas" data-engine="1.0 Turbo" data-power="116 cv" data-plate="0" data-ipva="✓ Em dia" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Piloto Automático">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Tracker Lt 2024" data-images="Estoque/Chevrolet/Tracker Lt 2024/IMG_0379.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0380.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0381.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0382.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0383.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0384.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0385.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0386.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0387.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0388.jpg|Estoque/Chevrolet/Tracker Lt 2024/IMG_0390.jpg" data-doors="4 portas" data-engine="1.0 Turbo" data-power="116 cv" data-plate="0" data-ipva="? Em dia" data-features="Ar Condicionado Digital|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Piloto Automático">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Chevrolet/Tracker Lt 2024/IMG_0379.jpg" alt="Chevrolet Tracker LT" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -357,7 +358,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Chevrolet Tracker LT</h3>
-                            <p class="text-slate-500 text-sm mb-3">2024 • 22.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2024 . 22.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">AT</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Preto</span>
@@ -372,7 +373,7 @@
                     </div>
 
                     <!-- Novo carro - Volkswagen Saveiro 2005 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Volkswagem/Saveiro 2005" data-images="Estoque/Volkswagem/Saveiro 2005/IMG_3703.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3704.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3705.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3706.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3707.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3708.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3709.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3710.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3711.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3712.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3713.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3714.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3715.JPG" data-doors="2 portas" data-engine="1.6" data-power="101 cv" data-plate="0" data-ipva="✓ Em dia" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Volkswagem/Saveiro 2005" data-images="Estoque/Volkswagem/Saveiro 2005/IMG_3703.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3704.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3705.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3706.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3707.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3708.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3709.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3710.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3711.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3712.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3713.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3714.JPG|Estoque/Volkswagem/Saveiro 2005/IMG_3715.JPG" data-doors="2 portas" data-engine="1.6" data-power="101 cv" data-plate="0" data-ipva="? Em dia" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Volkswagem/Saveiro 2005/IMG_3703.JPG" alt="Volkswagen Saveiro 2005" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -381,7 +382,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Volkswagen Saveiro</h3>
-                            <p class="text-slate-500 text-sm mb-3">2005 • 258.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2005 . 258.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Prata</span>
@@ -396,7 +397,7 @@
                     </div>
 
                     <!-- Novo carro - Nissan March SV 2019 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Nissan/March SV 2019" data-images="Estoque/Nissan/March SV 2019/IMG_3665.JPG|Estoque/Nissan/March SV 2019/IMG_3666.JPG|Estoque/Nissan/March SV 2019/IMG_3667.JPG|Estoque/Nissan/March SV 2019/IMG_3668.JPG|Estoque/Nissan/March SV 2019/IMG_3669.JPG|Estoque/Nissan/March SV 2019/IMG_3670.JPG|Estoque/Nissan/March SV 2019/IMG_3671.JPG|Estoque/Nissan/March SV 2019/IMG_3672.JPG|Estoque/Nissan/March SV 2019/IMG_3673.JPG|Estoque/Nissan/March SV 2019/IMG_3675.JPG|Estoque/Nissan/March SV 2019/IMG_3676.JPG|Estoque/Nissan/March SV 2019/IMG_3677.JPG|Estoque/Nissan/March SV 2019/IMG_3678.JPG" data-doors="4 portas" data-engine="1.6" data-power="111 cv" data-plate="0" data-ipva="✓ Em dia" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Nissan/March SV 2019" data-images="Estoque/Nissan/March SV 2019/IMG_3665.JPG|Estoque/Nissan/March SV 2019/IMG_3666.JPG|Estoque/Nissan/March SV 2019/IMG_3667.JPG|Estoque/Nissan/March SV 2019/IMG_3668.JPG|Estoque/Nissan/March SV 2019/IMG_3669.JPG|Estoque/Nissan/March SV 2019/IMG_3670.JPG|Estoque/Nissan/March SV 2019/IMG_3671.JPG|Estoque/Nissan/March SV 2019/IMG_3672.JPG|Estoque/Nissan/March SV 2019/IMG_3673.JPG|Estoque/Nissan/March SV 2019/IMG_3675.JPG|Estoque/Nissan/March SV 2019/IMG_3676.JPG|Estoque/Nissan/March SV 2019/IMG_3677.JPG|Estoque/Nissan/March SV 2019/IMG_3678.JPG" data-doors="4 portas" data-engine="1.6" data-power="111 cv" data-plate="0" data-ipva="? Em dia" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Nissan/March SV 2019/IMG_3665.JPG" alt="Nissan March SV 2019" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -405,7 +406,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Nissan March SV</h3>
-                            <p class="text-slate-500 text-sm mb-3">2019 • 77.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2019 . 77.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Branco</span>
@@ -420,16 +421,16 @@
                     </div>
 
                     <!-- Novo carro - Chevrolet Montana LS 2015 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Montana LS 2015" data-images="Estoque/Chevrolet/Montana LS 2015/IMG_3681.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3682.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3683.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3684.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3686.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3687.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3688.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3689.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3690.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3691.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3692.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3693.JPG" data-doors="2 portas" data-engine="1.4" data-power="97 cv" data-plate="0" data-ipva="✓ Em dia" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Bancos em Couro">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Montana LS 2015" data-images="Estoque/Chevrolet/Montana LS 2015/IMG_3681.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3682.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3683.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3684.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3686.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3687.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3688.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3689.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3690.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3691.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3692.JPG|Estoque/Chevrolet/Montana LS 2015/IMG_3693.JPG" data-doors="2 portas" data-engine="1.4" data-power="97 cv" data-plate="0" data-ipva="? Em dia" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Bancos em Couro">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Chevrolet/Montana LS 2015/IMG_3681.JPG" alt="Chevrolet Montana LS 2015" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
-                                <span class="px-3 py-1 bg-cyan-400 text-primary text-xs font-bold rounded-full">PICKUP</span>
+                                <span class="px-3 py-1 bg-accent text-primary text-xs font-bold rounded-full">PICKUP</span>
                             </div>
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Chevrolet Montana LS</h3>
-                            <p class="text-slate-500 text-sm mb-3">2015 • 137.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2015 . 137.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Prata</span>
@@ -444,7 +445,7 @@
                     </div>
 
                     <!-- Novo carro - Fiat Strada Adventure 2009 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Fiat/Strada Adventure 2009" data-images="Estoque/Fiat/Strada Adventure 2009/IMG_3548.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3549.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3550.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3551.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3552.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3553.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3554.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3555.JPG" data-doors="2 portas" data-engine="1.8" data-power="132 cv" data-plate="0" data-ipva="✓ Em dia" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Sensor de Ré">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Fiat/Strada Adventure 2009" data-images="Estoque/Fiat/Strada Adventure 2009/IMG_3548.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3549.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3550.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3551.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3552.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3553.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3554.JPG|Estoque/Fiat/Strada Adventure 2009/IMG_3555.JPG" data-doors="2 portas" data-engine="1.8" data-power="132 cv" data-plate="0" data-ipva="? Em dia" data-features="Ar Condicionado|Dire��o Hidr�ulica|Vidros El�tricos|Travas El�tricas|Freios ABS|Airbag Duplo|Sensor de R�">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Fiat/Strada Adventure 2009/IMG_3548.JPG" alt="Fiat Strada Adventure 2009" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -453,7 +454,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Fiat Strada Adventure</h3>
-                            <p class="text-slate-500 text-sm mb-3">2009 • 224.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2009 . 224.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Preto</span>
@@ -469,7 +470,7 @@
                  
                     
                     <!-- Car 20 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Cruze LT 2020" data-images="Estoque/Chevrolet/Cruze LT 2020/IMG_7082.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7083.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7084.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7085.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7086.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7087.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7088.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7089.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7090.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7091.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7092.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7093.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7094.jpg" data-doors="4 portas" data-engine="1.4 Turbo" data-power="150 cv" data-plate="0" data-ipva="✓ Em dia" data-color="Cinza" data-transmission="Automático" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia|Câmera de Ré|Manual do Proprietário|Chave Cópia|Laudo Cautelar">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Chevrolet/Cruze LT 2020" data-images="Estoque/Chevrolet/Cruze LT 2020/IMG_7082.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7083.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7084.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7085.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7086.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7087.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7088.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7089.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7090.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7091.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7092.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7093.jpg|Estoque/Chevrolet/Cruze LT 2020/IMG_7094.jpg" data-doors="4 portas" data-engine="1.4 Turbo" data-power="150 cv" data-plate="0" data-ipva="? Em dia" data-color="Cinza" data-transmission="Automático" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia|Câmera de Ré|Manual do Proprietário|Chave Cópia|Laudo Cautelar">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Chevrolet/Cruze LT 2020/IMG_7082.jpg" alt="Chevrolet Cruze LT" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -478,9 +479,9 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Chevrolet Cruze LT</h3>
-                            <p class="text-slate-500 text-sm mb-3">2020 • 68.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2020 . 68.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automtico</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Cinza</span>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
@@ -493,7 +494,7 @@
                     </div>
 
                     <!-- Car 21 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Ford/Ka 2011" data-images="Estoque/Ford/Ka 2011/IMG_7096.jpg|Estoque/Ford/Ka 2011/IMG_7097.jpg|Estoque/Ford/Ka 2011/IMG_7098.jpg|Estoque/Ford/Ka 2011/IMG_7099.jpg|Estoque/Ford/Ka 2011/IMG_7100.jpg|Estoque/Ford/Ka 2011/IMG_7101.jpg|Estoque/Ford/Ka 2011/IMG_7102.jpg|Estoque/Ford/Ka 2011/IMG_7103.jpg|Estoque/Ford/Ka 2011/IMG_7104.jpg|Estoque/Ford/Ka 2011/IMG_7105.jpg" data-doors="4 portas" data-engine="1.0" data-power="82 cv" data-plate="0" data-ipva="✓ Em dia" data-color="Branco" data-transmission="Manual" data-features="Vidros Elétricos">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Ford/Ka 2011" data-images="Estoque/Ford/Ka 2011/IMG_7096.jpg|Estoque/Ford/Ka 2011/IMG_7097.jpg|Estoque/Ford/Ka 2011/IMG_7098.jpg|Estoque/Ford/Ka 2011/IMG_7099.jpg|Estoque/Ford/Ka 2011/IMG_7100.jpg|Estoque/Ford/Ka 2011/IMG_7101.jpg|Estoque/Ford/Ka 2011/IMG_7102.jpg|Estoque/Ford/Ka 2011/IMG_7103.jpg|Estoque/Ford/Ka 2011/IMG_7104.jpg|Estoque/Ford/Ka 2011/IMG_7105.jpg" data-doors="4 portas" data-engine="1.0" data-power="82 cv" data-plate="0" data-ipva="? Em dia" data-color="Branco" data-transmission="Manual" data-features="Vidros El�tricos">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Ford/Ka 2011/IMG_7096.jpg" alt="Ford Ka" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -502,7 +503,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Ford Ka</h3>
-                            <p class="text-slate-500 text-sm mb-3">2011 • 142.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2011 . 142.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Branco</span>
@@ -519,7 +520,7 @@
                        
 
                     <!-- Car 26 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Peugeot/208 Style" data-images="Estoque/Peugeot/208 Style/IMG_1875.JPG|Estoque/Peugeot/208 Style/IMG_1876.JPG|Estoque/Peugeot/208 Style/IMG_1877.JPG|Estoque/Peugeot/208 Style/IMG_1878.JPG|Estoque/Peugeot/208 Style/IMG_1880.JPG|Estoque/Peugeot/208 Style/IMG_1881.JPG|Estoque/Peugeot/208 Style/IMG_1882.JPG|Estoque/Peugeot/208 Style/IMG_1883.JPG|Estoque/Peugeot/208 Style/IMG_1884.JPG|Estoque/Peugeot/208 Style/IMG_1885.JPG|Estoque/Peugeot/208 Style/IMG_1886.JPG|Estoque/Peugeot/208 Style/IMG_1887.JPG|Estoque/Peugeot/208 Style/IMG_1888.JPG|Estoque/Peugeot/208 Style/IMG_1889.JPG|Estoque/Peugeot/208 Style/IMG_1890.JPG|Estoque/Peugeot/208 Style/IMG_1891.jpg" data-doors="4 portas" data-engine="1.0" data-power="75 cv" data-plate="5" data-ipva="✓ Em dia" data-color="Branco" data-transmission="Manual" data-features="Bancos em Couro|Teto Panorâmico|Direção Elétrica|Vidros Elétricos|Retrovisores Elétricos|Farol de LED|Central Multimídia|Garantia de Fábrica|Laudo Cautelar">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Peugeot/208 Style" data-images="Estoque/Peugeot/208 Style/IMG_1875.JPG|Estoque/Peugeot/208 Style/IMG_1876.JPG|Estoque/Peugeot/208 Style/IMG_1877.JPG|Estoque/Peugeot/208 Style/IMG_1878.JPG|Estoque/Peugeot/208 Style/IMG_1880.JPG|Estoque/Peugeot/208 Style/IMG_1881.JPG|Estoque/Peugeot/208 Style/IMG_1882.JPG|Estoque/Peugeot/208 Style/IMG_1883.JPG|Estoque/Peugeot/208 Style/IMG_1884.JPG|Estoque/Peugeot/208 Style/IMG_1885.JPG|Estoque/Peugeot/208 Style/IMG_1886.JPG|Estoque/Peugeot/208 Style/IMG_1887.JPG|Estoque/Peugeot/208 Style/IMG_1888.JPG|Estoque/Peugeot/208 Style/IMG_1889.JPG|Estoque/Peugeot/208 Style/IMG_1890.JPG|Estoque/Peugeot/208 Style/IMG_1891.jpg" data-doors="4 portas" data-engine="1.0" data-power="75 cv" data-plate="5" data-ipva="? Em dia" data-color="Branco" data-transmission="Manual" data-features="Bancos em Couro|Teto Panorâmico|Direção Elétrica|Vidros Elétricos|Retrovisores Elétricos|Farol de LED|Central Multimídia|Garantia de Fábrica|Laudo Cautelar">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Peugeot/208 Style/IMG_1875.JPG" alt="Peugeot 208 Style 2025" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4 flex gap-2">
@@ -529,7 +530,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Peugeot 208 Style</h3>
-                            <p class="text-slate-500 text-sm mb-3">2025 • 4.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2025 . 4.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Branco</span>
@@ -552,7 +553,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Suzuki GSX-R 750 SRAD</h3>
-                            <p class="text-slate-500 text-sm mb-3">2008 • 61.000 km • Gasolina</p>
+                            <p class="text-slate-500 text-sm mb-3">2008 . 61.000 km . Gasolina</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Preta</span>
@@ -567,7 +568,7 @@
                     </div>
 
                     <!-- Car 29 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Mitsubishi/Pajero TR4" data-images="Estoque/Mitsubishi/Pajero TR4/IMG_1647.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1648.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1649.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1650.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1651.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1652.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1653.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1654.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1655.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1657.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1658.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1659.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1660.JPG" data-doors="4 portas" data-engine="2.0" data-power="Consulte" data-plate="Consulte" data-ipva="Consulte" data-color="Consulte" data-transmission="Automático" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Airbag|Freios ABS|Tração 4x4|Rodas de Liga|Som|Sensor de Estacionamento">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Mitsubishi/Pajero TR4" data-images="Estoque/Mitsubishi/Pajero TR4/IMG_1647.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1648.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1649.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1650.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1651.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1652.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1653.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1654.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1655.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1657.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1658.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1659.JPG|Estoque/Mitsubishi/Pajero TR4/IMG_1660.JPG" data-doors="4 portas" data-engine="2.0" data-power="Consulte" data-plate="Consulte" data-ipva="Consulte" data-color="Consulte" data-transmission="Autom�tico" data-features="Ar Condicionado|Dire��o Hidr�ulica|Vidros El�tricos|Travas El�tricas|Airbag|Freios ABS|Tra��o 4x4|Rodas de Liga|Som|Sensor de Estacionamento">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/Mitsubishi/Pajero TR4/IMG_1647.JPG" alt="Mitsubishi Pajero TR4 4x4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -576,7 +577,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Mitsubishi Pajero TR4 4x4</h3>
-                            <p class="text-slate-500 text-sm mb-3">2010 • 240.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2010 . 240.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">AT</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Completo</span>
@@ -591,7 +592,7 @@
                     </div>
 
                     <!-- Car 36 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX" data-images="Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2354.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2355.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2356.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2357.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2358.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2359.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2360.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2361.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2362.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2363.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2364.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2365.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2366.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2367.jpg" data-doors="4 portas" data-engine="2.0" data-power="150 cv" data-plate="Consulte" data-ipva="Consulte" data-color="Consulte" data-transmission="Automático" data-features="Teto Solar|Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Câmera de Ré|Bancos em Couro">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX" data-images="Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2354.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2355.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2356.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2357.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2358.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2359.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2360.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2361.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2362.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2363.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2364.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2365.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2366.JPG|Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2367.jpg" data-doors="4 portas" data-engine="2.0" data-power="150 cv" data-plate="Consulte" data-ipva="Consulte" data-color="Consulte" data-transmission="Autom�tico" data-features="Teto Solar|Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Controle de Estabilidade|Central Multimídia|Camera de Ré|Bancos em Couro">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/KIA/Sportege EX-20260515T012648Z-3-001/Sportege EX/IMG_2354.JPG" alt="KIA Sportage EX" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4 flex gap-2">
@@ -601,7 +602,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">KIA Sportage EX</h3>
-                            <p class="text-slate-500 text-sm mb-3">2013 • 238.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2013 . 238.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Consulte</span>
@@ -625,7 +626,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Nissan Livina S</h3>
-                            <p class="text-slate-500 text-sm mb-3">2014 • 122.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2014 . 122.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Consulte</span>
@@ -649,7 +650,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Volkswagen Voyage</h3>
-                            <p class="text-slate-500 text-sm mb-3">2023 • 105.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2023 . 105.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Consulte</span>
@@ -674,7 +675,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Chevrolet Onix Joy</h3>
-                            <p class="text-slate-500 text-sm mb-3">2020 • 99.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2020 . 99.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Manual</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Consulte</span>
@@ -689,7 +690,7 @@
                     </div>
 
                     <!-- Car 30 -->
-                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/hyundai/Creta Prestige 2017" data-images="Estoque/hyundai/Creta Prestige 2017/IMG_1976.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1977.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1978.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1980.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1981.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1982.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1983.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1984.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1985.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1986.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1988.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1989.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1990.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1991.JPG" data-doors="4 portas" data-engine="2.0" data-power="167 cv" data-plate="7" data-ipva="✓ Em dia" data-color="Prata" data-transmission="Automático" data-features="Direção Elétrica|Ar Condicionado|Vidros Elétricos|Retrovisores Elétricos|Bancos em Couro Caramelo|Central Multimídia|Câmera de Ré">
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/hyundai/Creta Prestige 2017" data-images="Estoque/hyundai/Creta Prestige 2017/IMG_1976.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1977.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1978.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1980.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1981.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1982.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1983.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1984.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1985.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1986.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1988.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1989.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1990.JPG|Estoque/hyundai/Creta Prestige 2017/IMG_1991.JPG" data-doors="4 portas" data-engine="2.0" data-power="167 cv" data-plate="7" data-ipva="? Em dia" data-color="Prata" data-transmission="Automático" data-features="Direção Elétrica|Ar Condicionado|Vidros Elétricos|Retrovisores Elétricos|Bancos em Couro Caramelo|Central Multimídia|Câmera de Ré">
                         <div class="relative h-56 overflow-hidden">
                             <img src="Estoque/hyundai/Creta Prestige 2017/IMG_1976.JPG" alt="Hyundai Creta Prestige" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute top-4 left-4">
@@ -698,9 +699,9 @@
                         </div>
                         <div class="p-5">
                             <h3 class="font-display text-lg font-bold text-primary mb-1">Hyundai Creta Prestige</h3>
-                            <p class="text-slate-500 text-sm mb-3">2017 • 96.000 km • Flex</p>
+                            <p class="text-slate-500 text-sm mb-3">2017 . 96.000 km . Flex</p>
                             <div class="flex gap-3 mb-4">
-                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automático</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Automtico</span>
                                 <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Prata</span>
                             </div>
                             <div class="flex justify-between items-center pt-4 border-t border-slate-100">
@@ -767,7 +768,7 @@
                 </div>
             </div>
             <div class="border-t border-white/10 pt-8 text-center text-slate-500 text-sm">
-                © 2026 Ryan Panzarini. Todos os direitos reservados.
+                 2026 Ryan Panzarini. Todos os direitos reservados.
             </div>
         </div>
     </footer>
@@ -812,7 +813,7 @@
             const titleParts = titleText.split(' ');
             const brand = sanitizeValue(titleParts.shift());
             const model = sanitizeValue(titleParts.join(' '));
-            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+            const metaParts = metaText.split('�').map((part) => sanitizeValue(part));
             const year = metaParts[0] || '';
             const km = (metaParts[1] || '').replace(' km', '').trim();
             const fuel = metaParts[2] || '';
@@ -843,7 +844,7 @@
         }
 
         // ----- Brand Dropdown -----
-        const brandOptions = ['BYD','Chevrolet','Citroën','Fiat','Ford','Honda','Hyundai','Jeep','KIA','Land Rover','Mitsubishi','Nissan','Peugeot','Ram','Renault','Toyota','Volkswagen'];
+        const brandOptions = ['BYD','Chevrolet','Citro�n','Fiat','Ford','Honda','Hyundai','Jeep','KIA','Land Rover','Mitsubishi','Nissan','Peugeot','Ram','Renault','Toyota','Volkswagen'];
         let selectedBrand = '';
 
         function renderBrandList(filterText) {
@@ -926,7 +927,7 @@
             const titleParts = titleText.split(' ');
             const brand = sanitizeValue(titleParts.shift());
             const model = sanitizeValue(titleParts.join(' '));
-            const metaParts = metaText.split('•').map((part) => sanitizeValue(part));
+            const metaParts = metaText.split('�').map((part) => sanitizeValue(part));
             return { type: inferVehicleType(card), brand, model, year: Number(metaParts[0] || 0), fuel: metaParts[2] || '', price: parsePriceToNumber(priceText) };
         }
 
@@ -1010,11 +1011,11 @@
         const carGrid = document.getElementById('car-grid');
 
         function extractKmFromCard(card) {
-            const meta = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent).split('•');
+            const meta = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent).split('�');
             return Number((meta[1] || '').replace(' km', '').replace(/\./g, '').trim() || 0);
         }
         function extractYearFromCard(card) {
-            return Number(sanitizeValue(card.querySelector('p.text-slate-500')?.textContent).split('•')[0] || 0);
+            return Number(sanitizeValue(card.querySelector('p.text-slate-500')?.textContent).split('�')[0] || 0);
         }
         function extractPriceFromCard(card) {
             return parsePriceToNumber(sanitizeValue(card.querySelector('p.text-xl')?.textContent));
@@ -1025,8 +1026,8 @@
             allCards.sort((a, b) => {
                 switch (sortType) {
                     case 'Mais recentes': return extractYearFromCard(b) - extractYearFromCard(a);
-                    case 'Menor preço': return extractPriceFromCard(a) - extractPriceFromCard(b);
-                    case 'Maior preço': return extractPriceFromCard(b) - extractPriceFromCard(a);
+                    case 'Menor pre�o': return extractPriceFromCard(a) - extractPriceFromCard(b);
+                    case 'Maior pre�o': return extractPriceFromCard(b) - extractPriceFromCard(a);
                     case 'Menor km': return extractKmFromCard(a) - extractKmFromCard(b);
                     default: return 0;
                 }
@@ -1043,4 +1044,5 @@
 
 </body>
 </html>
+
 
