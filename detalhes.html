@@ -136,7 +136,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                 <!-- Main Image Gallery -->
                 <div class="space-y-4">
                     <div class="relative rounded-2xl overflow-hidden bg-slate-100 aspect-video shadow-xl">
-                        <img id="main-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect fill='%23f1f5f9' width='800' height='450'/%3E%3Crect fill='%23e2e8f0' x='50' y='50' width='700' height='350' rx='20'/%3E%3Ctext x='400' y='200' font-size='32' font-weight='bold' text-anchor='middle' fill='%23475569' font-family='Arial, sans-serif'%3ECarregando imagem do veí­culo...%3C/text%3E%3Ccircle cx='400' cy='280' r='30' fill='none' stroke='%2306b6d4' stroke-width='4' opacity='0.3'/%3E%3Ccircle cx='400' cy='280' r='30' fill='none' stroke='%2306b6d4' stroke-width='4' stroke-dasharray='47' opacity='0.8'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 400 280' to='360 400 280' dur='1s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E" alt="Carregando imagem do veÃ­culo" class="w-full h-full object-cover cursor-zoom-in">
+                        <img id="main-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect fill='%23f1f5f9' width='800' height='450'/%3E%3Crect fill='%23e2e8f0' x='50' y='50' width='700' height='350' rx='20'/%3E%3Ctext x='400' y='200' font-size='32' font-weight='bold' text-anchor='middle' fill='%23475569' font-family='Arial, sans-serif'%3ECarregando imagem do veí­culo...%3C/text%3E%3Ccircle cx='400' cy='280' r='30' fill='none' stroke='%2306b6d4' stroke-width='4' opacity='0.3'/%3E%3Ccircle cx='400' cy='280' r='30' fill='none' stroke='%2306b6d4' stroke-width='4' stroke-dasharray='47' opacity='0.8'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 400 280' to='360 400 280' dur='1s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E" alt="Carregando imagem do veículo" class="w-full h-full object-cover cursor-zoom-in">
                         <button class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-accent transition-colors" onclick="prevImage()">
                             <i data-lucide="chevron-left" class="w-6 h-6"></i>
                         </button>
@@ -302,7 +302,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                     <h3 class="font-display text-xl font-bold text-primary mb-4">Interessado?</h3>
                     
                     <div class="space-y-3 mb-6">
-                        <a id="whatsapp-interest-link" href="https://wa.me/554299226561?text=OlÃ¡!%20Tenho%20interesse%20no%20BMW%20320i%20Sport%202022" target="_blank" class="w-full py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-all flex items-center justify-center gap-2">
+                        <a id="whatsapp-interest-link" href="https://wa.me/554299226561?text=Olá!%20Tenho%20interesse%20no%20BMW%20320i%20Sport%202022" target="_blank" class="w-full py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-all flex items-center justify-center gap-2">
                             <i data-lucide="message-circle" class="w-5 h-5"></i>
                             Falar no WhatsApp
                         </a>
@@ -442,7 +442,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             <i data-lucide="chevron-left" class="w-6 h-6"></i>
         </button>
 
-        <button id="next-image-modal" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors flex items-center justify-center" aria-label="PrÃ³xima imagem">
+        <button id="next-image-modal" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors flex items-center justify-center" aria-label="Próxima imagem">
             <i data-lucide="chevron-right" class="w-6 h-6"></i>
         </button>
 
@@ -554,7 +554,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             if (vehicleFromUrl.km) subtitleParts.push(`${vehicleFromUrl.km} km`);
             if (vehicleFromUrl.fuel) subtitleParts.push(vehicleFromUrl.fuel);
             if (subtitleElement && subtitleParts.length > 0) {
-                subtitleElement.textContent = subtitleParts.join(' â€¢ ');
+                subtitleElement.textContent = subtitleParts.join(' • ');
             }
 
             const pageTitleParts = [vehicleName];
@@ -569,59 +569,67 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
 
         function fixMojibake(str) {
             if (!str) return '';
-            // Corrige alguns padrões comuns de UTF-8 interpretado como ISO-8859-1 (mojibake)
-            // Ex: "OlÃ¡" -> "Olá", "AutomÃ³veis" -> "Automóveis", "â€¢" -> " • "
-            const map = {
-                'Ã¡': 'á',
-                'Ã©': 'é',
-                'Ãª': 'ê',
-                'Ã£': 'ã',
-                'Ã³': 'ó',
-                'Ã´': 'ô',
-                'Ãº': 'ú',
-                'Ãœ': 'Ü',
-                'Ã': 'Á',
-                'Ã': 'É',
-                'Ã': 'Ê',
-                'Ã': 'Ã',
-                'Ã“': 'Ó',
-                'Ã”': 'Ô',
-                'Ãš': 'Ú',
-                'Ã§': 'ç',
-                'Ã': 'Ç',
-                'Ã£': 'ã',
-                'Ã¥': 'å',
-                'Ã¼': 'ü',
-                'â€ž': 'º',
+            let out = String(str);
+
+            const punctuationMap = {
+                'â€™': '’',
+                'â€œ': '“',
                 'â€': '”',
-                'â€˜': '‘',
-                'â€•': '’',
+                'â€¢': '•',
                 'â€“': '–',
                 'â€”': '—',
-                'â€¢': '•',
+                'â€˜': '‘',
+                'â€•': '’',
                 'â€¡': '‡',
-                'Ã£o': 'ão',
-                'Ã£a': 'ã',
-                'AutomÃ³veis': 'Automóveis',
-                'AutomÃ³vel': 'Automóvel',
-                'OlÃ¡': 'Olá',
-                'Tenho interesse': 'Tenho interesse'
+                'Â©': '©',
+                'Â°': '°',
+                'Âº': 'º'
             };
 
-            // substituições diretas
-            let out = String(str);
-            Object.entries(map).forEach(([k, v]) => {
-                out = out.split(k).join(v);
+            Object.entries(punctuationMap).forEach(([source, replacement]) => {
+                out = out.split(source).join(replacement);
             });
 
-            // Normaliza separador quebrado no padrão "â€¢"
-            out = out.replace(/â€¢/g, '•');
-            return out;
+            try {
+                const bytes = Uint8Array.from(out, (char) => char.charCodeAt(0));
+                const decoded = new TextDecoder('utf-8', { fatal: false }).decode(bytes);
+                if (decoded && decoded !== out && !decoded.includes('�')) {
+                    out = decoded;
+                }
+            } catch (error) {
+                // Ignore and keep the already normalized string.
+            }
+
+            return out.replace(/\u00A0/g, ' ');
         }
 
         function sanitizeValue(value) {
             const fixed = fixMojibake(value);
             return (fixed || '').replace(/\s+/g, ' ').trim();
+        }
+
+        function parseVehicleMetaText(value) {
+            const text = sanitizeValue(value || '');
+            const yearMatch = text.match(/\b(19|20)\d{2}\b/);
+            const kmMatch = text.match(/([\d.,]+)\s*km/i);
+            const year = yearMatch ? yearMatch[0] : '';
+            const km = kmMatch ? kmMatch[1].replace(/\./g, '').trim() : '';
+            const fuelText = text
+                .replace(yearMatch ? yearMatch[0] : '', '')
+                .replace(kmMatch ? kmMatch[0] : '', '')
+                .replace(/[.\-•]+/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            return {
+                year,
+                km,
+                fuel: fuelText.replace(/^[-•.\s]+|[-•.\s]+$/g, '')
+            };
+        }
+
+        function normalizeIpvaValue(value) {
+            return sanitizeValue(value).replace(/^[?✓✔\-\.\s]+/, '').trim();
         }
 
         function parsePriceValue(priceText) {
@@ -633,6 +641,13 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         function parseYearValue(yearText) {
             const parsed = Number.parseInt(sanitizeValue(yearText), 10);
             return Number.isFinite(parsed) ? parsed : 0;
+        }
+
+        function inferTitleFromFolder(folder) {
+            const folderText = sanitizeValue(folder);
+            if (!folderText) return '';
+            const parts = folderText.split('/').filter(Boolean);
+            return parts.length ? parts[parts.length - 1] : folderText;
         }
 
         function buildVehicleDetailsLink(vehicle) {
@@ -676,18 +691,21 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                 const brand = sanitizeValue(titleParts.shift());
                 const model = sanitizeValue(titleParts.join(' '));
                 const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
-                const metaParts = metaText.split('â€¢').map((part) => sanitizeValue(part));
+                const metaParts = parseVehicleMetaText(metaText);
                 const tags = card.querySelectorAll('.flex.gap-3.mb-4 span');
+                const folder = sanitizeValue(card.getAttribute('data-folder'));
+                const titleFromImageAlt = sanitizeValue(card.querySelector('img')?.getAttribute('alt'));
+                const title = titleText || titleFromImageAlt || inferTitleFromFolder(folder) || sanitizeValue(`${brand} ${model}`);
                 const image = sanitizeValue(card.querySelector('img')?.getAttribute('src'));
-                const price = sanitizeValue(card.querySelector('p.text-xl')?.textContent).replace('R$', '').trim();
+                const price = extractPriceTextFromCard(card).replace('R$', '').trim();
 
                 return {
-                    title: titleText,
+                    title,
                     brand,
                     model,
-                    year: metaParts[0] || '',
-                    km: (metaParts[1] || '').replace(' km', '').trim(),
-                    fuel: metaParts[2] || '',
+                    year: metaParts.year || '',
+                    km: metaParts.km || '',
+                    fuel: metaParts.fuel || '',
                     transmission: sanitizeValue(tags[0]?.textContent),
                     color: sanitizeValue(tags[1]?.textContent),
                     price,
@@ -698,7 +716,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                     engine: sanitizeValue(card.getAttribute('data-engine')),
                     power: sanitizeValue(card.getAttribute('data-power')),
                     plate: sanitizeValue(card.getAttribute('data-plate')),
-                    ipva: sanitizeValue(card.getAttribute('data-ipva')),
+                    ipva: normalizeIpvaValue(card.getAttribute('data-ipva')),
                     features: sanitizeValue(card.getAttribute('data-features'))
                 };
             }).filter((vehicle) => vehicle.title && vehicle.image);
@@ -713,7 +731,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             if (!vehicles.length) {
                 grid.innerHTML = `
                     <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 text-slate-500">
-                        Nenhum veÃ­culo similar encontrado no estoque.
+                        Nenhum veículo similar encontrado no estoque.
                     </div>
                 `;
                 return;
@@ -757,7 +775,9 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                 const candidateVehicles = stockVehicles.filter((vehicle) => {
                     const sameByTitle = currentVehicleTitle && sanitizeValue(vehicle.title) === currentVehicleTitle;
                     const sameByMainImage = vehicleFromUrl.image && sanitizeValue(vehicle.image) === sanitizeValue(vehicleFromUrl.image);
-                    return !sameByTitle && !sameByMainImage;
+                    const sameByFolder = vehicleFromUrl.folder && sanitizeValue(vehicle.folder) === sanitizeValue(vehicleFromUrl.folder);
+                    const isSameVehicle = (sameByTitle && sameByMainImage) || sameByFolder;
+                    return !isSameVehicle;
                 });
 
                 const rankedVehicles = candidateVehicles
@@ -1088,7 +1108,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             link: document.getElementById('share-link')
         };
 
-        // Criar URL para compartilhar (com todos os parÃ¢metros)
+        // Criar URL para compartilhar (com todos os parâmetros)
         const baseUrl = 'https://lmautomoveis.seg.br/detalhes.html';
         const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}&images=${encodeURIComponent(vehicleFromUrl.images)}&folder=${encodeURIComponent(vehicleFromUrl.folder)}&color=${encodeURIComponent(vehicleFromUrl.color)}&transmission=${encodeURIComponent(vehicleFromUrl.transmission)}&doors=${encodeURIComponent(vehicleFromUrl.doors)}&engine=${encodeURIComponent(vehicleFromUrl.engine)}&power=${encodeURIComponent(vehicleFromUrl.power)}&plate=${encodeURIComponent(vehicleFromUrl.plate)}&ipva=${encodeURIComponent(vehicleFromUrl.ipva)}&features=${encodeURIComponent(vehicleFromUrl.features)}`;
         const shareTitle = vehicleName || 'Confira este veículo!';
@@ -1130,7 +1150,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                         lucide.createIcons();
                     }, 2000);
                 }).catch(() => {
-                    // Fallback se clipboard nÃ£o funcionar
+                    // Fallback se clipboard não funcionar
                     alert('Link: ' + cleanShareUrl);
                 });
             });
