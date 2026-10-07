@@ -548,6 +548,30 @@
                         </div>
                     </div>
 
+                    <!-- Harley-Davidson V-ROD 1130 cc Sport VRSCB 2005 -->
+                    <div class="car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group" data-folder="Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB" data-images="Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.15 (1).jpeg|Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.15.jpeg|Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.16 (1).jpeg|Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.16 (2).jpeg|Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.16.jpeg|Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.17 (1).jpeg|Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.17 (2).jpeg|Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.17.jpeg|Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.18.jpeg" data-doors="Não se aplica" data-engine="1130 cc" data-power="Não informado" data-plate="Consulte" data-ipva="Consulte" data-color="Consulte" data-transmission="Não informado" data-features="Sport VRSCB">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="Estoque/Moto/Harley-Davidson/Harley-Davidson V-ROD 1130 cc Sport VRSCB/WhatsApp Image 2026-09-24 at 15.19.15 (1).jpeg" alt="Harley-Davidson V-ROD 1130 cc Sport VRSCB 2005" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-slate-700 text-white text-xs font-bold rounded-full">MOTO</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">Harley-Davidson V-ROD 1130 cc Sport VRSCB</h3>
+                            <p class="text-slate-500 text-sm mb-3">2005 • 38.000 km • Não informado</p>
+                            <div class="flex gap-3 mb-4">
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">Não informado</span>
+                                <span class="px-2 py-1 bg-slate-100 text-xs rounded text-slate-600">1130 cc</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                                <p class="text-xl font-bold text-primary">R$ 52.900</p>
+                                <a href="detalhes.html" class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-all">
+                                    Ver Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
         </div>
 
         <!-- Pagination -->
@@ -752,11 +776,11 @@
 
         function inferVehicleType(card) {
             const folder = sanitizeValue(card.getAttribute('data-folder'));
-            return folder.toLowerCase().includes('/motos/') ? 'Moto' : 'Carro';
+            return /(?:^|\/)motos?(?:\/|$)/i.test(folder) ? 'Moto' : 'Carro';
         }
 
         // ----- Brand Dropdown -----
-        const brandOptions = ['BYD','Chevrolet','Citroên','Fiat','Ford','Honda','Hyundai','Jeep','KIA','Land Rover','Mitsubishi','Nissan','Peugeot','Ram','Renault','Toyota','Volkswagen'];
+        const brandOptions = ['BYD','Chevrolet','Citroên','Fiat','Ford','Harley-Davidson','Honda','Hyundai','Jeep','KIA','Land Rover','Mitsubishi','Nissan','Peugeot','Ram','Renault','Toyota','Volkswagen'];
         let selectedBrand = '';
 
         function renderBrandList(filterText) {
