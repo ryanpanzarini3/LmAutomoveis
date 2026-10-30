@@ -279,6 +279,7 @@
         </div>
     </footer>
 
+    <script src="lm-api.js"></script>
     <script>
         lucide.createIcons();
 
@@ -298,46 +299,6 @@
             }
         });
 
-        function fixMojibake(str) {
-            if (!str) return '';
-            let out = String(str);
-
-            const punctuationMap = {
-                'â€™': '’',
-                'â€œ': '“',
-                'â€': '”',
-                'â€¢': '•',
-                'â€“': '–',
-                'â€”': '—',
-                'â€˜': '‘',
-                'â€•': '’',
-                'â€¡': '‡',
-                'Â©': '©',
-                'Â°': '°',
-                'Âº': 'º'
-            };
-
-            Object.entries(punctuationMap).forEach(([source, replacement]) => {
-                out = out.split(source).join(replacement);
-            });
-
-            try {
-                const bytes = Uint8Array.from(out, (char) => char.charCodeAt(0));
-                const decoded = new TextDecoder('utf-8', { fatal: false }).decode(bytes);
-                if (decoded && decoded !== out && !decoded.includes('�')) {
-                    out = decoded;
-                }
-            } catch (error) {
-                // Ignore and keep the already normalized string.
-            }
-
-            return out.replace(/\u00A0/g, ' ');
-        }
-
-        function sanitizeValue(value) {
-            return fixMojibake(value || '').replace(/\s+/g, ' ').trim();
-        }
-
         const vehicleSelect = document.getElementById('veiculo');
 
         async function loadVehicleOptions() {
@@ -346,35 +307,18 @@
             }
 
             try {
-                const response = await fetch('estoque.html');
-                if (!response.ok) {
-                    return;
-                }
-
-                const htmlText = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(htmlText, 'text/html');
-                const vehicleTitles = Array.from(doc.querySelectorAll('.car-card h3'))
-                    .map((element) => sanitizeValue(element.textContent))
-                    .filter(Boolean);
-
+                const vehicles = await lmFetchVehicles();
+                const vehicleTitles = [...new Set(vehicles.map((vehicle) => `${lmVehicleTitle(vehicle)} ${vehicle.year}`))];
                 if (vehicleTitles.length === 0) {
                     return;
                 }
 
-                const uniqueTitles = [...new Set(vehicleTitles)];
                 const currentValue = vehicleSelect.value;
-
                 vehicleSelect.innerHTML = '<option value="">Selecione um veículo</option>';
-                uniqueTitles.forEach((title) => {
-                    const option = document.createElement('option');
-                    option.value = title;
-                    option.textContent = title;
-                    vehicleSelect.appendChild(option);
-                });
-
+                vehicleTitles.forEach((title) => vehicleSelect.appendChild(new Option(title, title)));
                 vehicleSelect.value = currentValue;
             } catch (error) {
+                // Sem a lista, o campo continua com a opção padrão.
             }
         }
 

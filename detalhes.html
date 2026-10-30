@@ -121,13 +121,13 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 <a href="estoque.html" class="hover:text-white">Estoque</a>
                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                <span id="breadcrumb-vehicle" class="text-white font-medium">BMW 320i Sport</span>
+                <span id="breadcrumb-vehicle" class="text-white font-medium">Carregando...</span>
             </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Main Content (fica invisível até os dados chegarem da API) -->
+    <div id="vehicle-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 transition-opacity duration-300 opacity-0">
         <div class="grid lg:grid-cols-3 gap-8">
             
             <!-- Left Column - Images & Details -->
@@ -142,9 +142,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                         <button class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:bg-accent transition-colors" onclick="nextImage()">
                             <i data-lucide="chevron-right" class="w-6 h-6"></i>
                         </button>
-                        <div class="absolute top-4 left-4">
-                            <span class="px-4 py-2 bg-accent text-primary text-sm font-bold rounded-full shadow-lg">DESTAQUE</span>
-                        </div>
+                        <div id="vehicle-badges" class="absolute top-4 left-4 flex gap-2"></div>
                     </div>
                     
                     <!-- Thumbnails -->
@@ -289,6 +287,11 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                             <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
                             <span>Faróis em LED</span>
                         </div>
+                    </div>
+
+                    <div id="vehicle-description" class="hidden mt-8 pt-8 border-t border-slate-200">
+                        <h3 class="font-display text-2xl font-bold text-primary mb-4">Sobre este veículo</h3>
+                        <p id="vehicle-description-text" class="text-slate-700 leading-relaxed whitespace-pre-line"></p>
                     </div>
                 </div>
 
@@ -459,266 +462,101 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
     </a>
 
+    <script src="lm-api.js"></script>
     <script>
         lucide.createIcons();
-        
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Vehicle Data from URL
+        // Os dados do veículo vêm SEMPRE da API, pelo id. Antes eles vinham da própria URL,
+        // o que permitia montar links falsos (preço, fotos) dentro do domínio oficial.
         const searchParams = new URLSearchParams(window.location.search);
+        const vehicleContent = document.getElementById('vehicle-content');
+        const SITE_URL = 'https://lmautomoveis.seg.br';
 
-        let vehicleFromUrl = {
-            brand: searchParams.get('brand') || '',
-            model: searchParams.get('model') || '',
-            year: searchParams.get('year') || '',
-            km: searchParams.get('km') || '',
-            fuel: searchParams.get('fuel') || '',
-            transmission: searchParams.get('transmission') || '',
-            color: searchParams.get('color') || '',
-            price: searchParams.get('price') || '',
-            image: searchParams.get('img') || '',
-            images: searchParams.get('images') || '',
-            folder: searchParams.get('folder') || '',
-            doors: searchParams.get('doors') || '',
-            engine: searchParams.get('engine') || '',
-            power: searchParams.get('power') || '',
-            plate: searchParams.get('plate') || '',
-            ipva: searchParams.get('ipva') || '',
-            features: searchParams.get('features') || ''
-        };
+        function setText(id, value, fallback = 'Consulte') {
+            const element = document.getElementById(id);
+            if (element) element.textContent = value != null && value !== '' ? value : fallback;
+        }
 
-        const vehicleName = `${vehicleFromUrl.brand} ${vehicleFromUrl.model}`.trim();
+        function showVehicleNotice(title, message) {
+            setText('breadcrumb-vehicle', title);
+            document.title = `${title} - L&M Automóveis`;
+            vehicleContent.innerHTML = `
+                <div class="max-w-xl mx-auto bg-white rounded-2xl p-10 shadow-lg text-center">
+                    <h1 class="font-display text-3xl font-bold text-primary mb-3">${lmEscape(title)}</h1>
+                    <p class="text-slate-600 mb-8">${lmEscape(message)}</p>
+                    <a href="estoque.html" class="inline-flex px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-slate-800 transition-all">Ver veículos disponíveis</a>
+                </div>`;
+            vehicleContent.classList.remove('opacity-0');
+        }
 
-        if (vehicleName) {
-            const titleElement = document.getElementById('vehicle-title');
-            const subtitleElement = document.getElementById('vehicle-subtitle');
-            const breadcrumbElement = document.getElementById('breadcrumb-vehicle');
-            const priceElement = document.getElementById('vehicle-price');
-            const specBrandElement = document.getElementById('spec-brand');
-            const specModelElement = document.getElementById('spec-model');
-            const specColorElement = document.getElementById('spec-color');
-            const specDoorsElement = document.getElementById('spec-doors');
-            const specEngineElement = document.getElementById('spec-engine');
-            const specPowerElement = document.getElementById('spec-power');
-            const specPlateElement = document.getElementById('spec-plate');
-            const specIpvaElement = document.getElementById('spec-ipva');
-            const featureYearElement = document.getElementById('feature-year');
-            const featureKmElement = document.getElementById('feature-km');
-            const featureFuelElement = document.getElementById('feature-fuel');
-            const featureTransmissionElement = document.getElementById('feature-transmission');
+        function renderVehicle(vehicle) {
+            const vehicleName = lmVehicleTitle(vehicle);
+
+            setText('vehicle-title', vehicleName);
+            setText('breadcrumb-vehicle', vehicleName);
+            setText('vehicle-subtitle', lmVehicleMeta(vehicle), '');
+            setText('vehicle-price', lmFormatPrice(vehicle.price));
+            setText('spec-brand', vehicle.brand);
+            setText('spec-model', vehicle.model);
+            setText('spec-color', vehicle.color);
+            setText('spec-doors', vehicle.doors ? `${vehicle.doors} portas` : '');
+            setText('spec-engine', vehicle.engine);
+            setText('spec-power', vehicle.power);
+            setText('spec-plate', vehicle.plateEnd);
+            setText('spec-ipva', vehicle.ipva);
+            setText('feature-year', vehicle.year, '—');
+            setText('feature-km', vehicle.km != null ? `${lmFormatNumber(vehicle.km)} km` : '', '—');
+            setText('feature-fuel', vehicle.fuel, '—');
+            setText('feature-transmission', vehicle.transmission, '—');
+
+            const badges = document.getElementById('vehicle-badges');
+            if (badges) badges.innerHTML = lmBadgesHtml(vehicle);
+
             const featuresListElement = document.getElementById('features-list');
-            const whatsappInterestLink = document.getElementById('whatsapp-interest-link');
-
-            if (titleElement) titleElement.textContent = vehicleName;
-            if (breadcrumbElement) breadcrumbElement.textContent = vehicleName;
-            if (specBrandElement && vehicleFromUrl.brand) specBrandElement.textContent = vehicleFromUrl.brand;
-            if (specModelElement && vehicleFromUrl.model) specModelElement.textContent = vehicleFromUrl.model;
-            if (specColorElement && vehicleFromUrl.color) specColorElement.textContent = vehicleFromUrl.color;
-            if (specDoorsElement && vehicleFromUrl.doors) specDoorsElement.textContent = vehicleFromUrl.doors;
-            if (specEngineElement && vehicleFromUrl.engine) specEngineElement.textContent = vehicleFromUrl.engine;
-            if (specPowerElement && vehicleFromUrl.power) specPowerElement.textContent = vehicleFromUrl.power;
-            if (specPlateElement && vehicleFromUrl.plate) specPlateElement.textContent = vehicleFromUrl.plate;
-            if (specIpvaElement && vehicleFromUrl.ipva) specIpvaElement.textContent = vehicleFromUrl.ipva;
-            if (featureYearElement && vehicleFromUrl.year) featureYearElement.textContent = vehicleFromUrl.year;
-            if (featureKmElement && vehicleFromUrl.km) featureKmElement.textContent = `${vehicleFromUrl.km} km`;
-            if (featureFuelElement && vehicleFromUrl.fuel) featureFuelElement.textContent = vehicleFromUrl.fuel;
-            if (featureTransmissionElement && vehicleFromUrl.transmission) featureTransmissionElement.textContent = vehicleFromUrl.transmission;
-            if (priceElement && vehicleFromUrl.price) priceElement.textContent = `R$ ${vehicleFromUrl.price}`;
-
-            if (featuresListElement && vehicleFromUrl.features) {
-                const features = vehicleFromUrl.features.split('|').map((item) => item.trim()).filter(Boolean);
-                if (features.length > 0) {
-                    featuresListElement.innerHTML = features.map((feature) => `
+            if (featuresListElement) {
+                featuresListElement.innerHTML = vehicle.features.length
+                    ? vehicle.features.map((feature) => `
                         <div class="flex items-center gap-2 text-slate-700">
                             <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
-                            <span>${feature}</span>
+                            <span>${lmEscape(feature)}</span>
                         </div>
-                    `).join('');
-                }
+                    `).join('')
+                    : '<p class="text-slate-500">Consulte a loja para a lista completa de itens.</p>';
             }
 
-            if (whatsappInterestLink && vehicleName) {
-                const interestText = `Olá! Tenho interesse no ${vehicleName}${vehicleFromUrl.year ? ` ${vehicleFromUrl.year}` : ''}`;
-                whatsappInterestLink.href = `https://wa.me/554299226561?text=${encodeURIComponent(interestText)}`;
+            if (vehicle.description) {
+                document.getElementById('vehicle-description-text').textContent = vehicle.description;
+                document.getElementById('vehicle-description').classList.remove('hidden');
             }
 
-            const subtitleParts = [];
-            if (vehicleFromUrl.year) subtitleParts.push(vehicleFromUrl.year);
-            if (vehicleFromUrl.km) subtitleParts.push(`${vehicleFromUrl.km} km`);
-            if (vehicleFromUrl.fuel) subtitleParts.push(vehicleFromUrl.fuel);
-            if (subtitleElement && subtitleParts.length > 0) {
-                subtitleElement.textContent = subtitleParts.join(' • ');
+            const whatsappInterestLink = document.getElementById('whatsapp-interest-link');
+            if (whatsappInterestLink) {
+                const interestText = `Olá! Tenho interesse no ${vehicleName} ${vehicle.year} (código ${vehicle.id}).`;
+                whatsappInterestLink.href = `https://wa.me/${LM_WHATSAPP}?text=${encodeURIComponent(interestText)}`;
             }
 
-            const pageTitleParts = [vehicleName];
-            if (vehicleFromUrl.year) {
-                pageTitleParts.push(vehicleFromUrl.year);
-            }
-            document.title = `${pageTitleParts.join(' ')} - L&M Automóveis`;
-
-
+            document.title = `${vehicleName} ${vehicle.year} - L&M Automóveis`;
             lucide.createIcons();
+            vehicleContent.classList.remove('opacity-0');
         }
 
-        function fixMojibake(str) {
-            if (!str) return '';
-            let out = String(str);
-
-            const punctuationMap = {
-                'â€™': '’',
-                'â€œ': '“',
-                'â€': '”',
-                'â€¢': '•',
-                'â€“': '–',
-                'â€”': '—',
-                'â€˜': '‘',
-                'â€•': '’',
-                'â€¡': '‡',
-                'Â©': '©',
-                'Â°': '°',
-                'Âº': 'º'
-            };
-
-            Object.entries(punctuationMap).forEach(([source, replacement]) => {
-                out = out.split(source).join(replacement);
-            });
-
-            try {
-                const bytes = Uint8Array.from(out, (char) => char.charCodeAt(0));
-                const decoded = new TextDecoder('utf-8', { fatal: false }).decode(bytes);
-                if (decoded && decoded !== out && !decoded.includes('�')) {
-                    out = decoded;
-                }
-            } catch (error) {
-                // Ignore and keep the already normalized string.
-            }
-
-            return out.replace(/\u00A0/g, ' ');
-        }
-
-        function sanitizeValue(value) {
-            const fixed = fixMojibake(value);
-            return (fixed || '').replace(/\s+/g, ' ').trim();
-        }
-
-        function parseVehicleMetaText(value) {
-            const text = sanitizeValue(value || '');
-            const yearMatch = text.match(/\b(19|20)\d{2}\b/);
-            const kmMatch = text.match(/([\d.,]+)\s*km/i);
-            const year = yearMatch ? yearMatch[0] : '';
-            const km = kmMatch ? kmMatch[1].replace(/\./g, '').trim() : '';
-            const fuelText = text
-                .replace(yearMatch ? yearMatch[0] : '', '')
-                .replace(kmMatch ? kmMatch[0] : '', '')
-                .replace(/[.\-•]+/g, ' ')
-                .replace(/\s+/g, ' ')
-                .trim();
-
-            return {
-                year,
-                km,
-                fuel: fuelText.replace(/^[-•.\s]+|[-•.\s]+$/g, '')
-            };
-        }
-
-        function normalizeIpvaValue(value) {
-            return sanitizeValue(value).replace(/^[?✓✔\-\.\s]+/, '').trim();
-        }
-
-        function parsePriceValue(priceText) {
-            const normalized = sanitizeValue(priceText).replace('R$', '').replace(/\./g, '').replace(',', '.');
-            const parsed = Number.parseFloat(normalized);
-            return Number.isFinite(parsed) ? parsed : 0;
-        }
-
-        function parseYearValue(yearText) {
-            const parsed = Number.parseInt(sanitizeValue(yearText), 10);
-            return Number.isFinite(parsed) ? parsed : 0;
-        }
-
-        function inferTitleFromFolder(folder) {
-            const folderText = sanitizeValue(folder);
-            if (!folderText) return '';
-            const parts = folderText.split('/').filter(Boolean);
-            return parts.length ? parts[parts.length - 1] : folderText;
-        }
-
-        function buildVehicleDetailsLink(vehicle) {
-            const params = new URLSearchParams({
-                brand: vehicle.brand || '',
-                model: vehicle.model || '',
-                year: vehicle.year || '',
-                km: vehicle.km || '',
-                fuel: vehicle.fuel || '',
-                transmission: vehicle.transmission || '',
-                color: vehicle.color || '',
-                price: vehicle.price || '',
-                img: vehicle.image || '',
-                images: vehicle.images || vehicle.image || '',
-                doors: vehicle.doors || '',
-                engine: vehicle.engine || '',
-                power: vehicle.power || '',
-                plate: vehicle.plate || '',
-                ipva: vehicle.ipva || '',
-                features: vehicle.features || '',
-                folder: vehicle.folder || ''
-            });
-
-            return `detalhes.html?${params.toString()}`;
-        }
-
-        async function loadStockVehicles() {
-            const response = await fetch('estoque.html');
-            if (!response.ok) {
-                throw new Error('Nao foi possivel carregar o estoque.');
-            }
-
-            const html = await response.text();
-            const parser = new DOMParser();
-            const stockDocument = parser.parseFromString(html, 'text/html');
-            const cards = Array.from(stockDocument.querySelectorAll('.car-card'));
-
-            return cards.map((card) => {
-                const titleText = sanitizeValue(card.querySelector('h3')?.textContent);
-                const titleParts = titleText.split(' ').filter(Boolean);
-                const brand = sanitizeValue(titleParts.shift());
-                const model = sanitizeValue(titleParts.join(' '));
-                const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
-                const metaParts = parseVehicleMetaText(metaText);
-                const tags = card.querySelectorAll('.flex.gap-3.mb-4 span');
-                const folder = sanitizeValue(card.getAttribute('data-folder'));
-                const titleFromImageAlt = sanitizeValue(card.querySelector('img')?.getAttribute('alt'));
-                const title = titleText || titleFromImageAlt || inferTitleFromFolder(folder) || sanitizeValue(`${brand} ${model}`);
-                const image = sanitizeValue(card.querySelector('img')?.getAttribute('src'));
-                const price = extractPriceTextFromCard(card).replace('R$', '').trim();
-
-                return {
-                    title,
-                    brand,
-                    model,
-                    year: metaParts.year || '',
-                    km: metaParts.km || '',
-                    fuel: metaParts.fuel || '',
-                    transmission: sanitizeValue(tags[0]?.textContent),
-                    color: sanitizeValue(tags[1]?.textContent),
-                    price,
-                    image,
-                    images: sanitizeValue(card.getAttribute('data-images')) || image,
-                    folder: sanitizeValue(card.getAttribute('data-folder')),
-                    doors: sanitizeValue(card.getAttribute('data-doors')),
-                    engine: sanitizeValue(card.getAttribute('data-engine')),
-                    power: sanitizeValue(card.getAttribute('data-power')),
-                    plate: sanitizeValue(card.getAttribute('data-plate')),
-                    ipva: normalizeIpvaValue(card.getAttribute('data-ipva')),
-                    features: sanitizeValue(card.getAttribute('data-features'))
-                };
-            }).filter((vehicle) => vehicle.title && vehicle.image);
+        // Links antigos (?brand=...&model=...) só servem para achar o veículo real no estoque.
+        async function findVehicleFromLegacyLink(stockVehicles) {
+            const brand = (searchParams.get('brand') || '').toLowerCase();
+            const model = (searchParams.get('model') || '').toLowerCase();
+            const year = searchParams.get('year') || '';
+            if (!brand || !model) return null;
+            return stockVehicles.find((vehicle) => vehicle.brand.toLowerCase() === brand
+                && vehicle.model.toLowerCase() === model
+                && (!year || String(vehicle.year) === year)) || null;
         }
 
         function renderSimilarVehicles(vehicles) {
@@ -736,68 +574,40 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
                 return;
             }
 
-            grid.innerHTML = vehicles.map((vehicle) => {
-                const detailsUrl = buildVehicleDetailsLink(vehicle);
-                return `
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-slate-100">
+            grid.innerHTML = vehicles.map((vehicle) => `
+                    <a href="${lmVehicleUrl(vehicle)}" class="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border border-slate-100">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="${vehicle.image}" alt="${vehicle.title}" class="w-full h-full object-cover">
+                            <img src="${lmEscape(lmCoverUrl(vehicle))}" alt="${lmEscape(lmVehicleTitle(vehicle))}" loading="lazy" class="w-full h-full object-cover">
                         </div>
                         <div class="p-5">
-                            <h3 class="font-display text-lg font-bold text-primary mb-1">${vehicle.title}</h3>
-                            <p class="text-slate-500 text-sm mb-3">${sanitizeValue(vehicle.year)} • ${sanitizeValue(vehicle.km)} km • ${sanitizeValue(vehicle.fuel)}</p>
+                            <h3 class="font-display text-lg font-bold text-primary mb-1">${lmEscape(lmVehicleTitle(vehicle))}</h3>
+                            <p class="text-slate-500 text-sm mb-3">${lmEscape(lmVehicleMeta(vehicle))}</p>
 
                             <div class="flex justify-between items-center pt-3 border-t border-slate-100">
-                                <p class="text-2xl font-bold text-accent">R$ ${vehicle.price}</p>
-                                <a href="${detailsUrl}" class="text-sm text-primary font-semibold hover:text-accent">Ver mais</a>
+                                <p class="text-2xl font-bold text-accent">${lmFormatPrice(vehicle.price)}</p>
+                                <span class="text-sm text-primary font-semibold">Ver mais</span>
                             </div>
                         </div>
-                    </div>
-                `;
-            }).join('');
+                    </a>
+                `).join('');
         }
 
-        async function initializeSimilarVehicles() {
-            try {
-                const stockVehicles = await loadStockVehicles();
-                if (!stockVehicles.length) {
-                    renderSimilarVehicles([]);
-                    return;
-                }
-
-                const currentVehicleTitle = sanitizeValue(`${vehicleFromUrl.brand} ${vehicleFromUrl.model}`);
-                const currentYear = parseYearValue(vehicleFromUrl.year);
-                const currentFuel = sanitizeValue(vehicleFromUrl.fuel);
-                const currentBrand = sanitizeValue(vehicleFromUrl.brand);
-                const currentPrice = parsePriceValue(vehicleFromUrl.price);
-
-                const candidateVehicles = stockVehicles.filter((vehicle) => {
-                    const sameByTitle = currentVehicleTitle && sanitizeValue(vehicle.title) === currentVehicleTitle;
-                    const sameByMainImage = vehicleFromUrl.image && sanitizeValue(vehicle.image) === sanitizeValue(vehicleFromUrl.image);
-                    const sameByFolder = vehicleFromUrl.folder && sanitizeValue(vehicle.folder) === sanitizeValue(vehicleFromUrl.folder);
-                    const isSameVehicle = (sameByTitle && sameByMainImage) || sameByFolder;
-                    return !isSameVehicle;
-                });
-
-                const rankedVehicles = candidateVehicles
-                    .map((vehicle) => {
-                        let score = 0;
-                        const vehicleYear = parseYearValue(vehicle.year);
-                        const vehiclePrice = parsePriceValue(vehicle.price);
-
-                        if (currentFuel && sanitizeValue(vehicle.fuel) === currentFuel) score += 3;
-                        if (currentBrand && sanitizeValue(vehicle.brand) === currentBrand) score += 2;
-                        if (currentYear && vehicleYear && Math.abs(vehicleYear - currentYear) <= 2) score += 1;
-                        if (currentPrice && vehiclePrice && Math.abs(vehiclePrice - currentPrice) <= 20000) score += 1;
-
-                        return { vehicle, score };
-                    })
-                    .sort((a, b) => b.score - a.score);
-
-                renderSimilarVehicles(rankedVehicles.slice(0, 3).map((item) => item.vehicle));
-            } catch (error) {
-                renderSimilarVehicles([]);
-            }
+        function rankSimilarVehicles(stockVehicles, current) {
+            return stockVehicles
+                .filter((vehicle) => !current || vehicle.id !== current.id)
+                .map((vehicle) => {
+                    let score = 0;
+                    if (current) {
+                        if (current.fuel && vehicle.fuel === current.fuel) score += 3;
+                        if (vehicle.brand === current.brand) score += 2;
+                        if (Math.abs(vehicle.year - current.year) <= 2) score += 1;
+                        if (Math.abs(vehicle.price - current.price) <= 20000) score += 1;
+                    }
+                    return { vehicle, score };
+                })
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 3)
+                .map((item) => item.vehicle);
         }
 
         // Image Gallery
@@ -810,6 +620,7 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         const nextImageModalBtn = document.getElementById('next-image-modal');
         const modalSwipeHint = document.getElementById('modal-swipe-hint');
         let images = [];
+        let thumbnails = [];
         let currentImage = 0;
         let modalTouchStartX = 0;
         let modalTouchStartY = 0;
@@ -890,76 +701,36 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             document.body.classList.remove('overflow-hidden');
         }
 
-        async function loadImagesFromFolder(folderPath) {
-            if (!folderPath) {
-                return [];
-            }
-
-            try {
-                const response = await fetch(`${folderPath}/imagens.json`);
-                if (!response.ok) {
-                    return [];
-                }
-
-                const manifest = await response.json();
-                const manifestImages = Array.isArray(manifest)
-                    ? manifest
-                    : Array.isArray(manifest.images) ? manifest.images : [];
-
-                return manifestImages
-                    .map((imagePath) => String(imagePath || '').trim())
-                    .filter(Boolean)
-                    .map((imagePath) => {
-                        if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
-                            return imagePath;
-                        }
-                        return `${folderPath}/${imagePath}`;
-                    });
-            } catch (error) {
-                return [];
-            }
-        }
-
         function renderThumbnails() {
             if (!thumbnailsContainer) {
                 return;
             }
 
-            thumbnailsContainer.innerHTML = images.map((imagePath, index) => `
+            thumbnailsContainer.innerHTML = thumbnails.map((imagePath, index) => `
                 <button class="thumbnail aspect-[4/3] rounded-lg overflow-hidden border-2 border-transparent hover:border-accent/70 transition-all" onclick="changeImage(${index})">
-                    <img src="${imagePath}" class="w-full h-full object-cover" alt="Imagem ${index + 1}">
+                    <img src="${lmEscape(imagePath)}" class="w-full h-full object-cover" alt="Imagem ${index + 1}" loading="lazy">
                 </button>
             `).join('');
         }
 
-        async function initializeGallery() {
-            const parsedImages = vehicleFromUrl.images
-                ? vehicleFromUrl.images
-                    .split('|')
-                    .map((imagePath) => imagePath.trim())
-                    .filter((imagePath) => imagePath && imagePath.includes('/'))
-                : [];
-
-            const folderImages = await loadImagesFromFolder(vehicleFromUrl.folder);
-
-            images = folderImages.length > 0
-                ? folderImages
-                : (parsedImages.length > 0
-                    ? parsedImages
-                    : (vehicleFromUrl.image ? [vehicleFromUrl.image] : [mainImage?.getAttribute('src')].filter(Boolean)));
-
-            images = images.filter(Boolean);
+        function initializeGallery(vehicle) {
+            images = vehicle.photos.map((photo) => photo.url);
+            thumbnails = vehicle.photos.map((photo) => photo.thumbUrl);
+            if (images.length === 0) {
+                images = [LM_PLACEHOLDER_IMAGE];
+                thumbnails = [];
+            }
 
             currentImage = 0;
-
-            if (mainImage && images.length > 0) {
+            if (mainImage) {
                 mainImage.src = images[0];
+                mainImage.alt = `${lmVehicleTitle(vehicle)} ${vehicle.year}`;
             }
 
             renderThumbnails();
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            if (thumbnails.length > 0) {
-                thumbnails[0].classList.add('thumbnail-active');
+            const thumbnailButtons = document.querySelectorAll('.thumbnail');
+            if (thumbnailButtons.length > 0) {
+                thumbnailButtons[0].classList.add('thumbnail-active');
             }
         }
 
@@ -971,8 +742,8 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
             currentImage = index;
             mainImage.src = images[index];
 
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            thumbnails.forEach((thumb, i) => {
+            const thumbnailButtons = document.querySelectorAll('.thumbnail');
+            thumbnailButtons.forEach((thumb, i) => {
                 if (i === index) {
                     thumb.classList.add('thumbnail-active');
                 } else {
@@ -1100,63 +871,93 @@ Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display
         });
 
         // Share functionality
-        const shareButtons = {
-            facebook: document.getElementById('share-facebook'),
-            twitter: document.getElementById('share-twitter'),
-            whatsapp: document.getElementById('share-whatsapp'),
-            link: document.getElementById('share-link')
-        };
+        function initializeShare(vehicle) {
+            const shareButtons = {
+                facebook: document.getElementById('share-facebook'),
+                twitter: document.getElementById('share-twitter'),
+                whatsapp: document.getElementById('share-whatsapp'),
+                link: document.getElementById('share-link')
+            };
 
-        // Criar URL para compartilhar (com todos os parâmetros)
-        const baseUrl = 'https://lmautomoveis.seg.br/detalhes.html';
-        const cleanShareUrl = `${baseUrl}?brand=${encodeURIComponent(vehicleFromUrl.brand)}&model=${encodeURIComponent(vehicleFromUrl.model)}&year=${encodeURIComponent(vehicleFromUrl.year)}&km=${encodeURIComponent(vehicleFromUrl.km)}&fuel=${encodeURIComponent(vehicleFromUrl.fuel)}&price=${encodeURIComponent(vehicleFromUrl.price)}&images=${encodeURIComponent(vehicleFromUrl.images)}&folder=${encodeURIComponent(vehicleFromUrl.folder)}&color=${encodeURIComponent(vehicleFromUrl.color)}&transmission=${encodeURIComponent(vehicleFromUrl.transmission)}&doors=${encodeURIComponent(vehicleFromUrl.doors)}&engine=${encodeURIComponent(vehicleFromUrl.engine)}&power=${encodeURIComponent(vehicleFromUrl.power)}&plate=${encodeURIComponent(vehicleFromUrl.plate)}&ipva=${encodeURIComponent(vehicleFromUrl.ipva)}&features=${encodeURIComponent(vehicleFromUrl.features)}`;
-        const shareTitle = vehicleName || 'Confira este veículo!';
-        const shortMessage = `${shareTitle} - ${vehicleFromUrl.year} - R$ ${vehicleFromUrl.price}`;
-        const shareMessage = `${shortMessage} ${cleanShareUrl}`;
+            const shareUrl = `${SITE_URL}/${lmVehicleUrl(vehicle)}`;
+            const shareTitle = lmVehicleTitle(vehicle);
+            const shareMessage = `${shareTitle} - ${vehicle.year} - ${lmFormatPrice(vehicle.price)} ${shareUrl}`;
 
-        if (shareButtons.facebook) {
-            shareButtons.facebook.addEventListener('click', () => {
-                const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(cleanShareUrl)}`;
-                window.open(facebookShareUrl, 'facebook-share', 'width=600,height=400');
+            shareButtons.facebook?.addEventListener('click', () => {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, 'facebook-share', 'width=600,height=400');
             });
-        }
 
-        if (shareButtons.twitter) {
-            shareButtons.twitter.addEventListener('click', () => {
-`Veja este ${shareTitle} na LM Automóveis!`
-                window.open(twitterShareUrl, 'twitter-share', 'width=600,height=400');
+            shareButtons.twitter?.addEventListener('click', () => {
+                const text = `Veja este ${shareTitle} na LM Automóveis!`;
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, 'twitter-share', 'width=600,height=400');
             });
-        }
 
-        if (shareButtons.whatsapp) {
-            shareButtons.whatsapp.addEventListener('click', () => {
-                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
-                window.open(whatsappUrl, '_blank');
+            shareButtons.whatsapp?.addEventListener('click', () => {
+                window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage)}`, '_blank');
             });
-        }
 
-        if (shareButtons.link) {
-            shareButtons.link.addEventListener('click', () => {
-                // Copiar para clipboard
-                navigator.clipboard.writeText(cleanShareUrl).then(() => {
-                    // Feedback visual
+            shareButtons.link?.addEventListener('click', () => {
+                navigator.clipboard.writeText(shareUrl).then(() => {
                     const originalHTML = shareButtons.link.innerHTML;
                     shareButtons.link.innerHTML = '<i data-lucide="check" class="w-5 h-5 mx-auto text-green-500"></i>';
                     lucide.createIcons();
-                    
+
                     setTimeout(() => {
                         shareButtons.link.innerHTML = originalHTML;
                         lucide.createIcons();
                     }, 2000);
                 }).catch(() => {
-                    // Fallback se clipboard não funcionar
-                    alert('Link: ' + cleanShareUrl);
+                    alert('Link: ' + shareUrl);
                 });
             });
         }
 
-        initializeGallery();
-        initializeSimilarVehicles();
+        async function initializePage() {
+            let stockVehicles = [];
+            try {
+                stockVehicles = await lmFetchVehicles();
+            } catch (error) {
+                stockVehicles = [];
+            }
+
+            let current = null;
+            try {
+                let id = searchParams.get('id');
+                if (!id) {
+                    const legacyMatch = await findVehicleFromLegacyLink(stockVehicles);
+                    if (!legacyMatch) {
+                        showVehicleNotice('Veículo não encontrado', 'Este anúncio não existe ou não está mais disponível.');
+                        renderSimilarVehicles(rankSimilarVehicles(stockVehicles, null));
+                        return;
+                    }
+                    id = legacyMatch.id;
+                    history.replaceState(null, '', lmVehicleUrl(legacyMatch));
+                }
+
+                const vehicle = await lmFetchVehicle(id);
+                if (vehicle.status === 'SOLD') {
+                    showVehicleNotice(
+                        `${lmVehicleTitle(vehicle)} ${vehicle.year}: vendido`,
+                        'Este veículo já foi vendido. Se alguém estiver oferecendo ele em nome da L&M, desconfie e fale com a gente pelo WhatsApp oficial do site.'
+                    );
+                } else {
+                    current = vehicle;
+                    renderVehicle(vehicle);
+                    initializeGallery(vehicle);
+                    initializeShare(vehicle);
+                }
+            } catch (error) {
+                if (error.status === 404) {
+                    showVehicleNotice('Veículo não encontrado', 'Este anúncio não existe ou não está mais disponível.');
+                } else {
+                    showVehicleNotice('Não foi possível carregar', 'Tente novamente em instantes ou fale com a gente pelo WhatsApp.');
+                }
+            }
+
+            renderSimilarVehicles(rankSimilarVehicles(stockVehicles, current));
+        }
+
+        initializePage();
     </script>
 </body>
 </html>
