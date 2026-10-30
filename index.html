@@ -180,19 +180,20 @@
                 </div>
             </div>
             
-            <div class="relative animate-float hidden lg:block">
+            <!-- Primeiro destaque do estoque (preenchido pela API) -->
+            <div id="hero-vehicle" class="relative animate-float hidden lg:block opacity-0 transition-opacity duration-500 cursor-pointer">
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-accent/30 hover:border-accent/50 transition-all duration-300">
-                    <img src="Estoque/Peugeot/208 Style 2024/IMG_5594.JPG" class="w-full h-[500px] object-cover transform hover:scale-105 transition-transform duration-700">
+                    <img id="hero-vehicle-image" src="" alt="" class="w-full h-[500px] object-cover transform hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
                     <div class="absolute bottom-4 left-4 right-4">
                         <div class="glass rounded-xl p-3 backdrop-blur-xl bg-white/10 border border-white/30">
                             <div class="text-white text-sm">
                                 <p class="text-xs font-semibold text-accent uppercase tracking-wider">Destaque</p>
-                                <p class="font-display text-xl font-bold mb-2">Peugeot 208 Style 2024</p>
-                                <div class="grid grid-cols-2 gap-2">        
+                                <p id="hero-vehicle-title" class="font-display text-xl font-bold mb-2"></p>
+                                <div class="grid grid-cols-2 gap-2">
                                     <div>
                                         <p class="text-xs text-accent/80 font-semibold">Por apenas:</p>
-                                        <p class="text-2xl font-bold text-accent/80">R$ 79.900</p>
+                                        <p id="hero-vehicle-price" class="text-2xl font-bold text-accent/80"></p>
                                     </div>
                                 </div>
                             </div>
@@ -279,166 +280,7 @@
             </div>
 
             <div id="featured-cars-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Car Card 2 -->
-                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Nissan" data-model="March SV" data-year="2019" data-folder="Estoque/Nissan/March SV 2019" data-images="Estoque/Nissan/March SV 2019/IMG_3665.JPG|Estoque/Nissan/March SV 2019/IMG_3666.JPG|Estoque/Nissan/March SV 2019/IMG_3667.JPG|Estoque/Nissan/March SV 2019/IMG_3668.JPG|Estoque/Nissan/March SV 2019/IMG_3669.JPG|Estoque/Nissan/March SV 2019/IMG_3670.JPG|Estoque/Nissan/March SV 2019/IMG_3671.JPG|Estoque/Nissan/March SV 2019/IMG_3672.JPG|Estoque/Nissan/March SV 2019/IMG_3673.JPG|Estoque/Nissan/March SV 2019/IMG_3675.JPG|Estoque/Nissan/March SV 2019/IMG_3676.JPG|Estoque/Nissan/March SV 2019/IMG_3677.JPG|Estoque/Nissan/March SV 2019/IMG_3678.JPG" data-doors="4 portas" data-engine="1.6" data-power="111 cv" data-plate="0" data-ipva="✔ Em dia" data-color="Branco" data-transmission="Manual" data-features="Ar Condicionado|Direção Hidráulica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="Estoque/Nissan/March SV 2019/IMG_3665.JPG" alt="Nissan March SV 2019" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full">HATCH</span>
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <button class="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-secondary transition-colors">
-                                <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-display text-xl font-bold text-primary">Nissan March SV</h3>
-                                <p class="text-slate-500 text-sm">2019 . 80.000 km</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
-                            <div class="flex items-center gap-1">
-                                <i data-lucide="fuel" class="w-4 h-4"></i>
-                                <span>Flex</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <i data-lucide="settings-2" class="w-4 h-4"></i>
-                                <span>Manual</span>
-                            </div>
-                        </div>
-                        <div class="pt-4 border-t border-slate-100 mt-auto">
-                            <p class="text-xs text-slate-400 line-through mb-1">De R$ 61.900</p>
-                            <p class="text-sm text-slate-500 font-medium">Por</p>
-                            <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 57.900</p>                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-primary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(37,99,235,0.28)] hover:from-primary hover:to-accent transition-all">
-                                Tenho Interesse
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Car Card 3 -->
-                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Peugeot" data-model="208 Style" data-year="2024" data-folder="Estoque/Peugeot/208 Style 2024" data-images="Estoque/Peugeot/208 Style 2024/IMG_5594.JPG|Estoque/Peugeot/208 Style 2024/IMG_5595.JPG|Estoque/Peugeot/208 Style 2024/IMG_5596.JPG|Estoque/Peugeot/208 Style 2024/IMG_5597.JPG|Estoque/Peugeot/208 Style 2024/IMG_5598.JPG|Estoque/Peugeot/208 Style 2024/IMG_5599.JPG|Estoque/Peugeot/208 Style 2024/IMG_5601.JPG|Estoque/Peugeot/208 Style 2024/IMG_5602.JPG|Estoque/Peugeot/208 Style 2024/IMG_5603.JPG|Estoque/Peugeot/208 Style 2024/IMG_5604.JPG|Estoque/Peugeot/208 Style 2024/IMG_5605.JPG|Estoque/Peugeot/208 Style 2024/IMG_5606.JPG|Estoque/Peugeot/208 Style 2024/IMG_5607.JPG|Estoque/Peugeot/208 Style 2024/IMG_5609.JPG|Estoque/Peugeot/208 Style 2024/IMG_5610.JPG|Estoque/Peugeot/208 Style 2024/IMG_5611.JPG|Estoque/Peugeot/208 Style 2024/IMG_5612.JPG|Estoque/Peugeot/208 Style 2024/IMG_5613.JPG" data-doors="4 portas" data-engine="1.0" data-power="Não informado" data-plate="Não informado" data-ipva="Não informado" data-color="Não informado" data-transmission="Manual" data-features="Único Dono">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="Estoque/Peugeot/208 Style 2024/IMG_5594.JPG" alt="Peugeot 208 Style 2024" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">HATCH</span>
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <button class="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-accent transition-colors">
-                                <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-display text-xl font-bold text-primary">Peugeot 208 Style</h3>
-                                <p class="text-slate-500 text-sm">2024 • 24.000 km</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
-                            <div class="flex items-center gap-1">
-                                <i data-lucide="fuel" class="w-4 h-4"></i>
-                                <span>Não informado</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <i data-lucide="settings-2" class="w-4 h-4"></i>
-                                <span>Manual</span>
-                            </div>
-                        </div>
-                        <div class="pt-4 border-t border-slate-100 mt-auto">
-                            <p class="text-sm text-slate-500 font-medium">Por</p>
-                            <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 79.900</p>
-                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-primary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(37,99,235,0.28)] hover:from-primary hover:to-accent transition-all">
-                                Tenho Interesse
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Chevrolet Onix Plus LT 2025 -->
-                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Chevrolet" data-model="Onix Plus LT" data-year="2025" data-folder="Estoque/Chevrolet/Onix Plus LT 2025" data-images="Estoque/Chevrolet/Onix Plus LT 2025/IMG_0402.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0403.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0404.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0405.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0406.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0407.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0408.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0409.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0410.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0411.jpg|Estoque/Chevrolet/Onix Plus LT 2025/IMG_0412.jpg" data-doors="4 portas" data-engine="1.0" data-power="Não informado" data-plate="Consulte" data-ipva="Consulte" data-color="Consulte" data-transmission="Manual" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Freios ABS|Airbag Duplo|Central Multimídia">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="Estoque/Chevrolet/Onix Plus LT 2025/IMG_0402.jpg" alt="Chevrolet Onix Plus LT 2025" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">ONIX</span>
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <button class="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-secondary transition-colors">
-                                <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-display text-xl font-bold text-primary">Chevrolet Onix Plus LT</h3>
-                                <p class="text-slate-500 text-sm">2025 . 58.000 km</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
-                            <div class="flex items-center gap-1">
-                                <i data-lucide="fuel" class="w-4 h-4"></i>
-                                <span>Flex</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <i data-lucide="settings-2" class="w-4 h-4"></i>
-                                <span>Manual</span>
-                            </div>
-                        </div>
-                        <div class="pt-4 border-t border-slate-100 mt-auto">
-                            <p class="text-sm text-slate-500 font-medium">Por</p>
-                            <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 77.900</p>
-                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-primary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(37,99,235,0.28)] hover:from-primary hover:to-accent transition-all">
-                                Tenho Interesse
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Car Card 5 -->
-                <div class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col" data-brand="Honda" data-model="Civic LXS" data-year="2014" data-folder="Estoque/honda/Civic LXS 2014" data-images="Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.54.jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.55.jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.55 (1).jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.55 (3).jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.56.jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.56 (1).jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.56 (2).jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.56 (3).jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.57.jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.57 (1).jpeg|Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.57 (2).jpeg" data-doors="4 portas" data-engine="1.8" data-power="140 cv" data-plate="7" data-ipva="Em dia" data-color="Cinza" data-transmission="Automático" data-features="Ar Condicionado|Direção Elétrica|Vidros Elétricos|Travas Elétricas|Airbag Duplo|Freios ABS|Central Multimídia|Camera de Ré">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="Estoque/honda/Civic LXS 2014/WhatsApp Image 2026-03-04 at 11.29.54.jpeg" alt="Honda Civic LXS 2014" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">SEDAN</span>
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <button class="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center hover:bg-accent transition-colors">
-                                <i data-lucide="heart" class="w-5 h-5 text-slate-600"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-display text-xl font-bold text-primary">Honda Civic LXS</h3>
-                                <p class="text-slate-500 text-sm">2014 . 150.000 km</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
-                            <div class="flex items-center gap-1">
-                                <i data-lucide="fuel" class="w-4 h-4"></i>
-                                <span>Flex</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <i data-lucide="settings-2" class="w-4 h-4"></i>
-                                <span>Automático</span>
-                            </div>
-                        </div>
-                        <div class="pt-4 border-t border-slate-100 mt-auto">
-                            <p class="text-sm text-slate-500 font-medium">Por</p>
-                            <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">R$ 68.900</p>
-                            <a href="detalhes.html" class="block w-full py-3 bg-gradient-to-r from-primary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(37,99,235,0.28)] hover:from-primary hover:to-accent transition-all">
-                                Tenho Interesse
-                            </a>
-                        </div>
-                    </div>
-                </div>  
-
+                <div class="col-span-full text-center text-slate-500 py-12">Carregando destaques...</div>
             </div>
 
             <p id="featured-no-results" class="hidden mt-8 text-center text-slate-500 font-medium">
@@ -578,17 +420,18 @@
         <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
     </a>
 
+    <script src="lm-api.js"></script>
     <script>
         lucide.createIcons();
-        
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        
+
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
@@ -605,224 +448,66 @@
         const modelSelect = document.getElementById('model-select');
         const yearSelect = document.getElementById('year-select');
         const searchVehiclesBtn = document.getElementById('search-vehicles-btn');
-        const featuredCarCards = document.querySelectorAll('.featured-car-card');
         const featuredCarsGrid = document.getElementById('featured-cars-grid');
         const noResultsMessage = document.getElementById('featured-no-results');
-
-        function fixMojibake(str) {
-            if (!str) return '';
-            let out = String(str);
-
-            const punctuationMap = {
-                'â€™': '’',
-                'â€œ': '“',
-                'â€': '”',
-                'â€¢': '•',
-                'â€“': '–',
-                'â€”': '—',
-                'â€˜': '‘',
-                'â€•': '’',
-                'â€¡': '‡',
-                'Â©': '©',
-                'Â°': '°',
-                'Âº': 'º'
-            };
-
-            Object.entries(punctuationMap).forEach(([source, replacement]) => {
-                out = out.split(source).join(replacement);
-            });
-
-            try {
-                const bytes = Uint8Array.from(out, (char) => char.charCodeAt(0));
-                const decoded = new TextDecoder('utf-8', { fatal: false }).decode(bytes);
-                if (decoded && decoded !== out && !decoded.includes('�')) {
-                    out = decoded;
-                }
-            } catch (error) {
-                // Ignore and keep the already normalized string.
-            }
-
-            return out.replace(/\u00A0/g, ' ');
-        }
-
-        function sanitizeValue(value) {
-            return fixMojibake(value || '').replace(/\s+/g, ' ').trim();
-        }
-
-        function splitMetaText(value) {
-            return sanitizeValue(value)
-                .split('•')
-                .map((part) => sanitizeValue(part));
-        }
-
-        function parseVehicleMetaText(value) {
-            const text = sanitizeValue(value || '');
-            const yearMatch = text.match(/\b(19|20)\d{2}\b/);
-            const kmMatch = text.match(/([\d.,]+)\s*km/i);
-            const year = yearMatch ? yearMatch[0] : '';
-            const km = kmMatch ? kmMatch[1].replace(/\./g, '').trim() : '';
-            const fuelText = text
-                .replace(yearMatch ? yearMatch[0] : '', '')
-                .replace(kmMatch ? kmMatch[0] : '', '')
-                .replace(/[.\-•]+/g, ' ')
-                .replace(/\s+/g, ' ')
-                .trim();
-
-            return {
-                year,
-                km,
-                fuel: fuelText.replace(/^[-•.\s]+|[-•.\s]+$/g, '')
-            };
-        }
-
-        function normalizeIpvaValue(value) {
-            return sanitizeValue(value).replace(/^[?✓✔\-\.\s]+/, '').trim();
-        }
-
-        function extractPriceTextFromCard(card) {
-            const candidates = Array.from(card.querySelectorAll('p, span, div'))
-                .map((element) => sanitizeValue(element.textContent))
-                .filter(Boolean);
-            const found = candidates.find((text) => /R\$\s*[\d.,]+/.test(text));
-            if (!found) return '';
-            const matches = [...found.matchAll(/R\$\s*([\d.,]+)/g)];
-            return matches.length ? `R$ ${matches[matches.length - 1][1]}` : '';
-        }
-
-        function inferFolderFromImage(imagePath) {
-            const normalizedPath = sanitizeValue(imagePath);
-            if (!normalizedPath || normalizedPath.startsWith('http://') || normalizedPath.startsWith('https://')) {
-                return '';
-            }
-
-            const lastSlashIndex = normalizedPath.lastIndexOf('/');
-            if (lastSlashIndex <= 0) {
-                return '';
-            }
-
-            return normalizedPath.slice(0, lastSlashIndex);
-        }
-
-        featuredCarCards.forEach((card) => {
-            const detailLink = card.querySelector('a[href*="detalhes.html"]');
-            if (!detailLink) {
-                return;
-            }
-
-            const titleText = sanitizeValue(card.querySelector('h3')?.textContent);
-            const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
-            const tagValues = Array.from(card.querySelectorAll('.my-4 span')).map((item) => sanitizeValue(item.textContent));
-            const imageSrc = card.querySelector('img')?.getAttribute('src') || '';
-            const priceRaw = extractPriceTextFromCard(card);
-
-            if (!titleText || !metaText) {
-                return;
-            }
-
-            const titleParts = titleText.split(' ');
-            const defaultBrand = sanitizeValue(titleParts.shift());
-            const defaultModel = sanitizeValue(titleParts.join(' '));
-
-            const brand = sanitizeValue(card.getAttribute('data-brand')) || defaultBrand;
-            const model = sanitizeValue(card.getAttribute('data-model')) || defaultModel;
-            const meta = parseVehicleMetaText(metaText);
-            const year = sanitizeValue(card.getAttribute('data-year')) || meta.year || '';
-            const km = meta.km || '';
-            const fuel = tagValues[0] || meta.fuel || '';
-            const transmission = tagValues[1] || '';
-            const color = sanitizeValue(card.getAttribute('data-color')) || '';
-            const price = priceRaw.replace('R$', '').trim();
-
-            const dataImages = sanitizeValue(card.getAttribute('data-images'));
-            const folder = sanitizeValue(card.getAttribute('data-folder')) || inferFolderFromImage(imageSrc);
-            const doors = sanitizeValue(card.getAttribute('data-doors'));
-            const engine = sanitizeValue(card.getAttribute('data-engine'));
-            const power = sanitizeValue(card.getAttribute('data-power'));
-            const plate = sanitizeValue(card.getAttribute('data-plate'));
-            const ipva = normalizeIpvaValue(card.getAttribute('data-ipva'));
-            const features = sanitizeValue(card.getAttribute('data-features'));
-
-            const params = new URLSearchParams({
-                brand,
-                model,
-                year,
-                km,
-                fuel,
-                transmission,
-                color,
-                price,
-                img: imageSrc,
-                images: dataImages,
-                folder,
-                doors,
-                engine,
-                power,
-                plate,
-                ipva,
-                features
-            });
-
-            detailLink.href = `detalhes.html?${params.toString()}`;
-            card.classList.add('cursor-pointer');
-            card.setAttribute('role', 'link');
-            card.setAttribute('tabindex', '0');
-
-            card.addEventListener('click', (event) => {
-                const interactiveTarget = event.target.closest('a, button, input, select, textarea, label');
-                if (interactiveTarget && interactiveTarget !== detailLink) {
-                    return;
-                }
-
-                window.location.href = detailLink.href;
-            });
-
-            card.addEventListener('keydown', (event) => {
-                if (event.key !== 'Enter' && event.key !== ' ') {
-                    return;
-                }
-
-                event.preventDefault();
-                window.location.href = detailLink.href;
-            });
-        });
-
-        function parseStockCard(card) {
-            const titleText = sanitizeValue(card.querySelector('h3')?.textContent);
-            const metaText = sanitizeValue(card.querySelector('p.text-slate-500')?.textContent);
-            if (!titleText || !metaText) {
-                return null;
-            }
-
-            const titleParts = titleText.split(' ');
-            const brand = sanitizeValue(titleParts.shift());
-            const model = sanitizeValue(titleParts.join(' '));
-            const meta = parseVehicleMetaText(metaText);
-            const year = sanitizeValue(meta.year);
-
-            if (!brand || !model || !year) {
-                return null;
-            }
-
-            return { brand, model, year };
-        }
-
-        async function loadStockVehiclesForSearch() {
-            const response = await fetch('estoque.html');
-            if (!response.ok) {
-                throw new Error('Nao foi possivel carregar o estoque para a busca.');
-            }
-
-            const html = await response.text();
-            const parser = new DOMParser();
-            const stockDocument = parser.parseFromString(html, 'text/html');
-            const cards = Array.from(stockDocument.querySelectorAll('.car-card'));
-
-            return cards
-                .map((card) => parseStockCard(card))
-                .filter(Boolean);
-        }
+        const FEATURED_LIMIT = 4;
 
         let stockVehiclesForSearch = [];
+
+        function renderFeaturedCard(vehicle) {
+            const title = lmVehicleTitle(vehicle);
+            return `
+                <a href="${lmVehicleUrl(vehicle)}" class="featured-car-card bg-white rounded-2xl overflow-hidden shadow-lg card-hover group h-full flex flex-col">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${lmEscape(lmCoverUrl(vehicle))}" alt="${lmEscape(`${title} ${vehicle.year}`)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 flex gap-2">${lmBadgesHtml(vehicle)}</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-display text-xl font-bold text-primary">${lmEscape(title)}</h3>
+                                <p class="text-slate-500 text-sm">${lmEscape(lmVehicleMeta(vehicle, { withFuel: false }))}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 my-4 text-sm text-slate-600">
+                            ${vehicle.fuel ? `<div class="flex items-center gap-1"><i data-lucide="fuel" class="w-4 h-4"></i><span>${lmEscape(vehicle.fuel)}</span></div>` : ''}
+                            ${vehicle.transmission ? `<div class="flex items-center gap-1"><i data-lucide="settings-2" class="w-4 h-4"></i><span>${lmEscape(vehicle.transmission)}</span></div>` : ''}
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 mt-auto">
+                            ${vehicle.oldPrice && vehicle.oldPrice > vehicle.price ? `<p class="text-xs text-slate-400 line-through mb-1">De ${lmFormatPrice(vehicle.oldPrice)}</p>` : ''}
+                            <p class="text-sm text-slate-500 font-medium">Por</p>
+                            <p class="text-3xl font-extrabold text-primary tracking-tight leading-none whitespace-nowrap mb-3">${lmFormatPrice(vehicle.price)}</p>
+                            <span class="block w-full py-3 bg-gradient-to-r from-primary to-accent text-white text-xs font-extrabold uppercase tracking-wide rounded-full text-center shadow-[0_8px_16px_rgba(37,99,235,0.28)] transition-all">
+                                Tenho Interesse
+                            </span>
+                        </div>
+                    </div>
+                </a>`;
+        }
+
+        function renderHeroVehicle(vehicle) {
+            const hero = document.getElementById('hero-vehicle');
+            if (!hero || !vehicle) return;
+            const title = `${lmVehicleTitle(vehicle)} ${vehicle.year}`;
+            const image = document.getElementById('hero-vehicle-image');
+            image.src = lmCoverUrl(vehicle, 'full');
+            image.alt = title;
+            document.getElementById('hero-vehicle-title').textContent = title;
+            document.getElementById('hero-vehicle-price').textContent = lmFormatPrice(vehicle.price);
+            hero.addEventListener('click', () => { window.location.href = lmVehicleUrl(vehicle); });
+            hero.classList.remove('opacity-0');
+        }
+
+        // Destaques marcados no painel; se faltar, completa com os mais recentes.
+        function renderFeaturedVehicles(vehicles) {
+            const featured = vehicles.filter((vehicle) => vehicle.featured);
+            const filler = vehicles.filter((vehicle) => !vehicle.featured);
+            const selected = [...featured, ...filler].slice(0, FEATURED_LIMIT);
+            noResultsMessage?.classList.toggle('hidden', selected.length > 0);
+            featuredCarsGrid.innerHTML = selected.map(renderFeaturedCard).join('');
+            renderHeroVehicle(selected[0]);
+            lucide.createIcons();
+        }
 
         function getAvailableBrands() {
             return [...new Set(stockVehiclesForSearch.map((vehicle) => vehicle.brand))]
@@ -848,64 +533,26 @@
                 .sort((a, b) => b - a);
         }
 
+        function fillSelect(select, placeholder, values, previous) {
+            select.innerHTML = '';
+            select.appendChild(new Option(placeholder, 'all'));
+            values.forEach((value) => select.appendChild(new Option(String(value), String(value))));
+            select.value = values.map(String).includes(previous) ? previous : 'all';
+        }
+
         function setBrandOptions() {
-            if (!brandSelect) {
-                return;
-            }
-
-            const previousBrand = brandSelect.value;
-            brandSelect.innerHTML = '<option value="all">Todas as marcas</option>';
-
-            getAvailableBrands().forEach((brand) => {
-                const option = document.createElement('option');
-                option.value = brand;
-                option.textContent = brand;
-                brandSelect.appendChild(option);
-            });
-
-            brandSelect.value = getAvailableBrands().includes(previousBrand) ? previousBrand : 'all';
+            if (!brandSelect) return;
+            fillSelect(brandSelect, 'Todas as marcas', getAvailableBrands(), brandSelect.value);
         }
 
         function setModelOptions() {
-            if (!modelSelect || !brandSelect) {
-                return;
-            }
-
-            const selectedBrand = brandSelect.value;
-            const previousModel = modelSelect.value;
-            modelSelect.innerHTML = '<option value="all">Todos os modelos</option>';
-
-            const models = getAvailableModelsByBrand(selectedBrand);
-            models.forEach((model) => {
-                const option = document.createElement('option');
-                option.value = model;
-                option.textContent = model;
-                modelSelect.appendChild(option);
-            });
-
-            modelSelect.value = models.includes(previousModel) ? previousModel : 'all';
+            if (!modelSelect || !brandSelect) return;
+            fillSelect(modelSelect, 'Todos os modelos', getAvailableModelsByBrand(brandSelect.value), modelSelect.value);
         }
 
         function setYearOptions() {
-            if (!yearSelect || !brandSelect || !modelSelect) {
-                return;
-            }
-
-            const selectedBrand = brandSelect.value;
-            const selectedModel = modelSelect.value;
-            const previousYear = yearSelect.value;
-
-            yearSelect.innerHTML = '<option value="all">Todos os anos</option>';
-
-            const years = getAvailableYears(selectedBrand, selectedModel);
-            years.forEach((year) => {
-                const option = document.createElement('option');
-                option.value = String(year);
-                option.textContent = String(year);
-                yearSelect.appendChild(option);
-            });
-
-            yearSelect.value = years.map(String).includes(previousYear) ? previousYear : 'all';
+            if (!yearSelect || !brandSelect || !modelSelect) return;
+            fillSelect(yearSelect, 'Todos os anos', getAvailableYears(brandSelect.value, modelSelect.value), yearSelect.value);
         }
 
         function searchInStock() {
@@ -938,14 +585,16 @@
 
         searchVehiclesBtn.addEventListener('click', searchInStock);
 
-        loadStockVehiclesForSearch()
-            .then((stockVehicles) => {
-                stockVehiclesForSearch = stockVehicles;
+        lmFetchVehicles()
+            .then((vehicles) => {
+                stockVehiclesForSearch = vehicles;
+                renderFeaturedVehicles(vehicles);
                 setBrandOptions();
                 setModelOptions();
                 setYearOptions();
             })
             .catch(() => {
+                featuredCarsGrid.innerHTML = `<div class="col-span-full text-center text-slate-500 py-12">Não foi possível carregar os destaques agora. <a class="text-primary font-semibold underline" href="estoque.html">Ver estoque</a></div>`;
                 setModelOptions();
                 setYearOptions();
             });
